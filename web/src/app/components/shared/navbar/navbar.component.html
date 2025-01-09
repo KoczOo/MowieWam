@@ -1,0 +1,51 @@
+<div class="navbar-header" role="navigation">
+    <div class="header-container">
+        <div class="container-fluid">
+            <ng-container *ngIf="!isMobile">
+                <ng-container>
+                    <nav>
+                        <div class="navigation-container">
+                            <ng-container *ngFor="let menu of menuElements">
+                                <ng-container>
+                                    <a [routerLinkActiveOptions]="{ exact: menu.exact }"
+                                       [routerLink]="menu.url"
+                                       class="header-menu navigation-link hover-underline-animation"
+                                       routerLink
+                                       routerLinkActive="active">
+                                        {{ menu.header }}
+                                    </a>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </nav>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="isMobile">
+                <div class="mobile-menu-button-container">
+                    <button color="secondary" mat-icon-button aria-label="Hamburger menu button"
+                            (click)="collapseMenu()">
+                        <mat-icon>menu</mat-icon>
+                    </button>
+                </div>
+                <nav class="nav-mobile-container" [@collapse]="!isCollapsed">
+
+                    <ul>
+                        <hr class="break-line-section"/>
+                        <ng-container *ngFor="let menu of menuElements">
+                            <li class="nav-list-item">
+                                <a [routerLinkActiveOptions]="{ exact: menu.exact }"
+                                   [routerLink]="menu.url"
+                                   class="header-menu navigation-link hover-underline-animation"
+                                   routerLink
+                                   routerLinkActive="active">
+                                    {{ menu.header }}
+                                </a>
+                            </li>
+                        </ng-container>
+                    </ul>
+                </nav>
+            </ng-container>
+        </div>
+    </div>
+</div>
+

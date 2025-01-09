@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+ul {
+  padding: 0
+}
+
+.break-line-section {
+  border: solid var(--secondary);
+  border-width: 1px 0 0 0;
+  opacity: 0.5;
+  margin: 12px 0;
+}
+
+:root {
+  --primary: #ffd9e1;
+  --secondary: #8f0045;
+  --tertiary: #3f001b;
+  --mdc-theme-secondary: #4caf50;
+  --mat-icon-button-state-layer-color: #8f0045; /* Tło */
+  --mdc-icon-button-icon-color: #8f0045; /* Kolor ikony */
+}
