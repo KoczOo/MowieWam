@@ -56,8 +56,12 @@ export class NavbarComponent implements OnInit {
                 header: "O nas",
                 url: "/o-nas",
                 exact: true
-            }
-            ,
+            },
+            {
+                header: "Pierwsza wizyta",
+                url: "/pierwsza-wizyta",
+                exact: true
+            },
             {
                 header: "Cennik",
                 url: "/cennik",

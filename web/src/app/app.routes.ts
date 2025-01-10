@@ -3,6 +3,8 @@ import {LayoutComponent} from "./components/layout/layout.component";
 import {ONasComponent} from "./pages/o-nas/o-nas.component";
 import {CennikComponent} from "./pages/cennik/cennik.component";
 import {KontaktComponent} from "./pages/kontakt/kontakt.component";
+import {HomeComponent} from "./pages/home/home.component";
+import {PierwszaWizytaComponent} from "./pages/pierwsza-wizyta/pierwsza-wizyta.component";
 
 export const routes: Routes = [
     {
@@ -10,8 +12,16 @@ export const routes: Routes = [
         component: LayoutComponent,
         children: [
             {
+              path: "",
+              component: HomeComponent
+            },
+            {
                 path: "o-nas",
                 component: ONasComponent
+            },
+            {
+              path: "pierwsza-wizyta",
+              component: PierwszaWizytaComponent
             },
             {
                 path: "cennik",

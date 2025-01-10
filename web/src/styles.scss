@@ -12,6 +12,16 @@ body {
 ul {
   padding: 0
 }
+h2, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  min-height: 100%;
+}
 
 .break-line-section {
   border: solid var(--secondary);

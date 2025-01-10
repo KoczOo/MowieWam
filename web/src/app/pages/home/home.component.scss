@@ -1,0 +1,42 @@
+.subheader-section {
+  min-height: 20vh;
+  background-color: var(--primary);
+  text-align: center;
+  //border-top: 1px solid var(--tertiary);
+}
+.licorice-regular {
+  font-family: "Licorice", serif;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 122px;
+  color: var(--tertiary);
+  padding-top: 45px;
+  @media only screen and (max-width: 800px) {
+    font-size: 80px;
+  }
+}
+.gowun-dodum-regular {
+  font-family: "Gowun Dodum", serif;
+  font-weight: 600;
+  font-style: normal;
+  color: var(--tertiary);
+  font-size: 18px;
+  margin-top: -4px;
+  @media only screen and (max-width: 800px) {
+    font-size: 12px;
+  }
+}
+.break-line-logo {
+  border: solid var(--secondary);
+  border-width: 1px 0 0 0;
+  opacity: 0.5;
+  width: 450px;
+  margin: -20px auto 4px;
+  @media only screen and (max-width: 800px) {
+    width: 320px;
+    margin-top: -12px;
+  }
+}
+.logo-text-container {
+  padding-bottom: 45px;
+}

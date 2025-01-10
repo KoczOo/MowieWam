@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d97195ea-d13c-4043-9b0a-d066f68d1f8e" name="Changes" comment="" />
+    <list default="true" id="d97195ea-d13c-4043-9b0a-d066f68d1f8e" name="Changes" comment="Navbar implementacja z collapse dla mobilek.">
+      <change beforePath="$PROJECT_DIR$/.idea/mowie-wam.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mowie-wam.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/layout/layout.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/layout/layout.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/layout/layout.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/layout/layout.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/layout/layout.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/layout/layout.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/shared/navbar/navbar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/shared/navbar/navbar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/shared/navbar/navbar.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/shared/navbar/navbar.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/shared/navbar/navbar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/shared/navbar/navbar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/styles.scss" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,7 +49,8 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "last_opened_file_path": "C:/Users/sebas/source/projects/mowie-wam",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/sebas/source/projekty/mowie-wam",
     "list.type.of.created.stylesheet": "SCSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -42,9 +58,14 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "advanced.settings",
-    "ts.external.directory.path": "C:\\Users\\sebas\\source\\projects\\mowie-wam\\web\\node_modules\\typescript\\lib"
+    "ts.external.directory.path": "C:\\Users\\sebas\\source\\projekty\\mowie-wam\\web\\node_modules\\typescript\\lib"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\sebas\source\projekty\mowie-wam\web\src\fonts" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -65,5 +86,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Navbar implementacja z collapse dla mobilek." />
+    <option name="LAST_COMMIT_MESSAGE" value="Navbar implementacja z collapse dla mobilek." />
   </component>
 </project>
