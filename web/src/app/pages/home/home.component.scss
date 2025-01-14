@@ -21,7 +21,6 @@
   font-style: normal;
   color: var(--tertiary);
   font-size: 18px;
-  margin-top: -4px;
   @media only screen and (max-width: 800px) {
     font-size: 12px;
   }
@@ -39,4 +38,52 @@
 }
 .logo-text-container {
   padding-bottom: 45px;
+}
+.about-me-text-container, .img-me-container {
+  padding: 60px 20px;
+}
+.img-me-container {
+  text-align: center;
+}
+.me-photo {
+  width: 90%;
+  max-width: 450px;
+  border-radius: 25px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+.about-me-header {
+  font-size: 20px;
+  color: var(--tertiary);
+}
+.about-me-text {
+  font-size: 42px;
+  color: var(--tertiary);
+  margin-top: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+.about-me-text-subheader {
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 5px;
+  color: #7A7A7A;
+}
+.break-line-header {
+  width: 74px;
+  margin: 12px auto 0 0;
+  color: var(--tertiary);
+}
+.about-me-paragraph {
+  font-size: 15px;
+  color: #7A7A7A;
+  text-align: justify;
+}
+.about-me-description-container {
+  margin-top: 20px;
+}
+
+.about-us-link {
+  text-decoration: none;
+  color: var(--tertiary);
 }
