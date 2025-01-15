@@ -96,3 +96,55 @@
   padding: 60px 0 145px 0;
   text-align: center;
 }
+.google-map-frame{
+  border-radius: 18px;
+}
+.card {
+  width: 300px;
+  height: 300px;
+}
+.google-opinions {
+  margin: 100px 0;
+}
+.slider-container {
+  text-align: center;
+
+}
+.google-opinions-carousel-container {
+  padding: 5px;
+  @media only screen and (max-width: 768px) {
+    padding: 0;
+  }
+}
+.item-card {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 12px;
+  width: 350px;
+  height: 400px;
+  margin: 15%;
+  @media only screen and (max-width: 768px) {
+    margin: 30px auto 60px auto;
+  }
+}
+.item-card-header {
+  text-align: center;
+  padding: 25px 0 0 0;
+  font-size: 22px;
+}
+.opinion-time {
+  text-align: center;
+  font-size: 14px;
+  color: #7A7A7A;
+}
+.google-opinions-header {
+  text-align: center;
+  padding: 50px 0 0 0;
+}
+.opinion-content-container {
+  margin: 25px;
+}
+.opinion-paragraph {
+  font-size: 14px;
+  text-align: justify;
+  color: #7A7A7A;
+}

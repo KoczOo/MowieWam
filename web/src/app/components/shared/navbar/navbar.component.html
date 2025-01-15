@@ -7,11 +7,8 @@
                         <div class="navigation-container">
                             <ng-container *ngFor="let menu of menuElements">
                                 <ng-container>
-                                    <a [routerLinkActiveOptions]="{ exact: menu.exact }"
-                                       [routerLink]="menu.url"
-                                       class="header-menu navigation-link hover-underline-animation"
-                                       routerLink
-                                       routerLinkActive="active">
+                                    <a [href]="menu.url"
+                                       class="header-menu navigation-link hover-underline-animation">
                                         {{ menu.header }}
                                     </a>
                                 </ng-container>
@@ -32,11 +29,8 @@
                         <hr class="break-line-section"/>
                         <ng-container *ngFor="let menu of menuElements">
                             <li class="nav-list-item">
-                                <a [routerLinkActiveOptions]="{ exact: menu.exact }"
-                                   [routerLink]="menu.url"
-                                   class="header-menu navigation-link hover-underline-animation"
-                                   routerLink
-                                   routerLinkActive="active">
+                                <a [href]="menu.url"
+                                   class="header-menu navigation-link hover-underline-animation">
                                     {{ menu.header }}
                                 </a>
                             </li>
