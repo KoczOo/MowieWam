@@ -51,6 +51,9 @@
   border-radius: 25px;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
 }
+.about-me-section {
+  margin-top: 50px;
+}
 .about-me-header {
   font-size: 20px;
   color: var(--tertiary);
@@ -147,4 +150,20 @@
   font-size: 14px;
   text-align: justify;
   color: #7A7A7A;
+}
+.hidden {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+@media (max-width: 768px) {
+  .hidden {
+    transform: translateX(0);
+    transition: opacity 1s ease-in, transform 1s ease-in;
+  }
 }

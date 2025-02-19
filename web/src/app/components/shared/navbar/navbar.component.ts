@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {RouterLink, RouterLinkActive} from "@angular/router";
 import {NgForOf, NgIf} from "@angular/common";
 import {MenuElement} from "../../../dto/MenuElement";
 import {BreakpointObserver} from "@angular/cdk/layout";
@@ -12,8 +11,6 @@ const DEFAULT_DURATION = 300;
 @Component({
     selector: 'app-navbar',
     imports: [
-        RouterLinkActive,
-        RouterLink,
         NgForOf,
         NgIf,
         MatIcon,
@@ -42,6 +39,9 @@ export class NavbarComponent implements OnInit {
         this.createMenu();
         this.observer.observe(['(max-width: 800px)']).subscribe((screenSize) => {
             this.isMobile = screenSize.matches;
+            if (this.isMobile) {
+                this.isCollapsed = false;
+            }
         });
     }
 

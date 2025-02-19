@@ -1,15 +1,16 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {environment} from "../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
 })
 export class GooglePlacesService {
 
-    private apiKey = 'AIzaSyCbLtfz6to7qedTRmfP-_M7GAAeJoxliY8';
-    private placesDetailsUrl = 'https://maps.googleapis.com/maps/api/place/details/json';
-    private placeId = 'ChIJwcjs5xInGEcRzMrrS-3QuAA';
+    private apiKey = environment.googleApiKey;
+    private placesDetailsUrl = environment.placesDetailsUrl
+    private placeId = environment.placeId;
 
     constructor(private http: HttpClient) {
     }

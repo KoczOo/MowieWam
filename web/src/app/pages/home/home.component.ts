@@ -5,6 +5,7 @@ import {GooglePlacesService} from "../../services/google-places.service";
 import {Reviews} from "../../dto/Reviews";
 import {StarRatingComponent} from "../../components/star-rating/star-rating.component";
 import {ActivatedRoute} from "@angular/router";
+import {IntersectionObserverDirective} from "../../directive/intersection-observer.directive";
 
 
 @Component({
@@ -13,11 +14,13 @@ import {ActivatedRoute} from "@angular/router";
     SlickCarouselModule,
     NgForOf,
     StarRatingComponent,
+    IntersectionObserverDirective
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
+  isVisible = false;
   slides: Reviews[] = [];
   slideConfig = {
     infinite: true,
@@ -49,6 +52,10 @@ export class HomeComponent implements OnInit {
   constructor(private route: ActivatedRoute, private GooglePlacesService: GooglePlacesService) {
   }
 
+  onVisible(): void {
+    this.isVisible = true;
+  }
+
   ngOnInit() {
     this.route.params.subscribe(() => {
       this.loadPlaceDetails();
@@ -57,7 +64,6 @@ export class HomeComponent implements OnInit {
   }
 
   loadPlaceDetails(): void {
-    console.log('test')
     this.GooglePlacesService.getPlaceDetails().subscribe(response => {
       this.slides = response.result.reviews;
     })

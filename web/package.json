@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "prestart": "node scripts/generate-env.js",
     "start": "ng serve",
+    "prebuild": "node scripts/generate-env.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -25,6 +27,7 @@
     "@angular/router": "^19.0.0",
     "@angular/ssr": "^19.0.7",
     "bootstrap": "^5.3.3",
+    "dotenv": "^16.4.7",
     "express": "^4.18.2",
     "jquery": "^3.7.1",
     "ngx-slick-carousel": "^19.0.0",

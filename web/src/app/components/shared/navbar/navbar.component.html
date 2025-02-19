@@ -19,7 +19,11 @@
             </ng-container>
             <ng-container *ngIf="isMobile">
                 <div class="mobile-menu-button-container">
-                    <button color="secondary" mat-icon-button aria-label="Hamburger menu button"
+                    <div class="logo-img-container">
+                        <img class="logo-img-navbar" height="100" width="100" src="assets/mowie_wam_logo.png"
+                             alt="Mowie Wam logo"/>
+                    </div>
+                    <button class="hamburger-button" color="secondary" mat-icon-button aria-label="Hamburger menu button"
                             (click)="collapseMenu()">
                         <mat-icon>menu</mat-icon>
                     </button>
