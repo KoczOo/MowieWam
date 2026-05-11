@@ -1,1 +1,182 @@
-<p>kontakt works!</p>
+<main>
+    <section class="page-header">
+        <div class="container">
+            <span class="eyebrow">Kontakt</span>
+            <h1 class="page-title">Skontaktuj się z nami!</h1>
+            <p class="page-subtitle">
+                Czekamy na Was z otwartymi drzwiami. Najszybszą formą zapisu jest telefon
+                lub SMS – odpowiemy najszybciej, jak to możliwe.
+            </p>
+        </div>
+    </section>
+
+    <section class="section contact-section">
+        <div class="container">
+            <div class="row g-4">
+                <!-- INFO COLUMN -->
+                <div class="col-lg-5">
+                    <div class="info-stack hidden" appIntersectionObserver>
+                        <div class="info-block">
+                            <div class="info-icon"><mat-icon>phone</mat-icon></div>
+                            <div>
+                                <h4>Telefon</h4>
+                                <a href="tel:509-792-650">509 792 650</a>
+                                <p class="info-note">Najszybciej odpowiadamy na SMS</p>
+                            </div>
+                        </div>
+
+                        <div class="info-block">
+                            <div class="info-icon"><mat-icon>email</mat-icon></div>
+                            <div>
+                                <h4>E-mail</h4>
+                                <a href="mailto:mowiewam@gmail.com">mowiewam&#64;gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="info-block">
+                            <div class="info-icon"><mat-icon>location_on</mat-icon></div>
+                            <div>
+                                <h4>Adres</h4>
+                                <a target="_blank" href="https://g.co/kgs/yvMUtaY">
+                                    ul. Jurajska 1C/u20A<br/>
+                                    25-640 Kielce, os. Ślichowice
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="info-block">
+                            <div class="info-icon"><mat-icon>schedule</mat-icon></div>
+                            <div>
+                                <h4>Godziny otwarcia</h4>
+                                <p style="margin: 0;">Pon-Pt: 9:00 - 20:00<br/>Sobota: 9:00 - 14:00</p>
+                            </div>
+                        </div>
+
+                        <div class="info-social">
+                            <a target="_blank" rel="noopener" href="https://www.instagram.com/mowie.wam/" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a target="_blank" rel="noopener" href="https://www.facebook.com/mowiewam" aria-label="Facebook">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FORM COLUMN -->
+                <div class="col-lg-7">
+                    <div class="form-card hidden" appIntersectionObserver>
+                        <h2 class="form-title">Napisz do nas</h2>
+                        <p class="form-sub">Zostaw kontakt – oddzwonimy lub odpiszemy w ciągu 24 godzin.</p>
+
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+                            <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <label for="name">Imię i nazwisko *</label>
+                                    <input id="name" type="text" formControlName="name"
+                                           [class.invalid]="isInvalid('name')" placeholder="Jan Kowalski"/>
+                                    <small class="error" *ngIf="hasError('name', 'required')">Pole wymagane</small>
+                                    <small class="error" *ngIf="hasError('name', 'minlength')">Wpisz przynajmniej 2 znaki</small>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="email">E-mail *</label>
+                                    <input id="email" type="email" formControlName="email"
+                                           [class.invalid]="isInvalid('email')" placeholder="jan@example.pl"/>
+                                    <small class="error" *ngIf="hasError('email', 'required')">Pole wymagane</small>
+                                    <small class="error" *ngIf="hasError('email', 'email')">Niepoprawny e-mail</small>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="phone">Telefon</label>
+                                    <input id="phone" type="tel" formControlName="phone"
+                                           [class.invalid]="isInvalid('phone')" placeholder="500 000 000"/>
+                                    <small class="error" *ngIf="hasError('phone', 'pattern')">Podaj prawidłowy numer</small>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="subject">Temat *</label>
+                                    <select id="subject" formControlName="subject">
+                                        <option>Konsultacja logopedyczna</option>
+                                        <option>Diagnoza</option>
+                                        <option>Terapia ręki</option>
+                                        <option>Zajęcia grupowe</option>
+                                        <option>Inne</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="message">Wiadomość *</label>
+                                    <textarea id="message" rows="5" formControlName="message"
+                                              [class.invalid]="isInvalid('message')"
+                                              placeholder="W czym możemy pomóc? Opowiedz nam pokrótce o swoim dziecku."></textarea>
+                                    <small class="error" *ngIf="hasError('message', 'required')">Pole wymagane</small>
+                                    <small class="error" *ngIf="hasError('message', 'minlength')">Wiadomość zbyt krótka (min. 10 znaków)</small>
+                                </div>
+                                <div class="col-12">
+                                    <label class="consent">
+                                        <input type="checkbox" formControlName="consent"/>
+                                        <span>
+                                            Wyrażam zgodę na przetwarzanie danych osobowych zgodnie z polityką prywatności
+                                            w celu kontaktu i realizacji zgłoszenia. *
+                                        </span>
+                                    </label>
+                                    <small class="error" *ngIf="isInvalid('consent')">Aby wysłać formularz, zaakceptuj zgodę</small>
+                                </div>
+
+                                <!-- Honeypot: ukryte pole, którego nie widzi człowiek, ale wypełnią je boty -->
+                                <div class="hp-field" aria-hidden="true">
+                                    <label for="website">Strona www (zostaw puste)</label>
+                                    <input id="website" type="text" formControlName="website"
+                                           tabindex="-1" autocomplete="off"/>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="captcha" class="captcha-label">
+                                        <mat-icon>shield</mat-icon>
+                                        Potwierdź, że nie jesteś botem *
+                                    </label>
+                                    <div class="captcha-row">
+                                        <span class="captcha-question">
+                                            Ile to <strong>{{ captchaA }}</strong> + <strong>{{ captchaB }}</strong>?
+                                        </span>
+                                        <input id="captcha" type="text" inputmode="numeric"
+                                               formControlName="captcha"
+                                               [class.invalid]="isInvalid('captcha')"
+                                               placeholder="Wpisz wynik"
+                                               autocomplete="off" maxlength="3"/>
+                                        <button type="button" class="captcha-refresh"
+                                                (click)="refreshCaptcha()"
+                                                aria-label="Wygeneruj nowe pytanie">
+                                            <mat-icon>refresh</mat-icon>
+                                        </button>
+                                    </div>
+                                    <small class="error" *ngIf="hasError('captcha', 'required') && submitted">Pole wymagane</small>
+                                    <small class="error" *ngIf="hasError('captcha', 'captcha')">Niepoprawny wynik – spróbuj jeszcze raz</small>
+                                </div>
+
+                                <div class="col-12 form-actions">
+                                    <button type="submit" class="btn-mw btn-primary-mw">
+                                        <mat-icon>send</mat-icon>
+                                        Wyślij wiadomość
+                                    </button>
+                                    <p class="success-msg" *ngIf="sent">
+                                        <mat-icon>check_circle</mat-icon>
+                                        Dziękujemy! Otworzy się Twój klient e-mail – po wysłaniu odpiszemy najszybciej, jak to możliwe.
+                                    </p>
+                                    <p class="bot-msg" *ngIf="botBlocked">
+                                        <mat-icon>block</mat-icon>
+                                        Wykryto podejrzaną aktywność. Spróbuj ponownie za chwilę lub zadzwoń bezpośrednio: 509 792 650.
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAP -->
+    <section class="map-section">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2517.0223174689654!2d20.579114499999996!3d50.88629729999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47182712e7ecc8c1%3A0xb8d0ed4bebcacc!2sM%C3%B3wi%C4%99%20Wam%20Centrum%20Logopedyczno-Terapeutyczne%20Dominika%20G%C4%99bska!5e0!3m2!1spl!2spl!4v1736845563012!5m2!1spl!2spl"
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+</main>

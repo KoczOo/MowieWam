@@ -1,0 +1,61 @@
+<main>
+    <section class="page-header">
+        <div class="container">
+            <span class="eyebrow">Blog</span>
+            <h1 class="page-title">Wkrótce – nasze artykuły dla rodziców</h1>
+            <p class="page-subtitle">
+                Pracujemy nad blogiem pełnym praktycznych wskazówek, ćwiczeń do domu i odpowiedzi
+                na pytania, które najczęściej słyszymy w gabinecie. Wróć tu wkrótce!
+            </p>
+
+            <div class="page-actions">
+                <a class="btn-mw btn-primary-mw" target="_blank" rel="noopener"
+                   href="https://www.instagram.com/mowie.wam/">
+                    <i class="fab fa-instagram"></i>
+                    Śledź nas na Instagramie
+                </a>
+                <a class="btn-mw btn-outline-mw" href="/kontakt">
+                    <mat-icon>mail</mat-icon>
+                    Zapisz się na newsletter
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section topics-section">
+        <div class="container">
+            <div class="text-center hidden" appIntersectionObserver>
+                <span class="eyebrow">Co planujemy</span>
+                <h2 class="section-title">O czym będziemy pisać</h2>
+                <p class="section-subtitle">
+                    Tematy, które przygotowujemy dla Was. Daj nam znać, co Cię najbardziej interesuje!
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" *ngFor="let t of topics">
+                    <div class="topic-card hidden" appIntersectionObserver>
+                        <div class="topic-icon">
+                            <mat-icon>{{ t.icon }}</mat-icon>
+                        </div>
+                        <h3>{{ t.title }}</h3>
+                        <p>{{ t.desc }}</p>
+                        <span class="topic-badge">Wkrótce</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <div class="container hidden" appIntersectionObserver>
+            <h2 class="cta-title">Masz pomysł na temat, o którym chcesz przeczytać?</h2>
+            <p class="cta-sub">Napisz do nas – chętnie poruszymy temat, który Cię interesuje.</p>
+            <div class="cta-actions">
+                <a class="btn-mw btn-light-mw" href="/kontakt">
+                    <mat-icon>edit</mat-icon> Zaproponuj temat
+                </a>
+            </div>
+        </div>
+    </section>
+</main>

@@ -1,48 +1,128 @@
-<div class="navbar-header" role="navigation">
-    <div class="header-container">
-        <div class="container-fluid">
-            <ng-container *ngIf="!isMobile">
-                <ng-container>
-                    <nav>
-                        <div class="navigation-container">
-                            <ng-container *ngFor="let menu of menuElements">
-                                <ng-container>
-                                    <a [href]="menu.url"
-                                       class="header-menu navigation-link hover-underline-animation">
-                                        {{ menu.header }}
-                                    </a>
-                                </ng-container>
-                            </ng-container>
-                        </div>
-                    </nav>
-                </ng-container>
-            </ng-container>
-            <ng-container *ngIf="isMobile">
-                <div class="mobile-menu-button-container">
-                    <div class="logo-img-container">
-                        <img class="logo-img-navbar" height="100" width="100" src="assets/mowie_wam_logo.png"
-                             alt="Mowie Wam logo"/>
-                    </div>
-                    <button class="hamburger-button" color="secondary" mat-icon-button aria-label="Hamburger menu button"
-                            (click)="collapseMenu()">
-                        <mat-icon>menu</mat-icon>
-                    </button>
-                </div>
-                <nav class="nav-mobile-container" [@collapse]="!isCollapsed">
-                    <ul>
-                        <hr class="break-line-section"/>
-                        <ng-container *ngFor="let menu of menuElements">
-                            <li class="nav-list-item">
-                                <a [href]="menu.url"
-                                   class="header-menu navigation-link hover-underline-animation">
-                                    {{ menu.header }}
-                                </a>
-                            </li>
-                        </ng-container>
-                    </ul>
-                </nav>
-            </ng-container>
-        </div>
+<!-- TOP BAR – kontakt + lokalizacja -->
+<div class="topbar" role="complementary">
+    <div class="topbar-inner">
+        <a class="topbar-item" target="_blank" rel="noopener"
+           href="https://g.co/kgs/yvMUtaY">
+            <mat-icon>location_on</mat-icon>
+            <span>Znajdziesz nas w&nbsp;Kielcach</span>
+        </a>
+        <span class="topbar-sep" aria-hidden="true">·</span>
+        <a class="topbar-item topbar-phone" [href]="phoneHref">
+            <mat-icon>call</mat-icon>
+            <span>Zadzwoń do nas: <strong>{{ phoneDisplay }}</strong></span>
+        </a>
     </div>
 </div>
 
+<!-- MAIN NAVBAR -->
+<div class="navbar-header" role="navigation" [class.scrolled]="isScrolled">
+    <div class="header-container">
+        <!-- LEFT: logo + brand -->
+        <a href="/" class="brand-link" aria-label="Mówię Wam – strona główna">
+            <img class="logo-img-navbar" src="assets/mowie_wam_logo.png" alt="Mówię Wam logo"/>
+            <span class="brand-text">
+                <span class="brand-name licorice">Mówię Wam</span>
+                <span class="brand-tagline">Centrum Logopedyczno-Terapeutyczne</span>
+            </span>
+        </a>
+
+        <!-- PHONE pill — zawsze widoczna obok logo -->
+        <a class="phone-pill" [href]="phoneHref" *ngIf="!isMobile">
+            <span class="phone-icon"><mat-icon>call</mat-icon></span>
+            <span class="phone-text">
+                <span class="phone-label">Zadzwoń</span>
+                <strong>{{ phoneDisplay }}</strong>
+            </span>
+        </a>
+
+        <!-- DESKTOP NAV -->
+        <ng-container *ngIf="!isMobile">
+            <nav class="navigation-container" aria-label="Główna nawigacja">
+                <a *ngFor="let menu of menuElements"
+                   [href]="menu.url"
+                   class="navigation-link hover-underline-animation">
+                    {{ menu.header }}
+                </a>
+            </nav>
+
+            <!-- SOCIAL ICONS po prawej -->
+            <div class="social-icons">
+                <a class="social-icon" target="_blank" rel="noopener"
+                   [href]="instagramUrl" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a class="social-icon" target="_blank" rel="noopener"
+                   [href]="facebookUrl" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </div>
+        </ng-container>
+
+        <!-- MOBILE – phone (icon only) + hamburger -->
+        <ng-container *ngIf="isMobile">
+            <a class="mobile-phone-btn" [href]="phoneHref" aria-label="Zadzwoń">
+                <mat-icon>call</mat-icon>
+            </a>
+            <button class="hamburger-button" mat-icon-button aria-label="Menu"
+                    (click)="collapseMenu()">
+                <mat-icon>{{ isCollapsed ? 'menu' : 'close' }}</mat-icon>
+            </button>
+        </ng-container>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <nav class="nav-mobile-container" *ngIf="isMobile"
+         [@collapse]="isCollapsed" aria-label="Menu mobilne">
+        <ul>
+            <li class="nav-list-item" *ngFor="let menu of menuElements">
+                <a [href]="menu.url" class="navigation-link">{{ menu.header }}</a>
+            </li>
+            <li class="nav-list-item nav-cta-mobile">
+                <a class="btn-mw btn-primary-mw" [href]="phoneHref">
+                    <mat-icon>call</mat-icon>
+                    {{ phoneDisplay }}
+                </a>
+            </li>
+            <li class="nav-list-item mobile-social">
+                <a target="_blank" rel="noopener" [href]="instagramUrl" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a target="_blank" rel="noopener" [href]="facebookUrl" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<!-- FLOATING PRETTY BAR – desktop, pojawia się po scrollu -->
+<div class="floating-nav" [class.visible]="showFloatingNav" *ngIf="!isMobile"
+     role="navigation" aria-label="Nawigacja pływająca">
+    <div class="floating-inner">
+        <a href="/" class="float-brand" aria-label="Mówię Wam – strona główna">
+            <img src="assets/mowie_wam_logo.png" alt=""/>
+            <span class="licorice">Mówię Wam</span>
+        </a>
+
+        <nav class="float-nav">
+            <a *ngFor="let menu of menuElements" [href]="menu.url" class="float-link">
+                {{ menu.header }}
+            </a>
+        </nav>
+
+        <div class="float-right">
+            <a class="float-phone-btn" [href]="phoneHref" [attr.aria-label]="'Zadzwoń ' + phoneDisplay">
+                <mat-icon>call</mat-icon>
+                <span class="float-phone-number">{{ phoneDisplay }}</span>
+            </a>
+            <a class="float-social" target="_blank" rel="noopener"
+               [href]="instagramUrl" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a class="float-social" target="_blank" rel="noopener"
+               [href]="facebookUrl" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </div>
+    </div>
+</div>

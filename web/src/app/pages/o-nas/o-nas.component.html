@@ -1,72 +1,197 @@
 <main>
-    <div class="about-us-container">
-        <section class="py-5">
-            <div class="container">
-                <div class="row justify-content-center text-center mb-2 mb-lg-4">
-                    <div class="col-12 col-lg-8 col-xxl-7 text-center mx-auto">
-                        <span class="text-muted">Nasz Zespół</span>
-                        <h2 class="display-5 fw-bold">Poznaj Nasz zespół</h2>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta harum ipsum venenatis metus sem veniam eveniet aperiam suscipit.</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-lg-4 offset-lg-4">
-                        <div class="card text-center border-0 mb-3">
-                            <div class="card-body p-3">
-                                <div class="mb-4 mx-lg-2 mx-xxl-2"><img class="img-fluid rounded-circle" src="https://freefrontend.dev/assets/square.png"></div>
-                                <h5 class="fw-bold">Dominika Gębska</h5>
-                                <div class="text-muted">
-                                    Neurologpeda
-                                </div>
-                                <div class="d-flex justify-content-center mt-4">
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <span class="eyebrow">O nas</span>
+            <h1 class="page-title">Poznaj nasze Centrum</h1>
+            <p class="page-subtitle">
+                Mówię Wam to miejsce, w którym za każdym uśmiechem dziecka stoi praca z pasją,
+                najlepszych specjalistek z Kielc.
+            </p>
+        </div>
+    </section>
 
-                                </div>
+    <!-- FOUNDER SPOTLIGHT -->
+    <section class="section founder-section">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-5">
+                    <div class="founder-image hidden" appIntersectionObserver>
+                        <div class="founder-frame">
+                            <img src="assets/me.jpg" alt="mgr Dominika Gębska – założycielka Mówię Wam"/>
+                        </div>
+                        <div class="founder-decor"></div>
+                        <div class="founder-badge">
+                            <mat-icon>workspace_premium</mat-icon>
+                            <div>
+                                <strong>Założycielka</strong>
+                                <span>centrum Mówię Wam</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card text-center border-0 mb-3">
-                            <div class="card-body p-3">
-                                <div class="mb-4 mx-lg-2 mx-xxl-2"><img class="img-fluid rounded-circle" src="https://freefrontend.dev/assets/square.png"></div>
-                                <h5 class="fw-bold">Klaudia Chrzęszczyk</h5>
-                                <div class="text-muted">
-                                    Logopeda
-                                </div>
-                                <div class="d-flex justify-content-center mt-4">
-                                </div>
+
+                <div class="col-lg-7">
+                    <div class="founder-text hidden" appIntersectionObserver>
+                        <span class="eyebrow">Założycielka centrum</span>
+                        <h2 class="section-title">mgr Dominika Gębska</h2>
+                        <p class="role-line">NEUROLOGOPEDA · LOGOPEDA · TERAPEUTA RĘKI</p>
+
+                        <p>
+                            Od początku swojej logopedycznej drogi wiedziałam, że pewnego dnia
+                            stworzę najwspanialsze miejsce dla dzieci. Pięknie urządzone, dające
+                            poczucie komfortu i bezpieczeństwa, ale przede wszystkim takie, które
+                            <strong>w dobry i mądry sposób zaopiekuje się każdym, kto do niego trafi.</strong>
+                        </p>
+                        <p>
+                            I tak otworzyłam drzwi <strong>Mówię Wam</strong> – Centrum Logopedyczno-Terapeutycznego,
+                            stworzonego z myślą o dzieciach, w które włożyłam całe swoje serce.
+                        </p>
+                        <p>
+                            Drogi Rodzicu – czeka tu na Ciebie wyposażona biblioteczka oraz filiżanka
+                            pysznej kawy, a na Twoje dziecko najlepsi terapeuci oraz piękne gabinety
+                            wyposażone w najnowsze pomoce terapeutyczne.
+                        </p>
+
+                        <div class="founder-quals-grid">
+                            <div class="qual-item">
+                                <mat-icon>school</mat-icon>
+                                <span>Neurologopeda</span>
+                            </div>
+                            <div class="qual-item">
+                                <mat-icon>school</mat-icon>
+                                <span>Logopeda ogólny</span>
+                            </div>
+                            <div class="qual-item">
+                                <mat-icon>pan_tool</mat-icon>
+                                <span>Terapeuta ręki I i II stopnia</span>
+                            </div>
+                            <div class="qual-item">
+                                <mat-icon>child_care</mat-icon>
+                                <span>Terapeuta wczesnej interwencji</span>
+                            </div>
+                            <div class="qual-item">
+                                <mat-icon>spa</mat-icon>
+                                <span>Terapeuta miofunkcjonalny</span>
+                            </div>
+                            <div class="qual-item">
+                                <mat-icon>music_note</mat-icon>
+                                <span>Instruktor logorytmiki</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card text-center border-0 mb-3">
-                            <div class="card-body p-3">
-                                <div class="mb-4 mx-lg-2 mx-xxl-2"><img class="img-fluid rounded-circle" src="https://freefrontend.dev/assets/square.png"></div>
-                                <h5 class="fw-bold">Justyna Nowacka</h5>
-                                <div class="text-muted">
-                                    Neurologpeda
-                                </div>
-                                <div class="d-flex justify-content-center mt-4">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card text-center border-0 mb-3">
-                            <div class="card-body p-3">
-                                <div class="mb-4 mx-lg-2 mx-xxl-2"><img class="img-fluid rounded-circle" src="https://freefrontend.dev/assets/square.png"></div>
-                                <h5 class="fw-bold">Weronika Prus</h5>
-                                <div class="text-muted">
-                                    Logopeda
-                                </div>
-                                <div class="d-flex justify-content-center mt-4">
-                                </div>
-                            </div>
+
+                        <div class="founder-cta">
+                            <a class="btn-mw btn-primary-mw" href="/kontakt">
+                                <mat-icon>event_available</mat-icon>
+                                Umów wizytę u Dominiki
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="section section-bg values-section">
+        <div class="container">
+            <div class="text-center hidden" appIntersectionObserver>
+                <span class="eyebrow">Nasze wartości</span>
+                <h2 class="section-title">Co nas wyróżnia</h2>
+                <p class="section-subtitle">
+                    Tworzymy zespół oparty na wzajemnym wsparciu i zaufaniu –
+                    wierzymy, że to nasza największa siła.
+                </p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3" *ngFor="let v of values">
+                    <div class="value-card hidden" appIntersectionObserver>
+                        <div class="value-icon"><mat-icon>{{ v.icon }}</mat-icon></div>
+                        <h3>{{ v.title }}</h3>
+                        <p>{{ v.desc }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="section team-section">
+        <div class="container">
+            <div class="text-center hidden" appIntersectionObserver>
+                <span class="eyebrow">Nasz Zespół</span>
+                <h2 class="section-title">Poznaj nasze terapeutki</h2>
+                <p class="section-subtitle">
+                    Każda z nas swoją drogę zaczęła z pasji do pomagania dzieciom.
+                    Razem tworzymy team, który pracuje holistycznie i z sercem.
+                </p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-4" *ngFor="let m of team">
+                    <div class="team-card hover-lift hidden" appIntersectionObserver>
+                        <div class="avatar">
+                            <span class="avatar-initials">{{ m.initials }}</span>
+                        </div>
+                        <h3 class="team-name">{{ m.name }}</h3>
+                        <p class="team-role">{{ m.role }}</p>
+                        <ul class="team-quals">
+                            <li *ngFor="let q of m.qualifications">
+                                <mat-icon>fiber_manual_record</mat-icon>
+                                <span>{{ q }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION -->
+    <section class="section section-cream mission-section">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-6">
+                    <div class="hidden" appIntersectionObserver>
+                        <span class="eyebrow">Nasza misja</span>
+                        <h2 class="section-title">Każde dziecko zasługuje na to, by zostać wysłuchane</h2>
+                        <p style="font-size: 17px; line-height: 1.8; color: var(--text);">
+                            Wierzymy, że terapia logopedyczna to nie tylko ćwiczenia.
+                            To <strong>relacja oparta na zaufaniu</strong>, ciepła rozmowa,
+                            pierwsze brawa po wymówieniu trudnej głoski, łzy radości rodzica.
+                        </p>
+                        <p style="font-size: 17px; line-height: 1.8; color: var(--text);">
+                            Pracujemy holistycznie – od diagnozy, przez plan terapii,
+                            po wsparcie rodziny w codziennych wyzwaniach.
+                            Zapraszamy do naszego Centrum w Kielcach na os. Ślichowice.
+                        </p>
+                        <a class="btn-mw btn-primary-mw" href="/oferta">
+                            Poznaj naszą ofertę
+                            <mat-icon>arrow_forward</mat-icon>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="mission-stats hidden" appIntersectionObserver>
+                        <div class="m-stat">
+                            <span class="m-num">500+</span>
+                            <span class="m-label">Dzieci pod naszą opieką</span>
+                        </div>
+                        <div class="m-stat">
+                            <span class="m-num">5+</span>
+                            <span class="m-label">Lat doświadczenia</span>
+                        </div>
+                        <div class="m-stat">
+                            <span class="m-num">4</span>
+                            <span class="m-label">Specjalistki w zespole</span>
+                        </div>
+                        <div class="m-stat">
+                            <span class="m-num">5.0★</span>
+                            <span class="m-label">Średnia ocena Google</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>

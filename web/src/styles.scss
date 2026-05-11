@@ -1,29 +1,119 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles */
+
+:root {
+  --primary: #ffd9e1;
+  --primary-soft: #fff1f4;
+  --primary-strong: #ffc1ce;
+  --secondary: #8f0045;
+  --secondary-soft: #c95e8e;
+  --tertiary: #3f001b;
+  --accent: #f9f1e8;
+  --cream: #fdf8f3;
+  --text: #2c2c2c;
+  --text-muted: #7a7a7a;
+  --text-on-dark: #ffffff;
+  --shadow-sm: 0 2px 8px rgba(99, 99, 99, 0.12);
+  --shadow-md: 0 8px 24px rgba(143, 0, 69, 0.10);
+  --shadow-lg: 0 16px 56px rgba(63, 0, 27, 0.12);
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --container-max: 1200px;
+
+  --mdc-theme-secondary: #4caf50;
+  --mat-icon-button-state-layer-color: #8f0045;
+  --mdc-icon-button-icon-color: #8f0045;
+}
 
 html, body {
   height: 100%;
   font-family: "Gowun Dodum", serif !important;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
+  color: var(--text);
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-ul {
-  padding: 0
-}
-h2, h6 {
-  margin: 0;
   padding: 0;
-}
-
-body {
-  padding: 0;
-  margin: 0;
   min-height: 100%;
+  font-family: "Gowun Dodum", "Roboto", "Helvetica Neue", sans-serif;
+  line-height: 1.6;
+}
+
+* { box-sizing: border-box; }
+
+ul { padding: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  color: var(--tertiary);
+  font-family: "Gowun Dodum", serif;
+  letter-spacing: 0.2px;
+}
+
+p { margin: 0 0 12px 0; }
+
+a {
+  color: var(--secondary);
+  text-decoration: none;
+  transition: color .2s ease;
+  &:hover { color: var(--tertiary); }
+}
+
+img { max-width: 100%; }
+
+.licorice {
+  font-family: "Licorice", serif;
+  font-weight: 800;
+}
+
+/* Reusable utility classes */
+
+.section { padding: 90px 0; }
+.section-tight { padding: 60px 0; }
+.section-bg { background: var(--primary-soft); }
+.section-cream { background: var(--cream); }
+.section-dark { background: var(--tertiary); color: var(--text-on-dark); }
+
+.eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--secondary);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--tertiary);
+  margin-bottom: 14px;
+  line-height: 1.2;
+  @media (max-width: 800px) { font-size: 30px; }
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  max-width: 720px;
+  margin: 0 auto 40px;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.text-center { text-align: center; }
+
+.divider-heart {
+  width: 80px;
+  height: 2px;
+  background: var(--secondary);
+  opacity: .4;
+  border: none;
+  margin: 14px auto;
 }
 
 .break-line-section {
@@ -33,11 +123,135 @@ body {
   margin: 12px 0;
 }
 
-:root {
-  --primary: #ffd9e1;
-  --secondary: #8f0045;
-  --tertiary: #3f001b;
-  --mdc-theme-secondary: #4caf50;
-  --mat-icon-button-state-layer-color: #8f0045; /* Tło */
-  --mdc-icon-button-icon-color: #8f0045; /* Kolor ikony */
+/* Buttons */
+
+.btn-mw {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all .25s ease;
+  text-decoration: none !important;
+  white-space: nowrap;
+  font-family: "Gowun Dodum", serif;
+
+  mat-icon, i { font-size: 18px; }
 }
+
+.btn-primary-mw {
+  background: var(--secondary);
+  color: #fff !important;
+  &:hover {
+    background: var(--tertiary);
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.btn-outline-mw {
+  background: transparent;
+  color: var(--secondary) !important;
+  border-color: var(--secondary);
+  &:hover {
+    background: var(--secondary);
+    color: #fff !important;
+    transform: translateY(-2px);
+  }
+}
+
+.btn-light-mw {
+  background: #fff;
+  color: var(--secondary) !important;
+  &:hover {
+    background: var(--primary);
+    color: var(--tertiary) !important;
+  }
+}
+
+/* Card animations */
+
+.hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .9s ease-out, transform .9s ease-out;
+}
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (max-width: 768px) {
+  .hidden { transform: translateY(20px); }
+}
+
+.hover-lift {
+  transition: transform .3s ease, box-shadow .3s ease;
+  &:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+}
+
+.hover-underline-animation {
+  display: inline-flex;
+  position: relative;
+  color: var(--secondary);
+  &.active { color: var(--text-on-dark); }
+}
+
+.hover-underline-animation::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--secondary);
+  transform-origin: bottom right;
+  transition: transform .45s ease-out;
+}
+
+.hover-underline-animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Floating CTA */
+
+.floating-cta {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 50;
+  background: var(--secondary);
+  color: #fff !important;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 24px rgba(143, 0, 69, 0.35);
+  text-decoration: none !important;
+  transition: all .25s ease;
+  &:hover {
+    background: var(--tertiary);
+    color: #fff !important;
+    transform: translateY(-2px);
+  }
+  @media (max-width: 600px) {
+    padding: 12px 18px;
+    font-size: 14px;
+    bottom: 16px;
+    right: 16px;
+  }
+}
+
+/* Slick fixes */
+.slick-slide > div { display: flex; justify-content: center; }

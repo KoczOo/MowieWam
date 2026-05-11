@@ -1,1 +1,125 @@
-<p>pierwsza-wizyta works!</p>
+<main>
+    <section class="page-header">
+        <div class="container">
+            <span class="eyebrow">Pierwsza wizyta</span>
+            <h1 class="page-title">Wszystko, co warto wiedzieć</h1>
+            <p class="page-subtitle">
+                Wiemy, że pierwsza wizyta u logopedy to często duży krok dla rodzica i dziecka.
+                Dlatego krok po kroku tłumaczymy, czego się spodziewać.
+            </p>
+        </div>
+    </section>
+
+    <!-- STEPS -->
+    <section class="section steps-section">
+        <div class="container">
+            <div class="text-center hidden" appIntersectionObserver>
+                <span class="eyebrow">Jak to działa</span>
+                <h2 class="section-title">Twoja droga z Mówię Wam</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3" *ngFor="let s of steps; let i = index">
+                    <div class="step-card hidden" appIntersectionObserver>
+                        <div class="step-icon">
+                            <mat-icon>{{ s.icon }}</mat-icon>
+                            <span class="step-num">{{ i + 1 }}</span>
+                        </div>
+                        <h3>{{ s.title }}</h3>
+                        <p>{{ s.desc }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREPARE -->
+    <section class="section section-bg">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6">
+                    <div class="hidden" appIntersectionObserver>
+                        <span class="eyebrow">Jak się przygotować</span>
+                        <h2 class="section-title">Co warto wziąć ze sobą</h2>
+                        <p style="color: var(--text); font-size: 16px; line-height: 1.8;">
+                            Naprawdę nie potrzeba wiele. Najważniejsze, byście Ty i Twoje dziecko
+                            czuli się <strong>spokojnie i komfortowo</strong>. O resztę zadbamy my.
+                        </p>
+                        <p style="color: var(--text); font-size: 16px; line-height: 1.8;">
+                            Po pierwszej wizycie otrzymasz pisemną opinię logopedyczną oraz
+                            zalecenia – wszystko jasno i konkretnie, byś wiedział(a) jakie kroki podejmować dalej.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="prepare-grid">
+                        <div class="prep-item hidden" appIntersectionObserver *ngFor="let p of prepare">
+                            <mat-icon>{{ p.icon }}</mat-icon>
+                            <div>
+                                <h4>{{ p.title }}</h4>
+                                <p>{{ p.desc }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPORTANT INFO -->
+    <section class="section info-section">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card hidden" appIntersectionObserver>
+                    <mat-icon>schedule</mat-icon>
+                    <h3>Czas trwania</h3>
+                    <p>Pierwsza wizyta trwa około <strong>60 minut</strong>. Dzieje się sporo – warto zaplanować ten czas bez pośpiechu.</p>
+                </div>
+                <div class="info-card hidden" appIntersectionObserver>
+                    <mat-icon>family_restroom</mat-icon>
+                    <h3>Rola rodzica</h3>
+                    <p>Rodzic bywa kluczowy zwłaszcza przy małych dzieciach – wspólnie decydujemy, jak najlepiej przeprowadzić wizytę.</p>
+                </div>
+                <div class="info-card hidden" appIntersectionObserver>
+                    <mat-icon>assignment</mat-icon>
+                    <h3>Co zabierasz</h3>
+                    <p>Otrzymasz pisemną opinię, plan terapii oraz konkretne ćwiczenia do wykonania w domu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section-cream faq-section">
+        <div class="container">
+            <div class="text-center hidden" appIntersectionObserver>
+                <span class="eyebrow">FAQ</span>
+                <h2 class="section-title">Najczęstsze pytania</h2>
+            </div>
+            <div class="faq-list">
+                <details class="faq-item hidden" appIntersectionObserver *ngFor="let f of faqs">
+                    <summary>
+                        <span>{{ f.q }}</span>
+                        <mat-icon class="chev">expand_more</mat-icon>
+                    </summary>
+                    <p>{{ f.a }}</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-banner">
+        <div class="container hidden" appIntersectionObserver>
+            <h2 class="cta-title">Gotowy/a, by umówić pierwszą wizytę?</h2>
+            <p class="cta-sub">Czekamy na Was z otwartymi drzwiami i ciepłą filiżanką kawy.</p>
+            <div class="cta-actions">
+                <a class="btn-mw btn-light-mw" href="tel:509-792-650">
+                    <mat-icon>phone</mat-icon> 509 792 650
+                </a>
+                <a class="btn-mw btn-light-mw" href="/kontakt">
+                    <mat-icon>event_available</mat-icon> Umów wizytę online
+                </a>
+            </div>
+        </div>
+    </section>
+</main>

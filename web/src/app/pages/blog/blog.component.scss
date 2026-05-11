@@ -1,0 +1,96 @@
+.page-header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-soft) 100%);
+  padding: 80px 0 60px 0;
+  text-align: center;
+
+  .page-title {
+    font-size: 44px;
+    color: var(--tertiary);
+    font-weight: 700;
+    margin: 6px 0 14px 0;
+    @media (max-width: 800px) { font-size: 30px; }
+  }
+  .page-subtitle {
+    color: var(--text-muted);
+    font-size: 17px;
+    max-width: 740px;
+    margin: 0 auto 28px;
+    line-height: 1.7;
+  }
+  .page-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .fa-instagram { font-size: 18px; }
+  }
+}
+
+.topics-section { background: #fff; padding-top: 70px; padding-bottom: 70px; }
+
+.topic-card {
+  position: relative;
+  background: var(--primary-soft);
+  border-radius: var(--radius-md);
+  padding: 28px 24px;
+  border: 1px solid rgba(143, 0, 69, 0.08);
+  height: 100%;
+  transition: all .3s ease;
+
+  &:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+  .topic-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+
+    mat-icon {
+      color: var(--secondary);
+      font-size: 28px;
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  h3 {
+    font-size: 18px;
+    color: var(--tertiary);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  p {
+    color: var(--text-muted);
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin: 0 0 18px 0;
+  }
+
+  .topic-badge {
+    display: inline-block;
+    background: var(--secondary);
+    color: #fff;
+    padding: 3px 12px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+}
+
+.cta-banner {
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--tertiary) 100%);
+  color: #fff;
+  padding: 60px 0;
+  text-align: center;
+
+  .cta-title { color: #fff; font-size: 28px; max-width: 760px; margin: 0 auto 12px auto; line-height: 1.3; }
+  .cta-sub { color: rgba(255,255,255,0.85); font-size: 16px; margin-bottom: 24px; }
+  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+}

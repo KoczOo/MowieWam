@@ -1,0 +1,173 @@
+<main>
+    <!-- HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <span class="eyebrow">Oferta</span>
+            <h1 class="page-title">Pełen zakres terapii dla Twojego dziecka</h1>
+            <p class="page-subtitle">
+                Pomożemy rozwiać wątpliwości dotyczące rozwoju Twojego dziecka.
+                Pracujemy holistycznie – od mowy, przez oddech, jedzenie, po motorykę i rozwój społeczny.
+            </p>
+
+            <!-- ANCHOR CHIPS -->
+            <nav class="anchor-chips" aria-label="Sekcje oferty">
+                <a *ngFor="let a of anchors" [href]="'#' + a.id"
+                   class="chip" (click)="scrollTo(a.id, $event)">
+                    {{ a.label }}
+                </a>
+            </nav>
+        </div>
+    </section>
+
+    <!-- SYGNAŁY ALARMOWE -->
+    <section id="sygnaly" class="section signals-section">
+        <div class="container">
+            <div class="text-center hidden" appIntersectionObserver>
+                <span class="eyebrow">Kiedy zgłosić się do logopedy?</span>
+                <h2 class="section-title">Sygnały alarmowe</h2>
+                <p class="section-subtitle">
+                    Rodzicu, jeśli zauważasz u swojego dziecka któryś z poniższych objawów,
+                    nie czekaj. Im wcześniej rozpoczniemy pracę, tym łatwiejsza i krótsza terapia.
+                </p>
+            </div>
+
+            <div class="signals-grid">
+                <div class="signal-card hidden" appIntersectionObserver *ngFor="let s of signals">
+                    <div class="signal-icon"><mat-icon>{{ s.icon }}</mat-icon></div>
+                    <span class="signal-age">{{ s.age }}</span>
+                    <p>{{ s.text }}</p>
+                </div>
+            </div>
+
+            <div class="signals-cta hidden" appIntersectionObserver>
+                <p>Masz wątpliwości? Lepiej skonsultować raz za dużo niż raz za mało.</p>
+                <a class="btn-mw btn-primary-mw" href="/kontakt">
+                    <mat-icon>support_agent</mat-icon> Umów konsultację
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section *ngFor="let cat of categories; let i = index"
+             [id]="cat.id"
+             class="section offer-section"
+             [ngClass]="bgClass(cat.background)">
+        <div class="container">
+            <header class="cat-intro hidden" appIntersectionObserver>
+                <span class="eyebrow">{{ cat.eyebrow }}</span>
+                <h2 class="section-title">{{ cat.title }}</h2>
+                <p class="section-subtitle">{{ cat.description }}</p>
+            </header>
+
+            <div class="services-list">
+                <article class="service-block hidden"
+                         appIntersectionObserver
+                         *ngFor="let s of cat.services; let idx = index"
+                         [class.service-highlight]="s.highlight">
+                    <div class="service-head">
+                        <div class="service-num">{{ idx + 1 < 10 ? '0' + (idx + 1) : idx + 1 }}</div>
+                        <div class="service-icon-wrap">
+                            <mat-icon>{{ s.icon }}</mat-icon>
+                        </div>
+                        <div class="service-titles">
+                            <h3 class="service-title">{{ s.title }}</h3>
+                            <p class="service-short">{{ s.short }}</p>
+                            <div class="service-meta" *ngIf="s.meta">
+                                <span class="meta-pill" *ngIf="s.meta.duration">
+                                    <mat-icon>schedule</mat-icon> {{ s.meta.duration }}
+                                </span>
+                                <span class="meta-pill" *ngIf="s.meta.for">
+                                    <mat-icon>group</mat-icon> {{ s.meta.for }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-body">
+                        <div class="service-text">
+                            <p *ngFor="let p of s.paragraphs">{{ p }}</p>
+                        </div>
+
+                        <div class="service-side" *ngIf="s.helpsWhen?.length || s.includes?.length">
+                            <div class="side-box" *ngIf="s.helpsWhen?.length">
+                                <h4>
+                                    <mat-icon>flag</mat-icon>
+                                    Pomożemy, gdy:
+                                </h4>
+                                <ul>
+                                    <li *ngFor="let item of s.helpsWhen">
+                                        <mat-icon>check</mat-icon>
+                                        <span>{{ item }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="side-box side-box-alt" *ngIf="s.includes?.length">
+                                <h4>
+                                    <mat-icon>checklist</mat-icon>
+                                    Co obejmuje?
+                                </h4>
+                                <ul>
+                                    <li *ngFor="let item of s.includes">
+                                        <mat-icon>fiber_manual_record</mat-icon>
+                                        <span>{{ item }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-foot">
+                        <a class="btn-mw btn-outline-mw" href="/kontakt">
+                            Umów wizytę <mat-icon>arrow_forward</mat-icon>
+                        </a>
+                        <a class="service-link" href="/cennik">
+                            Zobacz cennik <mat-icon>open_in_new</mat-icon>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section faq-section">
+        <div class="container">
+            <div class="text-center hidden" appIntersectionObserver>
+                <span class="eyebrow">FAQ</span>
+                <h2 class="section-title">Najczęstsze pytania</h2>
+                <p class="section-subtitle">
+                    Zebraliśmy odpowiedzi na pytania, które najczęściej słyszymy od rodziców.
+                    Jeśli nie znajdziesz odpowiedzi – po prostu napisz do nas.
+                </p>
+            </div>
+
+            <div class="faq-list">
+                <details class="faq-item hidden" appIntersectionObserver *ngFor="let f of faqs">
+                    <summary>
+                        <span>{{ f.q }}</span>
+                        <mat-icon class="chev">expand_more</mat-icon>
+                    </summary>
+                    <p>{{ f.a }}</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-banner">
+        <div class="container hidden" appIntersectionObserver>
+            <h2 class="cta-title">Nie wiesz, jaki rodzaj terapii wybrać?</h2>
+            <p class="cta-sub">Zadzwoń – wspólnie dobierzemy najlepsze rozwiązanie dla Twojego dziecka.</p>
+            <div class="cta-actions">
+                <a class="btn-mw btn-light-mw" href="tel:509-792-650">
+                    <mat-icon>phone</mat-icon> 509 792 650
+                </a>
+                <a class="btn-mw btn-light-mw" href="/kontakt">
+                    <mat-icon>email</mat-icon> Napisz do nas
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
