@@ -24,7 +24,7 @@
 .hero-decor-2 {
   width: 280px;
   height: 280px;
-  background: #ffe7c2;
+  background: var(--accent);
   bottom: -80px;
   left: -80px;
 }
@@ -121,7 +121,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(63, 0, 27, 0.10), transparent 40%);
+    background: linear-gradient(to top, rgba(74, 48, 56, 0.10), transparent 40%);
     z-index: 1;
   }
 }
@@ -238,7 +238,7 @@
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
   height: 100%;
-  border: 1px solid rgba(143, 0, 69, 0.06);
+  border: 1px solid rgba(139, 85, 99, 0.06);
   transition: all .3s ease;
 
   .service-icon {
@@ -329,7 +329,7 @@
   border-radius: var(--radius-md);
   padding: 28px 22px;
   position: relative;
-  border: 1px solid rgba(143, 0, 69, 0.08);
+  border: 1px solid rgba(139, 85, 99, 0.08);
 
   .step-num {
     position: absolute;
@@ -405,7 +405,7 @@
   height: 100%;
   margin: 30px 12px;
   padding: 36px 28px 22px 28px;
-  border: 1px solid rgba(143, 0, 69, 0.06);
+  border: 1px solid rgba(139, 85, 99, 0.06);
   display: flex !important;
   flex-direction: column;
   justify-content: space-between;
@@ -445,7 +445,7 @@
 }
 
 .opinion-author {
-  border-top: 1px solid rgba(143, 0, 69, 0.1);
+  border-top: 1px solid rgba(139, 85, 99, 0.1);
   padding-top: 14px;
 }
 
@@ -537,7 +537,7 @@
   background: #fff;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
-  border: 1px solid rgba(143, 0, 69, 0.06);
+  border: 1px solid rgba(139, 85, 99, 0.06);
   margin-bottom: 32px;
 
   @media (max-width: 900px) {
@@ -677,16 +677,16 @@
   // Warianty kolorystyczne – wybierane per-post w danych, żeby siatka miała
   // rytm zamiast jednolitej płachty jednego koloru.
   &[data-variant="primary"] {
-    background: linear-gradient(135deg, var(--primary-strong) 0%, #f5a3b8 100%);
+    background: linear-gradient(135deg, var(--primary-strong) 0%, #d4a8b0 100%);
   }
   &[data-variant="secondary"] {
-    background: linear-gradient(135deg, var(--secondary) 0%, #d34a86 100%);
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-soft) 100%);
   }
   &[data-variant="tertiary"] {
     background: linear-gradient(135deg, var(--tertiary) 0%, var(--secondary) 100%);
   }
   &[data-variant="cream"] {
-    background: linear-gradient(135deg, #fbe4c9 0%, #f5c3a3 100%);
+    background: linear-gradient(135deg, #f0e6d8 0%, #e2d0bc 100%);
     color: var(--tertiary) !important;
 
     .ig-tile-heading, .ig-tile-sub { color: var(--tertiary); }
@@ -782,7 +782,7 @@
   }
   &::after {
     width: 200px; height: 200px;
-    background: #ffd1a3;
+    background: #c5d4cb;
     bottom: -80px; right: 15%;
   }
 

@@ -1,28 +1,28 @@
 /* Global styles */
 
 :root {
-  --primary: #ffd9e1;
-  --primary-soft: #fff1f4;
-  --primary-strong: #ffc1ce;
-  --secondary: #8f0045;
-  --secondary-soft: #c95e8e;
-  --tertiary: #3f001b;
-  --accent: #f9f1e8;
-  --cream: #fdf8f3;
-  --text: #2c2c2c;
-  --text-muted: #7a7a7a;
+  --primary: #edd8d0;
+  --primary-soft: #f7efe9;
+  --primary-strong: #e0bfb6;
+  --secondary: #8b5563;
+  --secondary-soft: #c49aa5;
+  --tertiary: #4a3038;
+  --accent: #dce5df;
+  --cream: #faf6f1;
+  --text: #2c2826;
+  --text-muted: #756c68;
   --text-on-dark: #ffffff;
   --shadow-sm: 0 2px 8px rgba(99, 99, 99, 0.12);
-  --shadow-md: 0 8px 24px rgba(143, 0, 69, 0.10);
-  --shadow-lg: 0 16px 56px rgba(63, 0, 27, 0.12);
+  --shadow-md: 0 8px 24px rgba(139, 85, 99, 0.10);
+  --shadow-lg: 0 16px 56px rgba(74, 48, 56, 0.12);
   --radius-sm: 10px;
   --radius-md: 18px;
   --radius-lg: 28px;
   --container-max: 1200px;
 
   --mdc-theme-secondary: #4caf50;
-  --mat-icon-button-state-layer-color: #8f0045;
-  --mdc-icon-button-icon-color: #8f0045;
+  --mat-icon-button-state-layer-color: #8b5563;
+  --mdc-icon-button-icon-color: #8b5563;
 }
 
 html, body {
@@ -237,7 +237,7 @@ img { max-width: 100%; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 8px 24px rgba(143, 0, 69, 0.35);
+  box-shadow: 0 8px 24px rgba(139, 85, 99, 0.35);
   text-decoration: none !important;
   transition: all .25s ease;
   &:hover {
