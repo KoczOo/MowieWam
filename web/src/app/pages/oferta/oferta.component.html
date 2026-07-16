@@ -9,12 +9,12 @@
                 Pracujemy holistycznie – od mowy, przez oddech, jedzenie, po motorykę i rozwój społeczny.
             </p>
 
-            <!-- ANCHOR CHIPS -->
             <nav class="anchor-chips" aria-label="Sekcje oferty">
-                <a *ngFor="let a of anchors" [href]="'#' + a.id"
-                   class="chip" (click)="scrollTo(a.id, $event)">
-                    {{ a.label }}
-                </a>
+                @for (a of anchors; track a.id) {
+                    <a [href]="'#' + a.id" class="chip" (click)="scrollTo(a.id, $event)">
+                        {{ a.label }}
+                    </a>
+                }
             </nav>
         </div>
     </section>
@@ -32,16 +32,18 @@
             </div>
 
             <div class="signals-grid">
-                <div class="signal-card hidden" appIntersectionObserver *ngFor="let s of signals">
-                    <div class="signal-icon"><mat-icon>{{ s.icon }}</mat-icon></div>
-                    <span class="signal-age">{{ s.age }}</span>
-                    <p>{{ s.text }}</p>
-                </div>
+                @for (s of signals; track s.age + s.text) {
+                    <div class="signal-card hidden" appIntersectionObserver>
+                        <div class="signal-icon"><mat-icon>{{ s.icon }}</mat-icon></div>
+                        <span class="signal-age">{{ s.age }}</span>
+                        <p>{{ s.text }}</p>
+                    </div>
+                }
             </div>
 
             <div class="signals-cta hidden" appIntersectionObserver>
                 <p>Masz wątpliwości? Lepiej skonsultować raz za dużo niż raz za mało.</p>
-                <a class="btn-mw btn-primary-mw" href="/kontakt">
+                <a class="btn-mw btn-primary-mw" routerLink="/kontakt">
                     <mat-icon>support_agent</mat-icon> Umów konsultację
                 </a>
             </div>
@@ -49,87 +51,107 @@
     </section>
 
     <!-- CATEGORIES -->
-    <section *ngFor="let cat of categories; let i = index"
-             [id]="cat.id"
-             class="section offer-section"
-             [ngClass]="bgClass(cat.background)">
-        <div class="container">
-            <header class="cat-intro hidden" appIntersectionObserver>
-                <span class="eyebrow">{{ cat.eyebrow }}</span>
-                <h2 class="section-title">{{ cat.title }}</h2>
-                <p class="section-subtitle">{{ cat.description }}</p>
-            </header>
+    @for (cat of categories; track cat.id) {
+        <section [id]="cat.id" class="section offer-section" [class]="bgClass(cat.background)">
+            <div class="container">
+                <header class="cat-intro hidden" appIntersectionObserver>
+                    <span class="eyebrow">{{ cat.eyebrow }}</span>
+                    <h2 class="section-title">{{ cat.title }}</h2>
+                    <p class="section-subtitle">{{ cat.description }}</p>
+                </header>
 
-            <div class="services-list">
-                <article class="service-block hidden"
-                         appIntersectionObserver
-                         *ngFor="let s of cat.services; let idx = index"
-                         [class.service-highlight]="s.highlight">
-                    <div class="service-head">
-                        <div class="service-num">{{ idx + 1 < 10 ? '0' + (idx + 1) : idx + 1 }}</div>
-                        <div class="service-icon-wrap">
-                            <mat-icon>{{ s.icon }}</mat-icon>
-                        </div>
-                        <div class="service-titles">
-                            <h3 class="service-title">{{ s.title }}</h3>
-                            <p class="service-short">{{ s.short }}</p>
-                            <div class="service-meta" *ngIf="s.meta">
-                                <span class="meta-pill" *ngIf="s.meta.duration">
-                                    <mat-icon>schedule</mat-icon> {{ s.meta.duration }}
-                                </span>
-                                <span class="meta-pill" *ngIf="s.meta.for">
-                                    <mat-icon>group</mat-icon> {{ s.meta.for }}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="service-body">
-                        <div class="service-text">
-                            <p *ngFor="let p of s.paragraphs">{{ p }}</p>
-                        </div>
-
-                        <div class="service-side" *ngIf="s.helpsWhen?.length || s.includes?.length">
-                            <div class="side-box" *ngIf="s.helpsWhen?.length">
-                                <h4>
-                                    <mat-icon>flag</mat-icon>
-                                    Pomożemy, gdy:
-                                </h4>
-                                <ul>
-                                    <li *ngFor="let item of s.helpsWhen">
-                                        <mat-icon>check</mat-icon>
-                                        <span>{{ item }}</span>
-                                    </li>
-                                </ul>
+                <div class="services-list">
+                    @for (s of cat.services; track s.title; let idx = $index) {
+                        <article class="service-block hidden"
+                                 appIntersectionObserver
+                                 [class.service-highlight]="s.highlight">
+                            <div class="service-head">
+                                <div class="service-num">
+                                    {{ idx + 1 < 10 ? '0' + (idx + 1) : idx + 1 }}
+                                </div>
+                                <div class="service-icon-wrap">
+                                    <mat-icon>{{ s.icon }}</mat-icon>
+                                </div>
+                                <div class="service-titles">
+                                    <h3 class="service-title">{{ s.title }}</h3>
+                                    <p class="service-short">{{ s.short }}</p>
+                                    @if (s.meta) {
+                                        <div class="service-meta">
+                                            @if (s.meta.duration) {
+                                                <span class="meta-pill">
+                                                    <mat-icon>schedule</mat-icon> {{ s.meta.duration }}
+                                                </span>
+                                            }
+                                            @if (s.meta.for) {
+                                                <span class="meta-pill">
+                                                    <mat-icon>group</mat-icon> {{ s.meta.for }}
+                                                </span>
+                                            }
+                                        </div>
+                                    }
+                                </div>
                             </div>
 
-                            <div class="side-box side-box-alt" *ngIf="s.includes?.length">
-                                <h4>
-                                    <mat-icon>checklist</mat-icon>
-                                    Co obejmuje?
-                                </h4>
-                                <ul>
-                                    <li *ngFor="let item of s.includes">
-                                        <mat-icon>fiber_manual_record</mat-icon>
-                                        <span>{{ item }}</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                            <div class="service-body">
+                                <div class="service-text">
+                                    @for (p of s.paragraphs; track $index) {
+                                        <p>{{ p }}</p>
+                                    }
+                                </div>
 
-                    <div class="service-foot">
-                        <a class="btn-mw btn-outline-mw" href="/kontakt">
-                            Umów wizytę <mat-icon>arrow_forward</mat-icon>
-                        </a>
-                        <a class="service-link" href="/cennik">
-                            Zobacz cennik <mat-icon>open_in_new</mat-icon>
-                        </a>
-                    </div>
-                </article>
+                                @if (s.helpsWhen?.length || s.includes?.length) {
+                                    <div class="service-side">
+                                        @if (s.helpsWhen?.length) {
+                                            <div class="side-box">
+                                                <h4>
+                                                    <mat-icon>flag</mat-icon>
+                                                    Pomożemy, gdy:
+                                                </h4>
+                                                <ul>
+                                                    @for (item of s.helpsWhen; track item) {
+                                                        <li>
+                                                            <mat-icon>check</mat-icon>
+                                                            <span>{{ item }}</span>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        }
+
+                                        @if (s.includes?.length) {
+                                            <div class="side-box side-box-alt">
+                                                <h4>
+                                                    <mat-icon>checklist</mat-icon>
+                                                    Co obejmuje?
+                                                </h4>
+                                                <ul>
+                                                    @for (item of s.includes; track item) {
+                                                        <li>
+                                                            <mat-icon>fiber_manual_record</mat-icon>
+                                                            <span>{{ item }}</span>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="service-foot">
+                                <a class="btn-mw btn-outline-mw" routerLink="/kontakt">
+                                    Umów wizytę <mat-icon>arrow_forward</mat-icon>
+                                </a>
+                                <a class="service-link" routerLink="/cennik">
+                                    Zobacz cennik <mat-icon>open_in_new</mat-icon>
+                                </a>
+                            </div>
+                        </article>
+                    }
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    }
 
     <!-- FAQ -->
     <section id="faq" class="section faq-section">
@@ -144,13 +166,15 @@
             </div>
 
             <div class="faq-list">
-                <details class="faq-item hidden" appIntersectionObserver *ngFor="let f of faqs">
-                    <summary>
-                        <span>{{ f.q }}</span>
-                        <mat-icon class="chev">expand_more</mat-icon>
-                    </summary>
-                    <p>{{ f.a }}</p>
-                </details>
+                @for (f of faqs; track f.q) {
+                    <details class="faq-item hidden" appIntersectionObserver>
+                        <summary>
+                            <span>{{ f.q }}</span>
+                            <mat-icon class="chev">expand_more</mat-icon>
+                        </summary>
+                        <p>{{ f.a }}</p>
+                    </details>
+                }
             </div>
         </div>
     </section>
@@ -161,10 +185,10 @@
             <h2 class="cta-title">Nie wiesz, jaki rodzaj terapii wybrać?</h2>
             <p class="cta-sub">Zadzwoń – wspólnie dobierzemy najlepsze rozwiązanie dla Twojego dziecka.</p>
             <div class="cta-actions">
-                <a class="btn-mw btn-light-mw" href="tel:509-792-650">
+                <a class="btn-mw btn-light-mw" href="tel:+48509792650">
                     <mat-icon>phone</mat-icon> 509 792 650
                 </a>
-                <a class="btn-mw btn-light-mw" href="/kontakt">
+                <a class="btn-mw btn-light-mw" routerLink="/kontakt">
                     <mat-icon>email</mat-icon> Napisz do nas
                 </a>
             </div>

@@ -18,16 +18,18 @@
                 <h2 class="section-title">Twoja droga z Mówię Wam</h2>
             </div>
             <div class="row g-4">
-                <div class="col-md-6 col-lg-3" *ngFor="let s of steps; let i = index">
-                    <div class="step-card hidden" appIntersectionObserver>
-                        <div class="step-icon">
-                            <mat-icon>{{ s.icon }}</mat-icon>
-                            <span class="step-num">{{ i + 1 }}</span>
+                @for (s of steps; track s.title; let i = $index) {
+                    <div class="col-md-6 col-lg-3">
+                        <div class="step-card hidden" appIntersectionObserver>
+                            <div class="step-icon">
+                                <mat-icon>{{ s.icon }}</mat-icon>
+                                <span class="step-num">{{ i + 1 }}</span>
+                            </div>
+                            <h3>{{ s.title }}</h3>
+                            <p>{{ s.desc }}</p>
                         </div>
-                        <h3>{{ s.title }}</h3>
-                        <p>{{ s.desc }}</p>
                     </div>
-                </div>
+                }
             </div>
         </div>
     </section>
@@ -52,13 +54,15 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="prepare-grid">
-                        <div class="prep-item hidden" appIntersectionObserver *ngFor="let p of prepare">
-                            <mat-icon>{{ p.icon }}</mat-icon>
-                            <div>
-                                <h4>{{ p.title }}</h4>
-                                <p>{{ p.desc }}</p>
+                        @for (p of prepare; track p.title) {
+                            <div class="prep-item hidden" appIntersectionObserver>
+                                <mat-icon>{{ p.icon }}</mat-icon>
+                                <div>
+                                    <h4>{{ p.title }}</h4>
+                                    <p>{{ p.desc }}</p>
+                                </div>
                             </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -96,13 +100,15 @@
                 <h2 class="section-title">Najczęstsze pytania</h2>
             </div>
             <div class="faq-list">
-                <details class="faq-item hidden" appIntersectionObserver *ngFor="let f of faqs">
-                    <summary>
-                        <span>{{ f.q }}</span>
-                        <mat-icon class="chev">expand_more</mat-icon>
-                    </summary>
-                    <p>{{ f.a }}</p>
-                </details>
+                @for (f of faqs; track f.q) {
+                    <details class="faq-item hidden" appIntersectionObserver>
+                        <summary>
+                            <span>{{ f.q }}</span>
+                            <mat-icon class="chev">expand_more</mat-icon>
+                        </summary>
+                        <p>{{ f.a }}</p>
+                    </details>
+                }
             </div>
         </div>
     </section>
@@ -113,10 +119,10 @@
             <h2 class="cta-title">Gotowy/a, by umówić pierwszą wizytę?</h2>
             <p class="cta-sub">Czekamy na Was z otwartymi drzwiami i ciepłą filiżanką kawy.</p>
             <div class="cta-actions">
-                <a class="btn-mw btn-light-mw" href="tel:509-792-650">
+                <a class="btn-mw btn-light-mw" href="tel:+48509792650">
                     <mat-icon>phone</mat-icon> 509 792 650
                 </a>
-                <a class="btn-mw btn-light-mw" href="/kontakt">
+                <a class="btn-mw btn-light-mw" routerLink="/kontakt">
                     <mat-icon>event_available</mat-icon> Umów wizytę online
                 </a>
             </div>

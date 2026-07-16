@@ -11,10 +11,10 @@
             <div class="page-actions">
                 <a class="btn-mw btn-primary-mw" target="_blank" rel="noopener"
                    href="https://www.instagram.com/mowie.wam/">
-                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
                     Śledź nas na Instagramie
                 </a>
-                <a class="btn-mw btn-outline-mw" href="/kontakt">
+                <a class="btn-mw btn-outline-mw" routerLink="/kontakt">
                     <mat-icon>mail</mat-icon>
                     Zapisz się na newsletter
                 </a>
@@ -33,16 +33,18 @@
             </div>
 
             <div class="row g-4">
-                <div class="col-md-6 col-lg-4" *ngFor="let t of topics">
-                    <div class="topic-card hidden" appIntersectionObserver>
-                        <div class="topic-icon">
-                            <mat-icon>{{ t.icon }}</mat-icon>
-                        </div>
-                        <h3>{{ t.title }}</h3>
-                        <p>{{ t.desc }}</p>
-                        <span class="topic-badge">Wkrótce</span>
+                @for (t of topics; track t.title) {
+                    <div class="col-md-6 col-lg-4">
+                        <article class="topic-card hidden" appIntersectionObserver>
+                            <div class="topic-icon">
+                                <mat-icon>{{ t.icon }}</mat-icon>
+                            </div>
+                            <h3>{{ t.title }}</h3>
+                            <p>{{ t.desc }}</p>
+                            <span class="topic-badge">Wkrótce</span>
+                        </article>
                     </div>
-                </div>
+                }
             </div>
         </div>
     </section>
@@ -52,7 +54,7 @@
             <h2 class="cta-title">Masz pomysł na temat, o którym chcesz przeczytać?</h2>
             <p class="cta-sub">Napisz do nas – chętnie poruszymy temat, który Cię interesuje.</p>
             <div class="cta-actions">
-                <a class="btn-mw btn-light-mw" href="/kontakt">
+                <a class="btn-mw btn-light-mw" routerLink="/kontakt">
                     <mat-icon>edit</mat-icon> Zaproponuj temat
                 </a>
             </div>

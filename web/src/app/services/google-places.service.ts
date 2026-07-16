@@ -1,23 +1,31 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {environment} from "../../environments/environment";
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { Observable, catchError, of, shareReplay } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { PlaceDetailsResponse } from '../dto/Reviews';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class GooglePlacesService {
+  private readonly http = inject(HttpClient);
 
-    private apiKey = environment.googleApiKey;
-    private placesDetailsUrl = environment.placesDetailsUrl
-    private placeId = environment.placeId;
+  private readonly apiKey = environment.googleApiKey;
+  private readonly placesDetailsUrl = environment.placesDetailsUrl;
+  private readonly placeId = environment.placeId;
 
-    constructor(private http: HttpClient) {
+  private cachedDetails$?: Observable<PlaceDetailsResponse | null>;
+
+  getPlaceDetails(): Observable<PlaceDetailsResponse | null> {
+    if (!this.cachedDetails$) {
+      const fields = 'name,rating,reviews';
+      const url =
+        `${this.placesDetailsUrl}?place_id=${this.placeId}` +
+        `&language=pl&fields=${fields}&key=${this.apiKey}`;
+
+      this.cachedDetails$ = this.http.get<PlaceDetailsResponse>(url).pipe(
+        catchError(() => of(null)),
+        shareReplay({ bufferSize: 1, refCount: false }),
+      );
     }
-
-    getPlaceDetails(): Observable<any> {
-        const fields = 'name,rating,reviews';
-        const url = `${this.placesDetailsUrl}?place_id=${this.placeId}&language=pl&fields=${fields}&key=${this.apiKey}`;
-        return this.http.get(url);
-    }
+    return this.cachedDetails$;
+  }
 }

@@ -1,13 +1,18 @@
-export class Reviews {
-    author_name: string;
-    text: string;
-    relative_time_description: string;
-    rating: number;
-
-    constructor(author_name: string, text: string, relative_time_description: string, rating: number) {
-        this.author_name = author_name;
-        this.text = text;
-        this.relative_time_description = relative_time_description;
-        this.rating = rating;
-    }
+export interface Review {
+  readonly author_name: string;
+  readonly text: string;
+  readonly relative_time_description: string;
+  readonly rating: number;
 }
+
+export interface PlaceDetailsResponse {
+  readonly result?: {
+    readonly name?: string;
+    readonly rating?: number;
+    readonly reviews?: ReadonlyArray<Review>;
+  };
+  readonly status?: string;
+}
+
+/** @deprecated Kept for backwards compatibility – use `Review` interface instead. */
+export type Reviews = Review;

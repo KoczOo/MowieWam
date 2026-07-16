@@ -1,14 +1,13 @@
-import { Component } from '@angular/core';
-import {RouterOutlet} from "@angular/router";
-import {NavbarComponent} from "../shared/navbar/navbar.component";
-import {FooterComponent} from "../shared/footer/footer.component";
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from '../shared/navbar/navbar.component';
+import { FooterComponent } from '../shared/footer/footer.component';
 
 @Component({
   selector: 'app-layout',
-    imports: [RouterOutlet, NavbarComponent, FooterComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './layout.component.html',
-  styleUrl: './layout.component.scss'
+  styleUrl: './layout.component.scss',
 })
-export class LayoutComponent {
-
-}
+export class LayoutComponent {}

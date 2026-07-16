@@ -4,7 +4,7 @@
         <div class="hero-decor hero-decor-1"></div>
         <div class="hero-decor hero-decor-2"></div>
         <div class="container hero-inner">
-            <div class="hero-text hidden" appIntersectionObserver (visible)="onVisible()">
+            <div class="hero-text hidden" appIntersectionObserver>
                 <span class="eyebrow">Centrum Logopedyczno-Terapeutyczne</span>
                 <h1 class="hero-title licorice">Mówię Wam</h1>
                 <p class="hero-tagline">
@@ -16,11 +16,11 @@
                     w dobre ręce.
                 </p>
                 <div class="hero-actions">
-                    <a class="btn-mw btn-primary-mw" href="/kontakt">
+                    <a class="btn-mw btn-primary-mw" routerLink="/kontakt">
                         <mat-icon>event_available</mat-icon>
                         Umów wizytę
                     </a>
-                    <a class="btn-mw btn-outline-mw" href="/oferta">
+                    <a class="btn-mw btn-outline-mw" routerLink="/oferta">
                         Poznaj ofertę
                     </a>
                 </div>
@@ -39,9 +39,13 @@
                     </div>
                 </div>
             </div>
-            <div class="hero-image hidden" appIntersectionObserver (visible)="onVisible()">
+            <div class="hero-image hidden" appIntersectionObserver>
                 <div class="hero-image-frame">
-                    <img src="assets/me.jpg" alt="mgr Dominika Gębska – założycielka Mówię Wam"/>
+                    <img src="assets/me.jpg"
+                         alt="mgr Dominika Gębska – założycielka Mówię Wam"
+                         width="520" height="640"
+                         fetchpriority="high"
+                         decoding="async"/>
                 </div>
                 <div class="hero-image-badge">
                     <mat-icon>favorite</mat-icon>
@@ -59,16 +63,18 @@
         <div class="container">
             <div class="row align-items-center g-5">
                 <div class="col-lg-6">
-                    <div class="img-me-container hidden" appIntersectionObserver (visible)="onVisible()">
+                    <div class="img-me-container hidden" appIntersectionObserver>
                         <div class="me-photo-wrapper">
                             <img src="assets/me.jpg" class="me-photo"
-                                 alt="Dominika Gębska – założycielka centrum Mówię Wam"/>
+                                 alt="Dominika Gębska – założycielka centrum Mówię Wam"
+                                 width="520" height="640"
+                                 loading="lazy" decoding="async"/>
                             <div class="me-photo-deco"></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="about-me-text-container hidden" appIntersectionObserver (visible)="onVisible()">
+                    <div class="about-me-text-container hidden" appIntersectionObserver>
                         <span class="eyebrow">O mnie</span>
                         <h2 class="section-title">mgr Dominika Gębska</h2>
                         <p class="role-line">ZAŁOŻYCIELKA CENTRUM TERAPEUTYCZNEGO MÓWIĘ WAM</p>
@@ -98,7 +104,7 @@
                             <li><mat-icon>check_circle</mat-icon> Terapeuta wczesnej interwencji</li>
                         </ul>
 
-                        <a class="btn-mw btn-outline-mw" href="/o-nas">
+                        <a class="btn-mw btn-outline-mw" routerLink="/o-nas">
                             Poznaj nasz zespół
                             <mat-icon>arrow_forward</mat-icon>
                         </a>
@@ -111,7 +117,7 @@
     <!-- SERVICES PREVIEW -->
     <section class="section section-bg services-section">
         <div class="container">
-            <div class="text-center hidden" appIntersectionObserver (visible)="onVisible()">
+            <div class="text-center hidden" appIntersectionObserver>
                 <span class="eyebrow">Oferta zajęć</span>
                 <h2 class="section-title">Pomożemy Twojemu dziecku</h2>
                 <p class="section-subtitle">
@@ -122,19 +128,21 @@
             </div>
 
             <div class="row g-4">
-                <div class="col-md-6 col-lg-4" *ngFor="let s of services">
-                    <div class="service-card hover-lift hidden" appIntersectionObserver (visible)="onVisible()">
-                        <div class="service-icon">
-                            <mat-icon>{{ s.icon }}</mat-icon>
+                @for (s of services; track s.title) {
+                    <div class="col-md-6 col-lg-4">
+                        <div class="service-card hover-lift hidden" appIntersectionObserver>
+                            <div class="service-icon">
+                                <mat-icon>{{ s.icon }}</mat-icon>
+                            </div>
+                            <h3 class="service-title">{{ s.title }}</h3>
+                            <p class="service-desc">{{ s.desc }}</p>
                         </div>
-                        <h3 class="service-title">{{ s.title }}</h3>
-                        <p class="service-desc">{{ s.desc }}</p>
                     </div>
-                </div>
+                }
             </div>
 
             <div class="text-center" style="margin-top: 50px;">
-                <a class="btn-mw btn-primary-mw" href="/oferta">
+                <a class="btn-mw btn-primary-mw" routerLink="/oferta">
                     Zobacz pełną ofertę
                     <mat-icon>arrow_forward</mat-icon>
                 </a>
@@ -145,7 +153,7 @@
     <!-- WHY US -->
     <section class="section why-section">
         <div class="container">
-            <div class="text-center hidden" appIntersectionObserver (visible)="onVisible()">
+            <div class="text-center hidden" appIntersectionObserver>
                 <span class="eyebrow">Dlaczego Mówię Wam</span>
                 <h2 class="section-title">Co nas wyróżnia</h2>
                 <p class="section-subtitle">
@@ -155,15 +163,17 @@
             </div>
 
             <div class="row g-4">
-                <div class="col-md-6 col-lg-3" *ngFor="let v of values">
-                    <div class="value-card hidden" appIntersectionObserver (visible)="onVisible()">
-                        <div class="value-icon">
-                            <mat-icon>{{ v.icon }}</mat-icon>
+                @for (v of values; track v.title) {
+                    <div class="col-md-6 col-lg-3">
+                        <div class="value-card hidden" appIntersectionObserver>
+                            <div class="value-icon">
+                                <mat-icon>{{ v.icon }}</mat-icon>
+                            </div>
+                            <h3>{{ v.title }}</h3>
+                            <p>{{ v.desc }}</p>
                         </div>
-                        <h3>{{ v.title }}</h3>
-                        <p>{{ v.desc }}</p>
                     </div>
-                </div>
+                }
             </div>
         </div>
     </section>
@@ -171,7 +181,7 @@
     <!-- PROCESS / FIRST VISIT -->
     <section class="section section-cream process-section">
         <div class="container">
-            <div class="text-center hidden" appIntersectionObserver (visible)="onVisible()">
+            <div class="text-center hidden" appIntersectionObserver>
                 <span class="eyebrow">Pierwsza wizyta</span>
                 <h2 class="section-title">Jak wygląda nasza współpraca</h2>
                 <p class="section-subtitle">
@@ -181,18 +191,19 @@
             </div>
 
             <div class="process-steps">
-                <div class="process-step hidden" *ngFor="let step of processSteps; let i = index"
-                     appIntersectionObserver (visible)="onVisible()">
-                    <div class="step-num">{{ i + 1 }}</div>
-                    <div class="step-content">
-                        <h4>{{ step.title }}</h4>
-                        <p>{{ step.desc }}</p>
+                @for (step of processSteps; track step.title; let i = $index) {
+                    <div class="process-step hidden" appIntersectionObserver>
+                        <div class="step-num">{{ i + 1 }}</div>
+                        <div class="step-content">
+                            <h4>{{ step.title }}</h4>
+                            <p>{{ step.desc }}</p>
+                        </div>
                     </div>
-                </div>
+                }
             </div>
 
             <div class="text-center" style="margin-top: 40px;">
-                <a class="btn-mw btn-outline-mw" href="/pierwsza-wizyta">
+                <a class="btn-mw btn-outline-mw" routerLink="/pierwsza-wizyta">
                     Dowiedz się więcej o pierwszej wizycie
                 </a>
             </div>
@@ -202,34 +213,39 @@
     <!-- OPINIONS -->
     <section class="section google-opinions">
         <div class="container">
-            <div class="text-center hidden" appIntersectionObserver (visible)="onVisible()">
+            <div class="text-center hidden" appIntersectionObserver>
                 <span class="eyebrow">Opinie</span>
                 <h2 class="section-title">Słowami naszych pacjentów</h2>
                 <p class="section-subtitle">
                     Najlepszą rekomendacją są dla nas uśmiechy dzieci i wdzięczność rodziców.
                 </p>
             </div>
-            <div class="google-opinions-carousel-container hidden"
-                 appIntersectionObserver (visible)="onVisible()"
-                 *ngIf="slides.length > 0">
-                <ngx-slick-carousel class="carousel"
-                                    #slickModal="slick-carousel"
-                                    [config]="slideConfig">
-                    <div *ngFor="let slide of slides" ngxSlickItem class="slide">
-                        <div class="item-card">
-                            <mat-icon class="quote-icon">format_quote</mat-icon>
-                            <div class="opinion-content-container">
-                                <p class="opinion-paragraph">{{ slide.text }}</p>
-                                <app-star-rating [rating]="slide.rating"></app-star-rating>
-                            </div>
-                            <div class="opinion-author">
-                                <h3 class="item-card-header">{{ slide.author_name }}</h3>
-                                <p class="opinion-time">{{ slide.relative_time_description }}</p>
-                            </div>
-                        </div>
+
+            @defer (on viewport; prefetch on idle) {
+                @if (reviews().length > 0) {
+                    <div class="google-opinions-carousel-container hidden" appIntersectionObserver>
+                        <ngx-slick-carousel class="carousel" [config]="slideConfig">
+                            @for (slide of reviews(); track slide.author_name) {
+                                <div ngxSlickItem class="slide">
+                                    <article class="item-card">
+                                        <mat-icon class="quote-icon">format_quote</mat-icon>
+                                        <div class="opinion-content-container">
+                                            <p class="opinion-paragraph">{{ slide.text }}</p>
+                                            <app-star-rating [rating]="slide.rating"/>
+                                        </div>
+                                        <div class="opinion-author">
+                                            <h3 class="item-card-header">{{ slide.author_name }}</h3>
+                                            <p class="opinion-time">{{ slide.relative_time_description }}</p>
+                                        </div>
+                                    </article>
+                                </div>
+                            }
+                        </ngx-slick-carousel>
                     </div>
-                </ngx-slick-carousel>
-            </div>
+                }
+            } @placeholder (minimum 200ms) {
+                <div class="opinions-placeholder" aria-hidden="true"></div>
+            }
         </div>
     </section>
 
@@ -237,7 +253,7 @@
     <section class="section section-bg instagram-section">
         <div class="container">
             <div class="row align-items-center g-4">
-                <div class="col-lg-5 hidden" appIntersectionObserver (visible)="onVisible()">
+                <div class="col-lg-5 hidden" appIntersectionObserver>
                     <span class="eyebrow">Instagram</span>
                     <h2 class="section-title">Codzienność w Mówię Wam</h2>
                     <p class="section-subtitle" style="margin: 0 0 28px 0;">
@@ -246,21 +262,22 @@
                     </p>
                     <a class="btn-mw btn-primary-mw" target="_blank" rel="noopener"
                        href="https://www.instagram.com/mowie.wam/">
-                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
                         &#64;mowie.wam
                     </a>
                 </div>
                 <div class="col-lg-7">
-                    <div class="ig-grid hidden" appIntersectionObserver (visible)="onVisible()">
-                        <a *ngFor="let post of igPosts; let i = index"
-                           class="ig-tile"
-                           [class.ig-tile-tall]="i === 0"
-                           target="_blank" rel="noopener"
-                           href="https://www.instagram.com/mowie.wam/">
-                            <span class="ig-emoji">{{ post.emoji }}</span>
-                            <span class="ig-text">{{ post.caption }}</span>
-                            <i class="fab fa-instagram ig-icon"></i>
-                        </a>
+                    <div class="ig-grid hidden" appIntersectionObserver>
+                        @for (post of igPosts; track post.caption; let i = $index) {
+                            <a class="ig-tile"
+                               [class.ig-tile-tall]="i === 0"
+                               target="_blank" rel="noopener"
+                               href="https://www.instagram.com/mowie.wam/">
+                                <span class="ig-emoji">{{ post.emoji }}</span>
+                                <span class="ig-text">{{ post.caption }}</span>
+                                <i class="fab fa-instagram ig-icon" aria-hidden="true"></i>
+                            </a>
+                        }
                     </div>
                 </div>
             </div>
@@ -269,15 +286,15 @@
 
     <!-- CTA BANNER -->
     <section class="cta-banner">
-        <div class="container hidden" appIntersectionObserver (visible)="onVisible()">
+        <div class="container hidden" appIntersectionObserver>
             <h2 class="cta-title">Pomożemy rozwiać wątpliwości dotyczące rozwoju Twojego dziecka</h2>
             <p class="cta-sub">Skontaktuj się z nami – odpowiemy najszybciej, jak to możliwe.</p>
             <div class="cta-actions">
-                <a class="btn-mw btn-light-mw" href="tel:509-792-650">
+                <a class="btn-mw btn-light-mw" href="tel:+48509792650">
                     <mat-icon>phone</mat-icon>
                     509 792 650
                 </a>
-                <a class="btn-mw btn-light-mw" href="/kontakt">
+                <a class="btn-mw btn-light-mw" routerLink="/kontakt">
                     <mat-icon>email</mat-icon>
                     Napisz do nas
                 </a>
@@ -288,20 +305,25 @@
     <!-- LOCATION -->
     <section class="google-map-section">
         <div class="container">
-            <div class="text-center hidden" appIntersectionObserver (visible)="onVisible()">
+            <div class="text-center hidden" appIntersectionObserver>
                 <span class="eyebrow">Znajdź nas</span>
                 <h2 class="section-title">Mówię Wam – Kielce, os. Ślichowice</h2>
                 <p class="section-subtitle">ul. Jurajska 1C/u20A, 25-640 Kielce</p>
             </div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2517.0223174689654!2d20.579114499999996!3d50.88629729999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47182712e7ecc8c1%3A0xb8d0ed4bebcacc!2sM%C3%B3wi%C4%99%20Wam%20Centrum%20Logopedyczno-Terapeutyczne%20Dominika%20G%C4%99bska!5e0!3m2!1spl!2spl!4v1736845563012!5m2!1spl!2spl"
-                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                    class="google-map-frame"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            @defer (on viewport) {
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2517.0223174689654!2d20.579114499999996!3d50.88629729999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47182712e7ecc8c1%3A0xb8d0ed4bebcacc!2sM%C3%B3wi%C4%99%20Wam%20Centrum%20Logopedyczno-Terapeutyczne%20Dominika%20G%C4%99bska!5e0!3m2!1spl!2spl!4v1736845563012!5m2!1spl!2spl"
+                        width="100%" height="450" style="border:0;" allowfullscreen loading="lazy"
+                        title="Lokalizacja Mówię Wam na mapie Google"
+                        class="google-map-frame"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+            } @placeholder {
+                <div class="map-placeholder" style="height: 450px;" aria-hidden="true"></div>
+            }
         </div>
     </section>
 
     <!-- FLOATING CTA -->
-    <a class="floating-cta" href="tel:509-792-650" aria-label="Zadzwoń">
+    <a class="floating-cta" href="tel:+48509792650" aria-label="Zadzwoń: 509 792 650">
         <mat-icon>phone</mat-icon>
         <span class="floating-cta-text">Zadzwoń</span>
     </a>

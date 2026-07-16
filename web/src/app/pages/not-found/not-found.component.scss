@@ -1,0 +1,13 @@
+.not-found {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+
+  .page-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+}

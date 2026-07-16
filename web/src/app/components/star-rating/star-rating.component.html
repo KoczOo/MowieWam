@@ -1,4 +1,8 @@
-<div class="star-rating">
-    <i class="fa fa-star" *ngFor="let star of stars"></i>
-    <i class="fa fa-star-half" *ngIf="rating % 1 !== 0"></i>
+<div class="star-rating" role="img" [attr.aria-label]="'Ocena: ' + rating() + ' na 5'">
+  @for (_ of fullStars(); track $index) {
+    <i class="fa fa-star" aria-hidden="true"></i>
+  }
+  @if (hasHalfStar()) {
+    <i class="fa fa-star-half" aria-hidden="true"></i>
+  }
 </div>

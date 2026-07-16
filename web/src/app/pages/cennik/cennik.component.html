@@ -10,32 +10,40 @@
         </div>
     </section>
 
-    <section class="section pricing-section" *ngFor="let cat of categories; let i = index"
-            [class.section-bg]="i % 2 === 1">
-        <div class="container">
-            <div class="cat-header hidden" appIntersectionObserver>
-                <mat-icon class="cat-icon">{{ cat.icon }}</mat-icon>
-                <h2 class="section-title" style="margin: 0;">{{ cat.title }}</h2>
-            </div>
+    @for (cat of categories; track cat.title; let i = $index) {
+        <section class="section pricing-section" [class.section-bg]="i % 2 === 1">
+            <div class="container">
+                <div class="cat-header hidden" appIntersectionObserver>
+                    <mat-icon class="cat-icon">{{ cat.icon }}</mat-icon>
+                    <h2 class="section-title" style="margin: 0;">{{ cat.title }}</h2>
+                </div>
 
-            <div class="price-grid">
-                <div class="price-card hover-lift hidden" appIntersectionObserver
-                     *ngFor="let item of cat.items"
-                     [class.popular]="item.popular">
-                    <span class="price-badge" *ngIf="item.popular">Popularne</span>
-                    <h3 class="price-name">{{ item.name }}</h3>
-                    <p class="price-duration" *ngIf="item.duration">
-                        <mat-icon>schedule</mat-icon> {{ item.duration }}
-                    </p>
-                    <p class="price-desc" *ngIf="item.description">{{ item.description }}</p>
-                    <div class="price-value">{{ item.price }}</div>
-                    <a class="btn-mw btn-outline-mw price-cta" href="/kontakt">Umów wizytę</a>
+                <div class="price-grid">
+                    @for (item of cat.items; track item.name) {
+                        <article class="price-card hover-lift hidden"
+                                 appIntersectionObserver
+                                 [class.popular]="item.popular">
+                            @if (item.popular) {
+                                <span class="price-badge">Popularne</span>
+                            }
+                            <h3 class="price-name">{{ item.name }}</h3>
+                            @if (item.duration) {
+                                <p class="price-duration">
+                                    <mat-icon>schedule</mat-icon> {{ item.duration }}
+                                </p>
+                            }
+                            @if (item.description) {
+                                <p class="price-desc">{{ item.description }}</p>
+                            }
+                            <div class="price-value">{{ item.price }}</div>
+                            <a class="btn-mw btn-outline-mw price-cta" routerLink="/kontakt">Umów wizytę</a>
+                        </article>
+                    }
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    }
 
-    <!-- NOTES -->
     <section class="section notes-section">
         <div class="container">
             <div class="text-center hidden" appIntersectionObserver>
@@ -44,25 +52,26 @@
             </div>
 
             <div class="notes-grid">
-                <div class="note-card hidden" appIntersectionObserver *ngFor="let n of notes">
-                    <mat-icon>{{ n.icon }}</mat-icon>
-                    <h4>{{ n.title }}</h4>
-                    <p>{{ n.desc }}</p>
-                </div>
+                @for (n of notes; track n.title) {
+                    <div class="note-card hidden" appIntersectionObserver>
+                        <mat-icon>{{ n.icon }}</mat-icon>
+                        <h4>{{ n.title }}</h4>
+                        <p>{{ n.desc }}</p>
+                    </div>
+                }
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
     <section class="cta-banner">
         <div class="container hidden" appIntersectionObserver>
             <h2 class="cta-title">Masz pytanie odnośnie ceny?</h2>
             <p class="cta-sub">Zadzwoń lub napisz – pomożemy dobrać optymalny plan terapii.</p>
             <div class="cta-actions">
-                <a class="btn-mw btn-light-mw" href="tel:509-792-650">
+                <a class="btn-mw btn-light-mw" href="tel:+48509792650">
                     <mat-icon>phone</mat-icon> 509 792 650
                 </a>
-                <a class="btn-mw btn-light-mw" href="/kontakt">
+                <a class="btn-mw btn-light-mw" routerLink="/kontakt">
                     <mat-icon>mail</mat-icon> Napisz do nas
                 </a>
             </div>

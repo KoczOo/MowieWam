@@ -1,19 +1,15 @@
-import {Component, Input} from '@angular/core';
-import {NgForOf, NgIf} from "@angular/common";
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
 @Component({
   selector: 'app-star-rating',
-  imports: [
-    NgIf,
-    NgForOf
-  ],
+  imports: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './star-rating.component.html',
-  styleUrl: './star-rating.component.scss'
+  styleUrl: './star-rating.component.scss',
 })
 export class StarRatingComponent {
-  @Input() rating: number = 0;
+  readonly rating = input<number>(0);
 
-  get stars() {
-    return Array(Math.floor(this.rating)).fill(0);
-  }
+  protected readonly fullStars = computed(() => Array.from({ length: Math.floor(this.rating()) }));
+  protected readonly hasHalfStar = computed(() => this.rating() % 1 !== 0);
 }

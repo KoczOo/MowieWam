@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Disallow: /polityka-prywatnosci
+
+Sitemap: https://mowiewam.pl/sitemap.xml
