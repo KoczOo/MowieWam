@@ -236,6 +236,7 @@
     </section>
 
     <!-- OPINIONS -->
+    @if (hasReviews()) {
     <section class="section google-opinions">
         <div class="container">
             <div class="text-center hidden" appIntersectionObserver>
@@ -247,10 +248,9 @@
             </div>
 
             @defer (on viewport; prefetch on idle) {
-            @if (reviews().length > 0) {
             <div class="google-opinions-carousel-container hidden" appIntersectionObserver>
                 <ngx-slick-carousel class="carousel" [config]="slideConfig">
-                    @for (slide of reviews(); track slide.author_name) {
+                    @for (slide of reviews(); track $index) {
                     <div ngxSlickItem class="slide">
                         <article class="item-card">
                             <mat-icon class="quote-icon">format_quote</mat-icon>
@@ -267,12 +267,12 @@
                     }
                 </ngx-slick-carousel>
             </div>
-            }
             } @placeholder (minimum 200ms) {
             <div class="opinions-placeholder" aria-hidden="true"></div>
             }
         </div>
     </section>
+    }
 
     <!-- INSTAGRAM TEASER -->
     <section class="section section-bg instagram-section">

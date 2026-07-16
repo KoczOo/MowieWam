@@ -25,39 +25,6 @@ interface IgPost { emoji: string; caption: string; }
 const LOGOPLAN_URL = '#';
 const CONTACT_PHONE = '+48509792650';
 
-const FALLBACK_REVIEWS: readonly Review[] = [
-    {
-        author_name: 'Mama Pawełka',
-        text: 'Polecam serdecznie! Pani Dominika pięknie pomogła synowi przejść przez całą terapię – od układania prostych zdań do czytania. Indywidualne podejście i ciepła atmosfera!',
-        relative_time_description: '2 miesiące temu',
-        rating: 5,
-    },
-    {
-        author_name: 'Mama Nadii',
-        text: 'Cudowne miejsce. Córka zaczęła wypowiadać głoski, których wcześniej nie mówiła i jeszcze nauczyła się czytać. Najważniejsze, że uwielbia chodzić na zajęcia!',
-        relative_time_description: '5 miesięcy temu',
-        rating: 5,
-    },
-    {
-        author_name: 'Mama Marcelinki',
-        text: 'Bardzo polecam to miejsce. Fantastyczne podejście do dzieci i ogromna wiedza Prowadzących. Doskonała konsultacja, nauka przez zabawę, przyjazna atmosfera.',
-        relative_time_description: '3 miesiące temu',
-        rating: 5,
-    },
-    {
-        author_name: 'Mama Wojtusia',
-        text: 'Cudowna atmosfera, ogromna wiedza, podejście do dziecka. Po każdym spotkaniu dostawaliśmy mnóstwo wskazówek do pracy w domu. Z czystym sumieniem polecamy!',
-        relative_time_description: '6 miesięcy temu',
-        rating: 5,
-    },
-    {
-        author_name: 'Mama Tosi',
-        text: 'Super podejście do dzieci, dzieciaki uwielbiają to miejsce. Widać, że Pani Dominika kocha to, co robi. Mega pozytywne wrażenie i efekty już od pierwszego spotkania.',
-        relative_time_description: '4 miesiące temu',
-        rating: 5,
-    },
-];
-
 @Component({
     selector: 'app-home',
     imports: [
@@ -78,8 +45,9 @@ export class HomeComponent {
     });
 
     protected readonly reviews = computed<readonly Review[]>(
-        () => this.placesResponse()?.result?.reviews ?? FALLBACK_REVIEWS,
+        () => this.placesResponse()?.result?.reviews ?? [],
     );
+    protected readonly hasReviews = computed(() => this.reviews().length > 0);
 
     protected readonly services: readonly ServiceItem[] = [
         { icon: 'fact_check', title: 'Diagnoza logopedyczna / neurologopedyczna', desc: 'Wywiad, badanie, plan terapii i zalecenia.' },
@@ -142,12 +110,14 @@ export class HomeComponent {
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 5000,
-        dots: true,
+        autoplaySpeed: 3000,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+        dots: false,
         arrows: false,
         responsive: [
             { breakpoint: 1200, settings: { slidesToShow: 2, slidesToScroll: 1 } },
-            { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1, fade: true, dots: true } },
+            { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1, fade: true, dots: false } },
         ],
     };
 
