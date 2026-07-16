@@ -93,7 +93,7 @@ export class SeoService {
       image: DEFAULT_IMAGE,
       logo: DEFAULT_IMAGE,
       telephone: '+48509792650',
-      email: 'mowiewam@gmail.com',
+      email: 'mowiewam.logopeda@gmail.com',
       priceRange: '$$',
       address: {
         '@type': 'PostalAddress',
