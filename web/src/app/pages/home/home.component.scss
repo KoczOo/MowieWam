@@ -362,6 +362,25 @@
       line-height: 1.6;
       margin: 0;
     }
+
+    .step-link {
+      color: var(--secondary);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1.5px;
+      transition: color .2s ease;
+
+      &:hover { color: var(--tertiary); }
+      strong { font-weight: 700; }
+    }
+
+    .step-cta {
+      margin-top: 14px;
+      padding: 9px 16px;
+      font-size: 13px;
+      gap: 6px;
+      mat-icon { font-size: 16px; width: 16px; height: 16px; }
+    }
   }
 }
 
