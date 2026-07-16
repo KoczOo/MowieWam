@@ -16,5 +16,4 @@ export interface PlaceDetailsResponse {
   readonly status?: string;
 }
 
-/** @deprecated Kept for backwards compatibility – use `Review` interface instead. */
 export type Reviews = Review;

@@ -10,12 +10,14 @@ import { SeoService } from '../../services/seo.service';
 })
 export class PolitykaPrywatnosciComponent {
     constructor() {
-        inject(SeoService).update({
+        const seo = inject(SeoService);
+        seo.update({
             title: 'Polityka prywatności | Mówię Wam',
             description:
                 'Informacje o przetwarzaniu danych osobowych w Centrum Logopedyczno-Terapeutycznym Mówię Wam w Kielcach.',
             url: '/polityka-prywatnosci',
             robots: 'noindex,follow',
         });
+        seo.setPageSchemas();
     }
 }

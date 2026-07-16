@@ -29,8 +29,14 @@ export class BlogComponent {
         this.seo.update({
             title: 'Blog logopedyczny – wkrótce | Mówię Wam',
             description:
-                'Wkrótce znajdziesz tu artykuły o rozwoju mowy, ćwiczenia do domu, porady logopedy i inspiracje dla rodziców. Zaglądaj lub śledź nas na Instagramie.',
+                'Wkrótce znajdziesz tu artykuły o rozwoju mowy, ćwiczenia do domu i porady logopedy z Kielc i województwa świętokrzyskiego. Zaglądaj lub śledź nas na Instagramie.',
             url: '/blog',
         });
+        this.seo.setPageSchemas(
+            this.seo.breadcrumbSchema([
+                { name: 'Strona główna', url: '/' },
+                { name: 'Blog', url: '/blog' },
+            ]),
+        );
     }
 }

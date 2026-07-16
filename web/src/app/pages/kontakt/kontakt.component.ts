@@ -53,9 +53,16 @@ export class KontaktComponent {
         this.seo.update({
             title: 'Kontakt – Logopeda Kielce | Mówię Wam',
             description:
-                'Skontaktuj się z centrum Mówię Wam w Kielcach. Telefon: 509 792 650. E-mail: mowiewam.logopeda@gmail.com. Adres: ul. Jurajska 1D/u20a (klatka C/D), os. Ślichowice.',
+                'Skontaktuj się z centrum Mówię Wam w Kielcach (województwo świętokrzyskie). Telefon: 509 792 650. E-mail: mowiewam.logopeda@gmail.com. Adres: ul. Jurajska 1D/u20a (klatka C/D), os. Ślichowice.',
             url: '/kontakt',
+            keywords: ['logopeda Kielce kontakt', 'logopeda świętokrzyskie', 'Mówię Wam'],
         });
+        this.seo.setPageSchemas(
+            this.seo.breadcrumbSchema([
+                { name: 'Strona główna', url: '/' },
+                { name: 'Kontakt', url: '/kontakt' },
+            ]),
+        );
 
         if (isPlatformBrowser(this.platformId)) {
             this.formLoadedAt = Date.now();

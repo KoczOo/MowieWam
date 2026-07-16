@@ -57,6 +57,10 @@ export class HomeComponent {
         () => this.placesResponse()?.result?.reviews ?? [],
     );
     protected readonly hasReviews = computed(() => this.reviews().length > 0);
+    protected readonly googleRating = computed(() => {
+        const rating = this.placesResponse()?.result?.rating;
+        return typeof rating === 'number' ? rating.toFixed(1) : '5.0';
+    });
 
     protected readonly services: readonly ServiceItem[] = [
         { icon: 'fact_check', title: 'Diagnoza logopedyczna / neurologopedyczna', desc: 'Wywiad, badanie, plan terapii i zalecenia.' },
@@ -141,12 +145,13 @@ export class HomeComponent {
 
     constructor() {
         this.seo.update({
-            title: 'Mówię Wam – Logopeda Kielce, os. Ślichowice',
+            title: 'Mówię Wam – Logopeda Kielce i świętokrzyskie',
             description:
-                'Centrum Logopedyczno-Terapeutyczne Mówię Wam w Kielcach. Diagnoza i terapia logopedyczna, neurologopedyczna, terapia ręki, wczesna interwencja. Umów wizytę u mgr Dominiki Gębskiej.',
+                'Centrum Logopedyczno-Terapeutyczne Mówię Wam w Kielcach (os. Ślichowice) – logopeda i neurologopeda dla mieszkańców Kielc i województwa świętokrzyskiego. Diagnoza, terapia mowy, terapia ręki, wczesna interwencja.',
             url: '/',
             keywords: [
                 'logopeda Kielce',
+                'logopeda świętokrzyskie',
                 'neurologopeda Kielce',
                 'terapia logopedyczna Kielce',
                 'terapia ręki Kielce',
@@ -155,5 +160,8 @@ export class HomeComponent {
                 'Ślichowice',
             ],
         });
+        this.seo.setPageSchemas(
+            this.seo.breadcrumbSchema([{ name: 'Strona główna', url: '/' }]),
+        );
     }
 }

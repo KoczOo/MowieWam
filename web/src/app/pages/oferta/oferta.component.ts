@@ -222,19 +222,23 @@ export class OfertaComponent {
         this.seo.update({
             title: 'Oferta terapii logopedycznej i ręki | Mówię Wam Kielce',
             description:
-                'Pełen zakres terapii dla dziecka: logopedia, neurologopedia, terapia ręki, miofunkcjonalna, wybiórczości pokarmowej, logorytmika, TUS. Kielce, os. Ślichowice.',
+                'Pełen zakres terapii dla dziecka: logopedia, neurologopedia, terapia ręki, miofunkcjonalna, wybiórczości pokarmowej, logorytmika, TUS. Kielce i województwo świętokrzyskie, os. Ślichowice.',
             url: '/oferta',
+            keywords: [
+                'logopeda Kielce',
+                'logopeda świętokrzyskie',
+                'terapia logopedyczna Kielce',
+                'neurologopeda Kielce',
+            ],
         });
 
-        this.seo.setStructuredData({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: this.faqs.map((f) => ({
-                '@type': 'Question',
-                name: f.q,
-                acceptedAnswer: { '@type': 'Answer', text: f.a },
-            })),
-        });
+        this.seo.setPageSchemas(
+            this.seo.breadcrumbSchema([
+                { name: 'Strona główna', url: '/' },
+                { name: 'Oferta', url: '/oferta' },
+            ]),
+            this.seo.faqSchema(this.faqs),
+        );
     }
 
     protected scrollTo(id: string, event: Event): void {

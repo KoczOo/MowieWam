@@ -44,8 +44,15 @@ export class ONasComponent {
         this.seo.update({
             title: 'O nas – Centrum Mówię Wam, Kielce',
             description:
-                'Poznaj nasze centrum logopedyczno-terapeutyczne w Kielcach – zespół neurologopedów, logopedów i terapeutów ręki pod kierunkiem mgr Dominiki Gębskiej.',
+                'Poznaj nasze centrum logopedyczno-terapeutyczne w Kielcach i województwie świętokrzyskim – zespół neurologopedów, logopedów i terapeutów ręki pod kierunkiem mgr Dominiki Gębskiej.',
             url: '/o-nas',
+            keywords: ['logopeda Kielce', 'logopeda świętokrzyskie', 'Mówię Wam', 'Dominika Gębska'],
         });
+        this.seo.setPageSchemas(
+            this.seo.breadcrumbSchema([
+                { name: 'Strona główna', url: '/' },
+                { name: 'O nas', url: '/o-nas' },
+            ]),
+        );
     }
 }

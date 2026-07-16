@@ -72,8 +72,15 @@ export class CennikComponent {
         this.seo.update({
             title: 'Cennik – Logopeda Kielce | Mówię Wam',
             description:
-                'Cennik usług logopedycznych, neurologopedycznych, terapii ręki i zajęć grupowych w centrum Mówię Wam w Kielcach. Diagnoza od 150 zł, terapia od 130 zł.',
+                'Cennik usług logopedycznych, neurologopedycznych, terapii ręki i zajęć grupowych w centrum Mówię Wam w Kielcach i województwie świętokrzyskim. Diagnoza od 150 zł, terapia od 130 zł.',
             url: '/cennik',
+            keywords: ['cennik logopeda Kielce', 'logopeda świętokrzyskie'],
         });
+        this.seo.setPageSchemas(
+            this.seo.breadcrumbSchema([
+                { name: 'Strona główna', url: '/' },
+                { name: 'Cennik', url: '/cennik' },
+            ]),
+        );
     }
 }

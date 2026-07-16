@@ -43,18 +43,17 @@ export class PierwszaWizytaComponent {
         this.seo.update({
             title: 'Pierwsza wizyta u logopedy – jak się przygotować | Mówię Wam',
             description:
-                'Krok po kroku: jak wygląda pierwsza wizyta u logopedy w centrum Mówię Wam w Kielcach. Co zabrać, ile trwa diagnoza, czy rodzic jest obecny na zajęciach.',
+                'Krok po kroku: jak wygląda pierwsza wizyta u logopedy w centrum Mówię Wam w Kielcach i województwie świętokrzyskim. Co zabrać, ile trwa diagnoza, czy rodzic jest obecny na zajęciach.',
             url: '/pierwsza-wizyta',
+            keywords: ['pierwsza wizyta u logopedy', 'logopeda Kielce', 'logopeda świętokrzyskie'],
         });
 
-        this.seo.setStructuredData({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: this.faqs.map((f) => ({
-                '@type': 'Question',
-                name: f.q,
-                acceptedAnswer: { '@type': 'Answer', text: f.a },
-            })),
-        });
+        this.seo.setPageSchemas(
+            this.seo.breadcrumbSchema([
+                { name: 'Strona główna', url: '/' },
+                { name: 'Pierwsza wizyta', url: '/pierwsza-wizyta' },
+            ]),
+            this.seo.faqSchema(this.faqs),
+        );
     }
 }

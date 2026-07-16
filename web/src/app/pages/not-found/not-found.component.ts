@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, RESPONSE_INIT, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { SeoService } from '../../services/seo.service';
@@ -12,11 +12,17 @@ import { SeoService } from '../../services/seo.service';
 })
 export class NotFoundComponent {
   constructor() {
-    inject(SeoService).update({
+    const responseInit = inject(RESPONSE_INIT, { optional: true });
+    if (responseInit) {
+      responseInit.status = 404;
+    }
+
+    const seo = inject(SeoService);
+    seo.update({
       title: 'Strona nie została znaleziona (404)',
       description: 'Wygląda na to, że podana strona nie istnieje. Wróć na stronę główną Mówię Wam.',
-      url: '/404',
       robots: 'noindex,follow',
     });
+    seo.setPageSchemas();
   }
 }

@@ -13,5 +13,6 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'blog', renderMode: RenderMode.Prerender },
   { path: 'kontakt', renderMode: RenderMode.Prerender },
   { path: 'polityka-prywatnosci', renderMode: RenderMode.Prerender },
-  { path: '**', renderMode: RenderMode.Server },
+  { path: '**', renderMode: RenderMode.Server, status: 404 },
 ];
+
