@@ -22,10 +22,20 @@
 /* FOUNDER */
 .founder-section { background: #fff; }
 
+
+.founder-sticky {
+  @media (min-width: 992px) {
+    position: sticky;
+    top: 96px;
+  }
+}
+
 .founder-image {
   position: relative;
   max-width: 480px;
   margin: 0 auto;
+  padding-bottom: 30px;
+  padding-right: 20px;
 }
 .founder-frame {
   position: relative;
