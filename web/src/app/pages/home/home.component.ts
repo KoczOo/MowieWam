@@ -19,7 +19,16 @@ interface ProcessStep {
     cta?: ProcessStepCta;
     contactLinks?: ContactLinks;
 }
-interface IgPost { emoji: string; caption: string; }
+type IgPostType = 'photo' | 'video' | 'carousel';
+type IgPostVariant = 'primary' | 'secondary' | 'tertiary' | 'cream';
+interface IgPost {
+    emoji: string;
+    heading: string;
+    sub: string;
+    type: IgPostType;
+    variant: IgPostVariant;
+}
+interface IgProfileStat { value: string; label: string; }
 
 // TODO: podmienić na finalny link do rezerwacji w Logoplan
 const LOGOPLAN_URL = '#';
@@ -96,13 +105,22 @@ export class HomeComponent {
         },
     ];
 
+    // TODO: podmienić na realne posty z Instagram Basic Display API lub Graph API
     protected readonly igPosts: readonly IgPost[] = [
-        { emoji: '🎵', caption: 'Logorytmika – muzyka, która uczy mówić' },
-        { emoji: '🍄', caption: 'Sensoplastyka w sobotę o 13:30' },
-        { emoji: '👩‍🎓', caption: 'Szkolenia – ciągle się dokształcamy' },
-        { emoji: '💕', caption: 'Pierwsze terapeutyczne spotkanie' },
-        { emoji: '🎨', caption: 'Terapia ręki w pełnej krasie' },
-        { emoji: '✨', caption: 'Dzień otwarty w naszym Centrum' },
+        { emoji: '🗣️', heading: 'Terapia logopedyczna', sub: 'z Panią Dominiką', type: 'video', variant: 'secondary' },
+        { emoji: '🎨', heading: 'Sensoplastyka', sub: 'w sobotę o 13:30', type: 'carousel', variant: 'primary' },
+        { emoji: '👄', heading: 'Terapia miofunkcjonalna', sub: 'praca z językiem i wargami', type: 'photo', variant: 'tertiary' },
+        { emoji: '🤱', heading: 'Karmienie piersią', sub: 'wsparcie od pierwszych dni', type: 'video', variant: 'cream' },
+        { emoji: '🎵', heading: 'Logorytmika', sub: 'muzyka, która uczy mówić', type: 'carousel', variant: 'primary' },
+        { emoji: '📚', heading: 'Nauka czytania', sub: 'metoda symultaniczno-sekwencyjna', type: 'photo', variant: 'tertiary' },
+        { emoji: '👶', heading: 'Wsparcie niemowląt', sub: 'od pierwszych dni życia', type: 'video', variant: 'cream' },
+        { emoji: '🎓', heading: 'Szkolenia', sub: 'ciągle się dokształcamy', type: 'carousel', variant: 'secondary' },
+    ];
+
+    protected readonly igProfileStats: readonly IgProfileStat[] = [
+        { value: '324', label: 'Posty' },
+        { value: '1.2K', label: 'Obserwujących' },
+        { value: '186', label: 'Obserwowani' },
     ];
 
     protected readonly slideConfig = {

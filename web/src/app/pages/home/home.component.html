@@ -277,32 +277,68 @@
     <!-- INSTAGRAM TEASER -->
     <section class="section section-bg instagram-section">
         <div class="container">
-            <div class="row align-items-center g-4">
-                <div class="col-lg-5 hidden" appIntersectionObserver>
-                    <span class="eyebrow">Instagram</span>
-                    <h2 class="section-title">Codzienność w Mówię Wam</h2>
-                    <p class="section-subtitle" style="margin: 0 0 28px 0;">
-                        Zaglądaj do naszego instagrama, by zobaczyć kulisy terapii,
-                        ćwiczenia do domu, a także piękne momenty z dzieciakami.
+            <div class="text-center hidden" appIntersectionObserver>
+                <span class="eyebrow">Instagram</span>
+                <h2 class="section-title ig-section-title">Zajrzyj do naszego świata</h2>
+                <p class="section-subtitle ig-section-sub">
+                    <span class="ig-sub-dash"></span>
+                    Kulisy terapii, ćwiczenia do domu i codzienne momenty z dzieciakami
+                    <span class="ig-sub-dash"></span>
+                </p>
+            </div>
+
+            <div class="ig-profile hidden" appIntersectionObserver>
+                <a class="ig-profile-avatar"
+                   href="https://www.instagram.com/mowie.wam/"
+                   target="_blank" rel="noopener"
+                   aria-label="Profil Instagram Mówię Wam">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                </a>
+                <div class="ig-profile-body">
+                    <p class="ig-profile-bio">
+                        Logopedia | Neurologopedia | Kielce | Ślichowice
                     </p>
-                    <a class="btn-mw btn-primary-mw" target="_blank" rel="noopener"
-                        href="https://www.instagram.com/mowie.wam/">
-                        <i class="fab fa-instagram" aria-hidden="true"></i>
-                        &#64;mowie.wam
-                    </a>
+                    <a class="ig-profile-handle"
+                       href="https://www.instagram.com/mowie.wam/"
+                       target="_blank" rel="noopener">&#64;mowie.wam</a>
                 </div>
-                <div class="col-lg-7">
-                    <div class="ig-grid hidden" appIntersectionObserver>
-                        @for (post of igPosts; track post.caption; let i = $index) {
-                        <a class="ig-tile" [class.ig-tile-tall]="i === 0" target="_blank" rel="noopener"
-                            href="https://www.instagram.com/mowie.wam/">
-                            <span class="ig-emoji">{{ post.emoji }}</span>
-                            <span class="ig-text">{{ post.caption }}</span>
-                            <i class="fab fa-instagram ig-icon" aria-hidden="true"></i>
-                        </a>
-                        }
+                <ul class="ig-profile-stats" aria-label="Statystyki profilu">
+                    @for (s of igProfileStats; track s.label) {
+                    <li class="ig-stat">
+                        <strong>{{ s.value }}</strong>
+                        <span>{{ s.label }}</span>
+                    </li>
+                    }
+                </ul>
+                <a class="btn-mw btn-primary-mw ig-follow-btn"
+                   href="https://www.instagram.com/mowie.wam/"
+                   target="_blank" rel="noopener">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                    Obserwuj
+                </a>
+            </div>
+
+            <div class="ig-grid hidden" appIntersectionObserver>
+                @for (post of igPosts; track $index) {
+                <a class="ig-tile"
+                   [attr.data-variant]="post.variant"
+                   href="https://www.instagram.com/mowie.wam/"
+                   target="_blank" rel="noopener"
+                   [attr.aria-label]="post.heading + ' – ' + post.sub">
+                    <span class="ig-tile-emoji" aria-hidden="true">{{ post.emoji }}</span>
+                    <div class="ig-tile-overlay">
+                        <span class="ig-tile-heading">{{ post.heading }}</span>
+                        <span class="ig-tile-sub">{{ post.sub }}</span>
                     </div>
-                </div>
+                    <i class="ig-tile-type"
+                       [class.fas]="post.type === 'video'"
+                       [class.fa-play]="post.type === 'video'"
+                       [class.far]="post.type !== 'video'"
+                       [class.fa-clone]="post.type === 'carousel'"
+                       [class.fa-image]="post.type === 'photo'"
+                       aria-hidden="true"></i>
+                </a>
+                }
             </div>
         </div>
     </section>

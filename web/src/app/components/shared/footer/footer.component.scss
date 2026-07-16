@@ -70,25 +70,77 @@
   border-radius: 50%;
   background: var(--secondary);
   color: #fff !important;
-  transition: all .2s ease;
+  transition:
+    background-color .2s ease,
+    transform .25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow .25s ease;
 
   i { font-size: 18px; color: #fff; }
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     background: var(--tertiary);
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.06);
+    box-shadow: 0 6px 14px rgba(63, 0, 27, 0.18);
   }
 }
 
 #footer ul.quick-links li {
   padding: 5px 0;
-  transition: .25s all ease;
   text-align: left;
 }
 
-#footer ul.quick-links li:hover {
-  margin-left: 4px;
-  font-weight: 600;
+// Hover: 1) bold → 2) scale (transform, so layout nie skacze)
+#footer ul.quick-links a {
+  display: inline-block;
+  font-weight: 400;
+  transform: translateX(0) scale(1);
+  transform-origin: left center;
+  transition:
+    font-weight .12s ease,
+    color .2s ease,
+    transform .22s cubic-bezier(0.22, 1, 0.36, 1) .1s;
+
+  &:hover,
+  &:focus-visible {
+    font-weight: 600;
+    color: var(--secondary);
+    transform: translateX(3px) scale(1.05);
+  }
+}
+
+#footer ul.menu-links a {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .25s ease;
+  }
+
+  &:hover::after,
+  &:focus-visible::after,
+  &.active::after {
+    transform: scaleX(1);
+  }
+
+  &.active {
+    font-weight: 600;
+    color: var(--secondary);
+  }
+}
+
+#footer ul.quick-links .list-item-icon-container:hover .footer-icon,
+#footer ul.quick-links .list-item-icon-container:has(a:focus-visible) .footer-icon {
+  color: var(--tertiary);
+  transform: scale(1.08);
 }
 
 .list-item-icon-container {
@@ -105,15 +157,26 @@
   width: 20px;
   flex-shrink: 0;
   margin-top: 2px;
+  transition: color .2s ease, transform .2s ease;
 }
 
-.hours li {
+#footer .hours li {
   display: flex;
   justify-content: space-between;
-  padding: 4px 0;
+  gap: 8px;
+  margin: 0 -6px;
+  padding: 5px 6px;
+  border-radius: 4px;
   border-bottom: 1px dashed rgba(143, 0, 69, 0.18);
+  transition: background-color .2s ease;
 
   &:last-child { border-bottom: none; }
+
+  &:hover {
+    background-color: rgba(143, 0, 69, 0.06);
+
+    span { color: var(--secondary); }
+  }
 
   .closed { color: var(--secondary); font-style: italic; }
 }
@@ -129,5 +192,58 @@
   font-size: 13px;
   color: var(--tertiary);
 
-  .footer-bottom-links a { margin-left: 12px; }
+  .footer-bottom-links a {
+    display: inline-block;
+    position: relative;
+    margin-left: 12px;
+    transform-origin: right center;
+    transition:
+      font-weight .12s ease,
+      transform .2s cubic-bezier(0.22, 1, 0.36, 1) .08s;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform .25s ease;
+    }
+
+    &:hover,
+    &:focus-visible {
+      font-weight: 600;
+      transform: scale(1.04);
+
+      &::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #footer ul.quick-links a,
+  #footer ul.menu-links a::after,
+  #footer ul.social li a,
+  .footer-bottom-links a,
+  .footer-bottom-links a::after,
+  .footer-icon,
+  #footer .hours li {
+    transition: none !important;
+  }
+
+  #footer ul.quick-links a:hover,
+  #footer ul.quick-links a:focus-visible,
+  #footer ul.social li a:hover,
+  #footer ul.social li a:focus-visible,
+  .footer-bottom-links a:hover,
+  .footer-bottom-links a:focus-visible {
+    transform: none;
+  }
 }

@@ -199,26 +199,26 @@ img { max-width: 100%; }
 .hover-underline-animation {
   display: inline-flex;
   position: relative;
-  color: var(--secondary);
-  &.active { color: var(--text-on-dark); }
-}
 
-.hover-underline-animation::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: -2px;
-  left: 0;
-  background-color: var(--secondary);
-  transform-origin: bottom right;
-  transition: transform .45s ease-out;
-}
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 4px;
+    left: 0;
+    background-color: var(--secondary);
+    transform-origin: bottom right;
+    transition: transform .35s ease-out;
+  }
 
-.hover-underline-animation:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
+  &:hover::after,
+  &:focus-visible::after,
+  &.active::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
 }
 
 /* Floating CTA */

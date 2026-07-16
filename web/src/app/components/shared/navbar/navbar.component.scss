@@ -221,10 +221,18 @@
   font-weight: 500;
   padding: 10px 12px;
   border-radius: 8px;
-  transition: color .2s ease;
+  transition: color .2s ease, font-weight .12s ease;
   white-space: nowrap;
 
-  &:hover { color: var(--secondary); }
+  &:hover,
+  &:focus-visible {
+    color: var(--secondary);
+  }
+
+  &.active {
+    color: var(--secondary);
+    font-weight: 600;
+  }
 }
 
 /* ===== SOCIAL ICONS ===== */
@@ -305,8 +313,29 @@
 
     a.navigation-link {
       display: block;
+      position: relative;
       padding: 12px 8px;
       font-size: 17px;
+      width: fit-content;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 8px;
+        right: 8px;
+        bottom: 6px;
+        height: 2px;
+        background: var(--secondary);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform .3s ease;
+      }
+
+      &:hover::after,
+      &:focus-visible::after,
+      &.active::after {
+        transform: scaleX(1);
+      }
     }
   }
 

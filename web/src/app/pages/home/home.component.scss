@@ -494,55 +494,268 @@
 /* ===== INSTAGRAM ===== */
 .instagram-section { }
 
+.ig-section-title {
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  font-weight: 700;
+  @media (max-width: 800px) { letter-spacing: 3px; }
+}
+
+.ig-section-sub {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 48px;
+
+  @media (max-width: 800px) {
+    letter-spacing: 1px;
+    font-size: 12px;
+    gap: 10px;
+  }
+}
+
+.ig-sub-dash {
+  display: inline-block;
+  width: 40px;
+  height: 1px;
+  background: currentColor;
+  opacity: .5;
+
+  @media (max-width: 600px) { width: 20px; }
+}
+
+/* --- Profile block --- */
+.ig-profile {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  padding: 22px 28px;
+  background: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(143, 0, 69, 0.06);
+  margin-bottom: 32px;
+
+  @media (max-width: 900px) {
+    flex-wrap: wrap;
+    gap: 18px;
+    padding: 20px;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.ig-profile-avatar {
+  flex-shrink: 0;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff !important;
+  font-size: 34px;
+  text-decoration: none !important;
+  background:
+    linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  padding: 3px;
+  transition: transform .25s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: #fff;
+    z-index: 0;
+  }
+  position: relative;
+
+  i {
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(45deg, #f09433, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  &:hover { transform: scale(1.05); }
+}
+
+.ig-profile-body {
+  flex: 1;
+  min-width: 180px;
+
+  @media (max-width: 900px) { flex: 1 1 100%; }
+}
+
+.ig-profile-bio {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.5;
+  margin: 0 0 4px 0;
+  font-weight: 500;
+}
+
+.ig-profile-handle {
+  display: inline-block;
+  font-size: 14px;
+  color: var(--secondary);
+  text-decoration: none;
+  font-weight: 600;
+
+  &:hover { color: var(--tertiary); }
+}
+
+.ig-profile-stats {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  @media (max-width: 600px) { gap: 18px; }
+}
+
+.ig-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+
+  strong {
+    font-size: 20px;
+    color: var(--tertiary);
+    font-weight: 700;
+  }
+
+  span {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+}
+
+.ig-follow-btn {
+  flex-shrink: 0;
+  i { margin-right: 8px; }
+}
+
+/* --- Grid --- */
 .ig-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 150px;
-  gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
 
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
   @media (max-width: 600px) {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 130px;
+    gap: 10px;
   }
 }
 
 .ig-tile {
   position: relative;
-  background: linear-gradient(135deg, var(--primary-strong), var(--secondary-soft));
-  border-radius: var(--radius-sm);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 14px;
-  color: #fff !important;
-  text-decoration: none !important;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-md);
   overflow: hidden;
-  transition: all .3s ease;
+  text-decoration: none !important;
+  color: #fff !important;
+  display: block;
+  transition: transform .3s ease, box-shadow .3s ease;
+  cursor: pointer;
+
+  // Warianty kolorystyczne – wybierane per-post w danych, żeby siatka miała
+  // rytm zamiast jednolitej płachty jednego koloru.
+  &[data-variant="primary"] {
+    background: linear-gradient(135deg, var(--primary-strong) 0%, #f5a3b8 100%);
+  }
+  &[data-variant="secondary"] {
+    background: linear-gradient(135deg, var(--secondary) 0%, #d34a86 100%);
+  }
+  &[data-variant="tertiary"] {
+    background: linear-gradient(135deg, var(--tertiary) 0%, var(--secondary) 100%);
+  }
+  &[data-variant="cream"] {
+    background: linear-gradient(135deg, #fbe4c9 0%, #f5c3a3 100%);
+    color: var(--tertiary) !important;
+
+    .ig-tile-heading, .ig-tile-sub { color: var(--tertiary); }
+    .ig-tile-overlay {
+      background: linear-gradient(to top, rgba(255, 255, 255, .85), rgba(255, 255, 255, 0));
+    }
+    .ig-tile-type { color: var(--tertiary); }
+  }
 
   &:hover {
-    transform: scale(1.03);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-md);
-  }
 
-  &.ig-tile-tall {
-    grid-row: span 2;
-    background: linear-gradient(135deg, var(--secondary), var(--tertiary));
+    .ig-tile-emoji { transform: scale(1.1) rotate(-3deg); }
+    .ig-tile-overlay { padding-bottom: 20px; }
   }
+}
 
-  .ig-emoji { font-size: 40px; line-height: 1; }
-  .ig-text {
-    font-size: 13px;
-    line-height: 1.4;
-    color: #fff;
-    z-index: 2;
-  }
-  .ig-icon {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    font-size: 18px;
-    opacity: .8;
-  }
+.ig-tile-emoji {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(56px, 12vw, 96px);
+  opacity: .35;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, .15));
+  transition: transform .35s ease;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.ig-tile-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 22px 16px 16px 16px;
+  background: linear-gradient(to top, rgba(0, 0, 0, .55), rgba(0, 0, 0, 0));
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  transition: padding .3s ease;
+}
+
+.ig-tile-heading {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  line-height: 1.25;
+  color: #fff;
+}
+
+.ig-tile-sub {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, .85);
+  line-height: 1.35;
+}
+
+.ig-tile-type {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 14px;
+  color: #fff;
+  opacity: .95;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .3));
 }
 
 /* ===== CTA BANNER ===== */
