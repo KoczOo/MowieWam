@@ -1,12 +1,65 @@
 <main class="not-found">
-  <section class="page-header">
+  <div class="not-found-decor not-found-decor-1" aria-hidden="true"></div>
+  <div class="not-found-decor not-found-decor-2" aria-hidden="true"></div>
+
+  <section class="not-found-inner">
     <div class="container text-center">
+      <div class="not-found-visual" aria-hidden="true">
+        <svg
+          class="not-found-illustration"
+          viewBox="0 0 280 160"
+          xmlns="http://www.w3.org/2000/svg"
+          role="img"
+        >
+          <ellipse class="illu-glow" cx="140" cy="148" rx="88" ry="12" fill="#e0bfb6" opacity="0.5" />
+
+          <g class="illu-bubble illu-bubble-left">
+            <path
+              d="M42 72c0-18 14-32 32-32h30c18 0 32 14 32 32v10c0 18-14 32-32 32h-14l-18 16v-16H74c-18 0-32-14-32-32z"
+              fill="#edd8d0"
+              stroke="#8b5563"
+              stroke-width="2.5"
+              stroke-linejoin="round"
+            />
+            <circle cx="68" cy="82" r="4.5" fill="#8b5563" opacity="0.5" />
+            <circle cx="86" cy="82" r="4.5" fill="#8b5563" opacity="0.5" />
+            <circle cx="104" cy="82" r="4.5" fill="#8b5563" opacity="0.5" />
+          </g>
+
+          <g class="illu-bubble illu-bubble-right">
+            <path
+              d="M168 42c0-14 11-25 25-25h24c14 0 25 11 25 25v8c0 14-11 25-25 25h-10l-14 12v-12c-14 0-25-11-25-25z"
+              fill="#ffffff"
+              stroke="#c49aa5"
+              stroke-width="2.5"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M186 50h28M186 62h18"
+              stroke="#c49aa5"
+              stroke-width="3"
+              stroke-linecap="round"
+              opacity="0.75"
+            />
+          </g>
+
+          <g class="illu-waves" fill="none" stroke="#8b5563" stroke-linecap="round">
+            <path class="illu-wave illu-wave-1" d="M118 118c8-10 18-10 26 0" stroke-width="2.5" />
+            <path class="illu-wave illu-wave-2" d="M110 126c12-16 28-16 40 0" stroke-width="2.5" />
+            <path class="illu-wave illu-wave-3" d="M102 134c16-22 40-22 56 0" stroke-width="2.5" />
+          </g>
+        </svg>
+
+        <p class="not-found-code licorice" aria-hidden="true">404</p>
+      </div>
+
       <span class="eyebrow">Błąd 404</span>
       <h1 class="page-title">Nie znaleziono strony</h1>
       <p class="page-subtitle">
-        Podany adres nie istnieje lub został przeniesiony. Wróć na stronę główną
-        albo skorzystaj z menu.
+        Podany adres nie istnieje lub został przeniesiony.
+        Wróć na stronę główną albo skorzystaj z menu.
       </p>
+
       <div class="page-actions">
         <a class="btn-mw btn-primary-mw" routerLink="/">
           <mat-icon>home</mat-icon>
