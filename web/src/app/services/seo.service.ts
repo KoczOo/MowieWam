@@ -97,7 +97,7 @@ export class SeoService {
       priceRange: '$$',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'ul. Jurajska 1C/u20A',
+        streetAddress: 'ul. Jurajska 1D/u20a (klatka C/D)',
         addressLocality: 'Kielce',
         addressRegion: 'świętokrzyskie',
         postalCode: '25-640',
