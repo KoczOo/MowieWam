@@ -1,3 +1,7 @@
+:host {
+  display: contents;
+}
+
 /* ===== TOP BAR ===== */
 .topbar {
   background: var(--tertiary);
@@ -70,18 +74,10 @@
 
   &.scrolled {
     background-color: rgba(255, 217, 225, 0.96);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 14px rgba(63, 0, 27, 0.08);
     padding: 2px 0;
-  }
-
-  /* Na desktopie main navbar scrolluje się razem ze stroną – jego rolę przejmuje floating-nav */
-  @media (min-width: 1101px) {
-    position: relative;
-    top: auto;
-    box-shadow: none;
-    backdrop-filter: none;
-    background-color: var(--primary);
   }
 }
 
@@ -344,172 +340,5 @@
 
       &:hover { background: var(--tertiary); transform: translateY(-2px); }
     }
-  }
-}
-
-/* ===== FLOATING PRETTY BAR (desktop) ===== */
-.floating-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 110;
-  background: rgba(63, 0, 27, 0.78);
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 6px 24px rgba(63, 0, 27, 0.25);
-  transform: translateY(-110%);
-  opacity: 0;
-  pointer-events: none;
-  transition: transform .4s cubic-bezier(.34, 1.1, .65, 1), opacity .25s ease;
-
-  &.visible {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  @media (max-width: 1100px) { display: none; }
-}
-
-.floating-inner {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 8px 24px;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.float-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none !important;
-  flex-shrink: 0;
-  transition: opacity .2s ease;
-
-  img {
-    height: 42px;
-    width: auto;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .25));
-  }
-  .licorice {
-    font-size: 26px;
-    color: #fff;
-    line-height: 1;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, .2);
-  }
-
-  &:hover { opacity: .85; }
-}
-
-.float-nav {
-  display: flex;
-  margin-left: auto;
-  gap: 2px;
-  align-items: center;
-}
-
-.float-link {
-  color: rgba(255, 255, 255, 0.88);
-  text-decoration: none !important;
-  padding: 9px 14px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  transition: all .2s ease;
-  white-space: nowrap;
-  position: relative;
-
-  &:hover {
-    color: #fff !important;
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    left: 14px;
-    right: 14px;
-    bottom: 4px;
-    height: 2px;
-    background: var(--primary-strong);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform .25s ease;
-  }
-  &:hover::after { transform: scaleX(1); }
-}
-
-.float-right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding-left: 14px;
-  margin-left: 4px;
-  border-left: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-.float-phone-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 14px 7px 7px;
-  border-radius: 99px;
-  background: var(--secondary);
-  color: #fff !important;
-  text-decoration: none !important;
-  transition: all .2s ease;
-  font-weight: 600;
-  font-size: 13px;
-
-  mat-icon {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    color: #fff;
-    width: 28px;
-    height: 28px;
-    font-size: 16px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .float-phone-number {
-    @media (max-width: 1280px) { display: none; }
-  }
-
-  &:hover {
-    background: var(--primary-strong);
-    color: var(--tertiary) !important;
-    transform: translateY(-1px);
-
-    mat-icon { background: rgba(63, 0, 27, 0.15); color: var(--tertiary); }
-  }
-}
-
-.float-social {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.32);
-  color: rgba(255, 255, 255, 0.92) !important;
-  text-decoration: none !important;
-  transition: all .2s ease;
-
-  i { font-size: 14px; }
-
-  &:hover {
-    background: #fff;
-    color: var(--secondary) !important;
-    border-color: #fff;
-    transform: translateY(-2px);
   }
 }

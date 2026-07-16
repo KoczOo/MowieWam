@@ -27,7 +27,6 @@ import { MenuElement } from '../../../dto/MenuElement';
 const DEFAULT_DURATION = 300;
 const MOBILE_BREAKPOINT = '(max-width: 1100px)';
 const SCROLL_STICKY = 30;
-const SCROLL_FLOATING = 160;
 
 @Component({
   selector: 'app-navbar',
@@ -69,9 +68,6 @@ export class NavbarComponent {
   private readonly scrollY = signal(0);
 
   protected readonly isScrolled = computed(() => this.scrollY() > SCROLL_STICKY);
-  protected readonly showFloatingNav = computed(
-    () => !this.isMobile() && this.scrollY() > SCROLL_FLOATING,
-  );
 
   constructor() {
     this.breakpointObserver
