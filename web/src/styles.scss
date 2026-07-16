@@ -10,7 +10,7 @@
   --accent: #dce5df;
   --cream: #faf6f1;
   --text: #2c2826;
-  --text-muted: #756c68;
+  --text-muted: #5c5552;
   --text-on-dark: #ffffff;
   --shadow-sm: 0 2px 8px rgba(99, 99, 99, 0.12);
   --shadow-md: 0 8px 24px rgba(139, 85, 99, 0.10);
@@ -23,6 +23,10 @@
   --mdc-theme-secondary: #4caf50;
   --mat-icon-button-state-layer-color: #8b5563;
   --mdc-icon-button-icon-color: #8b5563;
+}
+
+html {
+  scroll-padding-top: 88px;
 }
 
 html, body {
@@ -43,6 +47,19 @@ body {
 }
 
 * { box-sizing: border-box; }
+
+/* Bootstrap container – więcej oddechu na wąskich ekranach */
+.container,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl,
+.container-xxl {
+  @media (max-width: 575.98px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
 
 ul { padding: 0; }
 
@@ -72,8 +89,14 @@ img { max-width: 100%; }
 
 /* Reusable utility classes */
 
-.section { padding: 90px 0; }
-.section-tight { padding: 60px 0; }
+.section {
+  padding: 90px 0;
+  @media (max-width: 800px) { padding: 56px 0; }
+}
+.section-tight {
+  padding: 60px 0;
+  @media (max-width: 800px) { padding: 40px 0; }
+}
 .section-bg { background: var(--primary-soft); }
 .section-cream { background: var(--cream); }
 .section-dark { background: var(--tertiary); color: var(--text-on-dark); }
@@ -86,6 +109,12 @@ img { max-width: 100%; }
   color: var(--secondary);
   font-weight: 600;
   margin-bottom: 14px;
+
+  @media (max-width: 800px) {
+    font-size: 11px;
+    letter-spacing: 1.8px;
+    margin-bottom: 10px;
+  }
 }
 
 .section-title {
@@ -103,6 +132,13 @@ img { max-width: 100%; }
   margin: 0 auto 40px;
   font-size: 17px;
   line-height: 1.7;
+
+  @media (max-width: 800px) {
+    font-size: 15px;
+    margin-bottom: 28px;
+    padding: 0 4px;
+    line-height: 1.65;
+  }
 }
 
 .text-center { text-align: center; }
@@ -135,14 +171,31 @@ img { max-width: 100%; }
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.5px;
+  line-height: 1.2;
   cursor: pointer;
   border: 2px solid transparent;
   transition: all .25s ease;
   text-decoration: none !important;
   white-space: nowrap;
   font-family: "Gowun Dodum", serif;
+  vertical-align: middle;
 
-  mat-icon, i { font-size: 18px; }
+  mat-icon, i {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 18px;
+    font-size: 14px;
+    gap: 8px;
+  }
 }
 
 .btn-primary-mw {
@@ -221,8 +274,7 @@ img { max-width: 100%; }
   }
 }
 
-/* Floating CTA */
-
+/* Floating CTA – tylko desktop; na mobile telefon jest w sticky headerze */
 .floating-cta {
   position: fixed;
   bottom: 24px;
@@ -240,16 +292,16 @@ img { max-width: 100%; }
   box-shadow: 0 8px 24px rgba(139, 85, 99, 0.35);
   text-decoration: none !important;
   transition: all .25s ease;
+
   &:hover {
     background: var(--tertiary);
     color: #fff !important;
     transform: translateY(-2px);
   }
-  @media (max-width: 600px) {
-    padding: 12px 18px;
-    font-size: 14px;
-    bottom: 16px;
-    right: 16px;
+
+  /* Zbędny przy telefonie w headerze – nachodził na treść */
+  @media (max-width: 1100px) {
+    display: none !important;
   }
 }
 
