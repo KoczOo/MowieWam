@@ -15,8 +15,8 @@ const IG_PROFILE_URL = 'https://www.instagram.com/mowie.wam/';
 const IG_MAX_TILES = 8;
 const IG_VARIANTS: readonly IgPostVariant[] = ['secondary', 'primary', 'tertiary', 'cream'];
 
-function firstLine(text: string, maxChars: number): string {
-    const line = (text.split(/\r?\n/)[0] ?? '').trim();
+function truncate(text: string, maxChars: number): string {
+    const line = text.trim();
     return line.length > maxChars ? line.slice(0, maxChars - 1).trimEnd() + '…' : line;
 }
 
@@ -29,17 +29,19 @@ function mapMediaType(t: InstagramPost['media_type']): IgPostType {
 }
 
 function toTile(post: InstagramPost, idx: number): IgTile {
-    const caption = post.caption ?? '';
-    const heading = firstLine(caption, 40) || 'Zobacz na Instagramie';
-    const rest = caption.slice(heading.length).replace(/^[\s\-–—:.]+/, '').trim();
-    const sub = firstLine(rest, 55);
+    const lines = (post.caption ?? '')
+        .split(/\r?\n/)
+        .map((l) => l.trim())
+        .filter(Boolean);
+    const heading = truncate(lines[0] ?? '', 40) || 'Zobacz na Instagramie';
+    const sub = lines[1] ? truncate(lines[1], 55) : '';
     const previewSrc =
         post.media_type === 'VIDEO' && post.thumbnail_url
             ? post.thumbnail_url
             : post.media_url;
     return {
         heading,
-        sub: sub || '@mowie.wam',
+        sub,
         type: mapMediaType(post.media_type),
         variant: IG_VARIANTS[idx % IG_VARIANTS.length],
         mediaUrl: previewSrc,

@@ -334,8 +334,10 @@
                     <span class="ig-tile-emoji" aria-hidden="true">{{ post.emoji }}</span>
                     }
                     <div class="ig-tile-overlay">
-                        <span class="ig-tile-heading">{{ post.heading }}</span>
+                        <span class="ig-tile-heading"><span class="ig-tile-heading-text">{{ post.heading }}</span></span>
+                        @if (post.sub) {
                         <span class="ig-tile-sub">{{ post.sub }}</span>
+                        }
                     </div>
                     <i class="ig-tile-type"
                        [class.fas]="post.type === 'video'"
