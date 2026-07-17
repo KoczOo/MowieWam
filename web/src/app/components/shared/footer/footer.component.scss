@@ -35,9 +35,23 @@
 }
 
 .footer-col--kontakt {
+  .quick-links {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .quick-links li {
+    padding: 0;
+  }
+
+  .list-item-icon-container {
+    gap: 10px;
+  }
   .social {
-    margin-top: auto;
-    padding-top: 18px;
+    margin-top: 22px;
+    margin-bottom: 4px;
+    padding-top: 22px;
   }
 }
 
@@ -86,6 +100,8 @@
   margin: 0;
   display: flex;
   gap: 10px;
+  padding-top: 14px;
+  margin-top: 38x;
 }
 
 #footer ul.social li a {
@@ -247,8 +263,8 @@
   justify-content: space-between;
   align-items: center;
   gap: 12px 24px;
-  padding: 16px 0 4px;
-  margin-top: 4px;
+  padding: 18px 0 4px;
+  margin-top: 8px;
   border-top: 1px solid rgba(74, 48, 56, 0.16);
   font-size: 13px;
   color: var(--tertiary);
@@ -265,6 +281,16 @@
     letter-spacing: .03em;
     color: var(--text-muted);
     font-style: italic;
+  }
+
+  .footer-credit-link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+    transition: color .2s ease;
+
+    &:hover { color: var(--secondary); }
   }
 
   .footer-credit-heart {
@@ -330,7 +356,8 @@
   }
 
   .footer-col--kontakt .social {
-    margin-top: 16px;
+    margin-top: 20px;
+    padding-top: 20px;
   }
 
   .footer-bottom {
