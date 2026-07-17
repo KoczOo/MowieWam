@@ -319,13 +319,20 @@
             </div>
 
             <div class="ig-grid hidden" appIntersectionObserver>
-                @for (post of igPosts; track $index) {
+                @for (post of igTiles(); track $index) {
                 <a class="ig-tile"
                    [attr.data-variant]="post.variant"
-                   href="https://www.instagram.com/mowie.wam/"
+                   [href]="post.permalink ?? igProfileUrl"
                    target="_blank" rel="noopener"
                    [attr.aria-label]="post.heading + ' – ' + post.sub">
+                    @if (post.mediaUrl) {
+                    <img class="ig-tile-media"
+                         [src]="post.mediaUrl"
+                         [alt]="post.heading"
+                         loading="lazy" decoding="async" />
+                    } @else if (post.emoji) {
                     <span class="ig-tile-emoji" aria-hidden="true">{{ post.emoji }}</span>
+                    }
                     <div class="ig-tile-overlay">
                         <span class="ig-tile-heading">{{ post.heading }}</span>
                         <span class="ig-tile-sub">{{ post.sub }}</span>

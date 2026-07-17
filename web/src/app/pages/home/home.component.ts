@@ -5,9 +5,47 @@ import { RouterLink } from '@angular/router';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { StarRatingComponent } from '../../components/star-rating/star-rating.component';
 import { IntersectionObserverDirective } from '../../directive/intersection-observer.directive';
+import { InstagramPost } from '../../dto/InstagramPost';
 import { Review } from '../../dto/Reviews';
 import { GooglePlacesService } from '../../services/google-places.service';
+import { InstagramService } from '../../services/instagram.service';
 import { SeoService } from '../../services/seo.service';
+
+const IG_PROFILE_URL = 'https://www.instagram.com/mowie.wam/';
+const IG_MAX_TILES = 8;
+const IG_VARIANTS: readonly IgPostVariant[] = ['secondary', 'primary', 'tertiary', 'cream'];
+
+function firstLine(text: string, maxChars: number): string {
+    const line = (text.split(/\r?\n/)[0] ?? '').trim();
+    return line.length > maxChars ? line.slice(0, maxChars - 1).trimEnd() + '…' : line;
+}
+
+function mapMediaType(t: InstagramPost['media_type']): IgPostType {
+    switch (t) {
+        case 'VIDEO': return 'video';
+        case 'CAROUSEL_ALBUM': return 'carousel';
+        default: return 'photo';
+    }
+}
+
+function toTile(post: InstagramPost, idx: number): IgTile {
+    const caption = post.caption ?? '';
+    const heading = firstLine(caption, 40) || 'Zobacz na Instagramie';
+    const rest = caption.slice(heading.length).replace(/^[\s\-–—:.]+/, '').trim();
+    const sub = firstLine(rest, 55);
+    const previewSrc =
+        post.media_type === 'VIDEO' && post.thumbnail_url
+            ? post.thumbnail_url
+            : post.media_url;
+    return {
+        heading,
+        sub: sub || '@mowie.wam',
+        type: mapMediaType(post.media_type),
+        variant: IG_VARIANTS[idx % IG_VARIANTS.length],
+        mediaUrl: previewSrc,
+        permalink: post.permalink,
+    };
+}
 
 interface ServiceItem { icon: string; title: string; desc: string; }
 interface ValueItem { icon: string; title: string; desc: string; }
@@ -21,12 +59,14 @@ interface ProcessStep {
 }
 type IgPostType = 'photo' | 'video' | 'carousel';
 type IgPostVariant = 'primary' | 'secondary' | 'tertiary' | 'cream';
-interface IgPost {
-    emoji: string;
+interface IgTile {
     heading: string;
     sub: string;
     type: IgPostType;
     variant: IgPostVariant;
+    emoji?: string;
+    mediaUrl?: string;
+    permalink?: string;
 }
 interface IgProfileStat { value: string; label: string; }
 
@@ -109,8 +149,10 @@ export class HomeComponent {
         },
     ];
 
-    // TODO: podmienić na realne posty z Instagram Basic Display API lub Graph API
-    protected readonly igPosts: readonly IgPost[] = [
+    // Fallback wyświetlany gdy Instagram Graph API jest niedostępny (brak
+    // konfiguracji, wygaśnięcie tokenu, awaria Meta). Zapewnia że sekcja
+    // nigdy nie znika – ważne dla ciągłości designu strony.
+    private readonly mockIgPosts: readonly IgTile[] = [
         { emoji: '🗣️', heading: 'Terapia logopedyczna', sub: 'z Panią Dominiką', type: 'video', variant: 'secondary' },
         { emoji: '🎨', heading: 'Sensoplastyka', sub: 'w sobotę o 13:30', type: 'carousel', variant: 'primary' },
         { emoji: '👄', heading: 'Terapia miofunkcjonalna', sub: 'praca z językiem i wargami', type: 'photo', variant: 'tertiary' },
@@ -120,6 +162,22 @@ export class HomeComponent {
         { emoji: '👶', heading: 'Wsparcie niemowląt', sub: 'od pierwszych dni życia', type: 'video', variant: 'cream' },
         { emoji: '🎓', heading: 'Szkolenia', sub: 'ciągle się dokształcamy', type: 'carousel', variant: 'secondary' },
     ];
+
+    private readonly realIgPosts = toSignal(
+        inject(InstagramService).getPosts(IG_MAX_TILES),
+        { initialValue: [] as ReadonlyArray<InstagramPost> },
+    );
+
+    protected readonly igTiles = computed<readonly IgTile[]>(() => {
+        const real = this.realIgPosts();
+        if (real.length === 0) return this.mockIgPosts;
+        const mapped = real.map((p, i) => toTile(p, i));
+        return mapped.length < IG_MAX_TILES
+            ? [...mapped, ...this.mockIgPosts.slice(mapped.length)]
+            : mapped.slice(0, IG_MAX_TILES);
+    });
+
+    protected readonly igProfileUrl = IG_PROFILE_URL;
 
     protected readonly igProfileStats: readonly IgProfileStat[] = [
         { value: '324', label: 'Posty' },
