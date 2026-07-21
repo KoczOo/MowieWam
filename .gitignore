@@ -1,2 +1,5 @@
 # Cursor
 .cursor/
+
+# macOS
+.DS_Store

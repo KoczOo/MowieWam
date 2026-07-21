@@ -9,6 +9,12 @@ import { config as loadDotenv } from 'dotenv';
 import { readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {
+  checkRateLimit,
+  clientIp,
+  parseContactPayload,
+  sendContactEmails,
+} from './server/contact-mail';
 
 loadDotenv();
 
@@ -18,6 +24,8 @@ const projectRoot = resolve(serverDistFolder, '../..');
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
+
+app.use(express.json({ limit: '32kb' }));
 
 interface Review {
   readonly author_name: string;
@@ -286,6 +294,37 @@ app.get('/api/instagram-posts', async (_req, res) => {
   }
   res.setHeader('Cache-Control', 'public, max-age=300, s-maxage=1800');
   res.json({ posts });
+});
+
+// ---------------------------------------------------------------------------
+// Contact form — notify clinic + auto-reply via Resend
+// ---------------------------------------------------------------------------
+
+app.post('/api/contact', async (req, res) => {
+  const ip = clientIp(req);
+  if (!checkRateLimit(ip)) {
+    res.status(429).json({ error: 'rate_limited' });
+    return;
+  }
+
+  const parsed = parseContactPayload(req.body);
+  if (typeof parsed === 'string') {
+    if (parsed === 'honeypot') {
+      res.status(204).end();
+      return;
+    }
+    res.status(400).json({ error: parsed });
+    return;
+  }
+
+  const result = await sendContactEmails(parsed);
+  if (result.ok === false) {
+    const status = result.reason === 'mailer_unconfigured' ? 503 : 500;
+    res.status(status).json({ error: result.reason });
+    return;
+  }
+
+  res.status(204).end();
 });
 
 app.use(

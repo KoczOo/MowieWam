@@ -1,5 +1,6 @@
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { ChangeDetectionStrategy, Component, PLATFORM_ID, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, DestroyRef, PLATFORM_ID, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
     AbstractControl,
     FormBuilder,
@@ -9,7 +10,9 @@ import {
     Validators,
 } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
+import { finalize } from 'rxjs';
 import { IntersectionObserverDirective } from '../../directive/intersection-observer.directive';
+import { ContactService } from '../../services/contact.service';
 import { SeoService } from '../../services/seo.service';
 
 const MIN_FILL_TIME_MS = 2500;
@@ -24,11 +27,14 @@ const MIN_FILL_TIME_MS = 2500;
 export class KontaktComponent {
     private readonly fb = inject(FormBuilder);
     private readonly platformId = inject(PLATFORM_ID);
-    private readonly doc = inject(DOCUMENT);
+    private readonly destroyRef = inject(DestroyRef);
+    private readonly contact = inject(ContactService);
     private readonly seo = inject(SeoService);
 
     protected readonly submitted = signal(false);
+    protected readonly sending = signal(false);
     protected readonly sent = signal(false);
+    protected readonly sendError = signal<string | null>(null);
     protected readonly botBlocked = signal(false);
     protected readonly captchaA = signal(0);
     protected readonly captchaB = signal(0);
@@ -90,6 +96,8 @@ export class KontaktComponent {
     protected onSubmit(): void {
         this.submitted.set(true);
         this.botBlocked.set(false);
+        this.sendError.set(null);
+        this.sent.set(false);
 
         if (this.form.value.website) {
             this.botBlocked.set(true);
@@ -104,29 +112,62 @@ export class KontaktComponent {
 
         if (this.form.invalid) return;
         if (!isPlatformBrowser(this.platformId)) return;
+        if (this.sending()) return;
 
         const data = this.form.getRawValue();
-        const mailtoLink =
-            `mailto:mowiewam.logopeda@gmail.com?subject=${encodeURIComponent('[Mówię Wam] ' + data.subject)}` +
-            `&body=${encodeURIComponent(
-                `Imię: ${data.name}\nE-mail: ${data.email}\nTelefon: ${data.phone || '-'}\n\n${data.message}`,
-            )}`;
-        this.doc.defaultView?.location.assign(mailtoLink);
+        this.sending.set(true);
 
-        this.sent.set(true);
-        this.submitted.set(false);
-        this.regenerateCaptcha();
-        this.form.reset({
-            subject: 'Konsultacja logopedyczna',
-            consent: false,
-            captcha: '',
-            website: '',
-            name: '',
-            email: '',
-            phone: '',
-            message: '',
-        });
-        this.formLoadedAt = Date.now();
+        this.contact
+            .send({
+                name: data.name,
+                email: data.email,
+                phone: data.phone,
+                subject: data.subject,
+                message: data.message,
+                consent: data.consent,
+                website: data.website,
+            })
+            .pipe(
+                takeUntilDestroyed(this.destroyRef),
+                finalize(() => this.sending.set(false)),
+            )
+            .subscribe((result) => {
+                if (result === 'ok') {
+                    this.sent.set(true);
+                    this.submitted.set(false);
+                    this.regenerateCaptcha();
+                    this.form.reset({
+                        subject: 'Konsultacja logopedyczna',
+                        consent: false,
+                        captcha: '',
+                        website: '',
+                        name: '',
+                        email: '',
+                        phone: '',
+                        message: '',
+                    });
+                    this.formLoadedAt = Date.now();
+                    return;
+                }
+
+                if (result === 'rate_limited') {
+                    this.sendError.set(
+                        'Wysłano zbyt wiele wiadomości. Spróbuj ponownie za godzinę albo zadzwoń: 509 792 650.',
+                    );
+                    return;
+                }
+
+                if (result === 'unavailable') {
+                    this.sendError.set(
+                        'Wysyłka e-mail jest chwilowo niedostępna. Zadzwoń lub napisz bezpośrednio: 509 792 650.',
+                    );
+                    return;
+                }
+
+                this.sendError.set(
+                    'Nie udało się wysłać wiadomości. Spróbuj ponownie albo zadzwoń: 509 792 650.',
+                );
+            });
     }
 
     protected refreshCaptcha(): void {

@@ -175,14 +175,21 @@
                                 </div>
 
                                 <div class="col-12 form-actions">
-                                    <button type="submit" class="btn-mw btn-primary-mw">
-                                        <mat-icon>send</mat-icon>
-                                        Wyślij wiadomość
+                                    <button type="submit" class="btn-mw btn-primary-mw"
+                                            [disabled]="sending()">
+                                        <mat-icon>{{ sending() ? 'hourglass_top' : 'send' }}</mat-icon>
+                                        {{ sending() ? 'Wysyłanie…' : 'Wyślij wiadomość' }}
                                     </button>
                                     @if (sent()) {
                                         <p class="success-msg">
                                             <mat-icon>check_circle</mat-icon>
-                                            Dziękujemy! Otworzy się Twój klient e-mail – po wysłaniu odpiszemy najszybciej, jak to możliwe.
+                                            Dziękujemy! Wiadomość dotarła do gabinetu. Na podany e-mail wyślemy potwierdzenie (sprawdź też folder spam).
+                                        </p>
+                                    }
+                                    @if (sendError(); as err) {
+                                        <p class="bot-msg" role="alert">
+                                            <mat-icon>error</mat-icon>
+                                            {{ err }}
                                         </p>
                                     }
                                     @if (botBlocked()) {
