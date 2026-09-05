@@ -207,7 +207,7 @@ export class HomeComponent {
         this.seo.update({
             title: 'Mówię Wam – Logopeda Kielce i świętokrzyskie',
             description:
-                'Centrum Logopedyczno-Terapeutyczne Mówię Wam w Kielcach (os. Ślichowice) – logopeda i neurologopeda dla mieszkańców Kielc i województwa świętokrzyskiego. Diagnoza, terapia mowy, terapia ręki, wczesna interwencja.',
+                'Centrum Logopedyczne Mówię Wam w Kielcach (os. Ślichowice) – logopeda i neurologopeda dla mieszkańców Kielc i województwa świętokrzyskiego. Diagnoza, terapia mowy, terapia ręki, wczesna interwencja.',
             url: '/',
             keywords: [
                 'logopeda Kielce',

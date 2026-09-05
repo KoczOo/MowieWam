@@ -137,7 +137,7 @@ export class SeoService {
     const org: Record<string, unknown> = {
       '@type': 'MedicalBusiness',
       '@id': `${SITE_URL}/#organization`,
-      name: 'Mówię Wam – Centrum Logopedyczno-Terapeutyczne Dominika Gębska',
+      name: 'Mówię Wam – Centrum Logopedyczne Dominika Gębska',
       alternateName: 'Mówię Wam',
       url: SITE_URL,
       image: DEFAULT_IMAGE,
