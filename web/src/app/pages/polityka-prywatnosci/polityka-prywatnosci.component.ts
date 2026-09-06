@@ -14,7 +14,7 @@ export class PolitykaPrywatnosciComponent {
         seo.update({
             title: 'Polityka prywatności | Mówię Wam',
             description:
-                'Informacje o przetwarzaniu danych osobowych w Centrum Logopedyczno-Terapeutycznym Mówię Wam w Kielcach.',
+                'Informacje o przetwarzaniu danych osobowych w Centrum Logopedycznym Mówię Wam w Kielcach.',
             url: '/polityka-prywatnosci',
             robots: 'noindex,follow',
         });
