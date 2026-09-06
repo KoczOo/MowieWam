@@ -1,7 +1,6 @@
 import {
   AngularNodeAppEngine,
   createNodeRequestHandler,
-  isMainModule,
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
 import express from 'express';
@@ -28,7 +27,32 @@ loadDotenv({ path: resolve(process.cwd(), '.env') });
 loadDotenv({ path: resolve(webRoot, '.env') });
 
 const app = express();
-const angularApp = new AngularNodeAppEngine();
+
+// Hostinger requires listen() within 3s and does not support isMainModule /
+// require.main guards. Bind immediately; wire Angular SSR afterwards.
+process.env['NODE_ENV'] ??= 'production';
+const port = Number(process.env['PORT'] || 4000);
+const host = process.env['HOST'] || '0.0.0.0';
+app.listen(port, host, () => {
+  console.log(`Node Express server listening on http://${host}:${port}`);
+  for (const key of [
+    'GOOGLE_API_KEY',
+    'PLACE_ID',
+    'IG_ACCESS_TOKEN',
+    'IG_USER_ID',
+    'RESEND_API_KEY',
+    'CONTACT_TO',
+    'CONTACT_FROM',
+  ] as const) {
+    console.log(`[env] ${key}: ${envSecret(key) ? 'set' : 'MISSING'}`);
+  }
+});
+
+let angularApp: AngularNodeAppEngine | undefined;
+function getAngularApp(): AngularNodeAppEngine {
+  angularApp ??= new AngularNodeAppEngine();
+  return angularApp;
+}
 
 app.disable('x-powered-by');
 app.set('trust proxy', 1);
@@ -366,32 +390,12 @@ app.use(
 );
 
 app.use('/**', (req, res, next) => {
-  angularApp
+  getAngularApp()
     .handle(req)
     .then((response) =>
       response ? writeResponseToNodeResponse(response, res) : next(),
     )
     .catch(next);
 });
-
-if (isMainModule(import.meta.url)) {
-  process.env['NODE_ENV'] ??= 'production';
-  const port = Number(process.env['PORT'] || 4000);
-  const host = process.env['HOST'] || '0.0.0.0';
-  app.listen(port, host, () => {
-    console.log(`Node Express server listening on http://${host}:${port}`);
-    for (const key of [
-      'GOOGLE_API_KEY',
-      'PLACE_ID',
-      'IG_ACCESS_TOKEN',
-      'IG_USER_ID',
-      'RESEND_API_KEY',
-      'CONTACT_TO',
-      'CONTACT_FROM',
-    ] as const) {
-      console.log(`[env] ${key}: ${envSecret(key) ? 'set' : 'MISSING'}`);
-    }
-  });
-}
 
 export const reqHandler = createNodeRequestHandler(app);
