@@ -15,17 +15,33 @@ import {
   parseContactPayload,
   sendContactEmails,
 } from './server/contact-mail';
-
-loadDotenv();
+import { canonicalHostRedirect, securityHeaders } from './server/security-headers';
+import { envSecret } from './server/env-secret';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
-const projectRoot = resolve(serverDistFolder, '../..');
+const webRoot = resolve(serverDistFolder, '../../..');
+const projectRoot = resolve(process.cwd());
+
+loadDotenv();
+loadDotenv({ path: resolve(process.cwd(), '.env') });
+loadDotenv({ path: resolve(webRoot, '.env') });
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
+app.disable('x-powered-by');
+app.set('trust proxy', 1);
+app.use(canonicalHostRedirect);
+app.use(securityHeaders);
 app.use(express.json({ limit: '32kb' }));
+app.use((err: unknown, _req: express.Request, res: express.Response, next: express.NextFunction) => {
+  if (err instanceof SyntaxError) {
+    res.status(400).json({ error: 'invalid_body' });
+    return;
+  }
+  next(err);
+});
 
 interface Review {
   readonly author_name: string;
@@ -67,11 +83,18 @@ async function fetchPlaceDetailsWithSort(
 
   try {
     const res = await fetch(url);
-    if (!res.ok) return null;
+    if (!res.ok) {
+      console.warn(`[reviews] Places HTTP ${res.status} (sort=${sort})`);
+      return null;
+    }
     const body = (await res.json()) as PlaceDetailsResponse;
-    if (body.status && body.status !== 'OK') return null;
+    if (body.status && body.status !== 'OK') {
+      console.warn(`[reviews] Places status=${body.status} (sort=${sort})`);
+      return null;
+    }
     return body;
-  } catch {
+  } catch (err) {
+    console.warn('[reviews] fetch failed:', err);
     return null;
   }
 }
@@ -79,10 +102,17 @@ async function fetchPlaceDetailsWithSort(
 // Places `Details` returns max 5 reviews per call. Fetching both sortings
 // in parallel and dedup'ing by `time` yields up to ~10 unique reviews.
 async function fetchPlaceDetails(): Promise<PlaceDetailsResponse | null> {
-  const apiKey = process.env['GOOGLE_API_KEY'];
-  const placeId = process.env['PLACE_ID'];
+  const apiKey = envSecret('GOOGLE_API_KEY');
+  const placeId = envSecret('PLACE_ID');
 
-  if (!apiKey || !placeId) return null;
+  if (!apiKey) {
+    console.warn('[reviews] missing GOOGLE_API_KEY in .env');
+    return null;
+  }
+  if (!placeId) {
+    console.warn('[reviews] missing PLACE_ID in .env');
+    return null;
+  }
 
   const [byRelevance, byNewest] = await Promise.all([
     fetchPlaceDetailsWithSort(apiKey, placeId, 'most_relevant'),
@@ -199,7 +229,7 @@ async function writeTokenFile(entry: IgTokenFile): Promise<void> {
 }
 
 async function getActiveToken(): Promise<string | null> {
-  const envToken = process.env['IG_ACCESS_TOKEN'];
+  const envToken = envSecret('IG_ACCESS_TOKEN');
   if (!envToken) return null;
 
   if (!igTokenCache) {
@@ -236,7 +266,7 @@ async function refreshLongLivedToken(current: string): Promise<string | null> {
 }
 
 async function fetchInstagramPosts(): Promise<ReadonlyArray<IgPost> | null> {
-  const userId = process.env['IG_USER_ID'];
+  const userId = envSecret('IG_USER_ID');
   const token = await getActiveToken();
   if (!userId) {
     console.warn('[ig] missing IG_USER_ID in .env');
@@ -345,9 +375,22 @@ app.use('/**', (req, res, next) => {
 });
 
 if (isMainModule(import.meta.url)) {
-  const port = process.env['PORT'] || 4000;
-  app.listen(port, () => {
-    console.log(`Node Express server listening on http://localhost:${port}`);
+  process.env['NODE_ENV'] ??= 'production';
+  const port = Number(process.env['PORT'] || 4000);
+  const host = process.env['HOST'] || '0.0.0.0';
+  app.listen(port, host, () => {
+    console.log(`Node Express server listening on http://${host}:${port}`);
+    for (const key of [
+      'GOOGLE_API_KEY',
+      'PLACE_ID',
+      'IG_ACCESS_TOKEN',
+      'IG_USER_ID',
+      'RESEND_API_KEY',
+      'CONTACT_TO',
+      'CONTACT_FROM',
+    ] as const) {
+      console.log(`[env] ${key}: ${envSecret(key) ? 'set' : 'MISSING'}`);
+    }
   });
 }
 

@@ -3,13 +3,19 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node dist/web/server/server.mjs",
+    "start:dev": "ng serve --host 0.0.0.0",
+    "serve": "ng serve --host 0.0.0.0",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:web": "node dist/web/server/server.mjs"
   },
   "private": true,
+  "engines": {
+    "node": "^20.19.0 || ^22.12.0"
+  },
+  "main": "dist/web/server/server.mjs",
   "dependencies": {
     "@angular/animations": "^19.0.0",
     "@angular/cdk": "^19.0.5",

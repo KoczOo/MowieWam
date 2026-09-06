@@ -1,3 +1,8 @@
+import { readFile } from 'node:fs/promises';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { envSecret } from './env-secret';
+
 export interface ContactPayload {
   readonly name: string;
   readonly email: string;
@@ -31,10 +36,6 @@ const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 
 const rateBuckets = new Map<string, number[]>();
-
-import { readFile } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
 
 const IG_URL = 'https://www.instagram.com/mowie.wam/';
 const FB_URL = 'https://www.facebook.com/mowiewam';
@@ -329,9 +330,9 @@ async function resendSend(
 export async function sendContactEmails(
   payload: ContactPayload,
 ): Promise<{ ok: true } | { ok: false; reason: string }> {
-  const apiKey = process.env['RESEND_API_KEY'];
-  const to = process.env['CONTACT_TO'] ?? 'mowiewam.logopeda@gmail.com';
-  const from = process.env['CONTACT_FROM'];
+  const apiKey = envSecret('RESEND_API_KEY');
+  const to = envSecret('CONTACT_TO') ?? 'mowiewam.logopeda@gmail.com';
+  const from = envSecret('CONTACT_FROM');
 
   if (!apiKey || !from) {
     console.warn('[contact] missing RESEND_API_KEY or CONTACT_FROM');
