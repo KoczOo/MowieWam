@@ -47,18 +47,17 @@ export class OfertaComponent {
         { id: 'sygnaly', label: 'Sygnały alarmowe' },
         { id: 'logopedia', label: 'Diagnoza i terapia' },
         { id: 'specjalistyczne', label: 'Specjalistyczne wsparcie' },
-        { id: 'grupowe', label: 'Zajęcia grupowe' },
         { id: 'faq', label: 'FAQ' },
     ];
 
     protected readonly signals: readonly AlertSignal[] = [
-        { icon: 'baby_changing_station', age: '0–12 m-cy', text: 'Trudności z karmieniem piersią/butelką, brak gaworzenia, ulewania.' },
-        { icon: 'child_friendly', age: '12–18 m-cy', text: 'Brak pierwszych słów, brak reakcji na własne imię.' },
-        { icon: 'child_care', age: '2 lata', text: 'Słownik aktywny poniżej 50 słów, brak prostych zdań dwuwyrazowych.' },
-        { icon: 'face', age: '3 lata', text: 'Mowa niezrozumiała dla otoczenia, brak zdań prostych z czasownikami.' },
-        { icon: 'sentiment_satisfied', age: '4–5 lat', text: 'Wady wymowy: seplenienie, reranie, problemy z głoskami sz, ż, cz, dż.' },
-        { icon: 'school', age: '6+ lat', text: 'Trudności z nauką czytania, pisania, koncentracją, grafomotoryką.' },
-        { icon: 'air', age: 'każdy wiek', text: 'Oddychanie przez usta, otwarte usta w spoczynku, chrapanie.' },
+        { icon: 'baby_changing_station', age: '0–12 m-cy', text: 'Trudności z karmieniem piersią/butelką, brak gaworzenia, ulewania,rozszerzaniem diety, doborem smoczka, gryzaka.'},
+        { icon: 'child_friendly', age: '12–18 m-cy', text: 'Brak pierwszych słów, brak reakcji na własne imię. Trudności z rozszerzaniem diety, oddech ustami.' },
+        { icon: 'child_care', age: '2 lata', text: 'Słownik czynny poniżej 50 słów, brak prostych zdań dwuwyrazowych, oddech ustami.' },
+        { icon: 'face', age: '3 lata', text: 'Mowa niezrozumiała dla otoczenia, brak zdań prostych z czasownikami. Wady zgryzu, oddech ustami, chrapanie.' },
+        { icon: 'sentiment_satisfied', age: '4–5 lat', text: 'Wady wymowy, brak realizacji głosek np. [s, z, c, dz] oraz [sz, ż, cz, dż], wady zgryzu, oddech ustami.' },
+        { icon: 'school', age: '6+ lat', text: 'Wady wymowy, brak realizacji głoski [r] i inne, wady zgryzu, oddech ustami, trudności z nauką czytania, pisania, koncentracją, grafomotoryką.' },
+        { icon: 'air', age: 'każdy wiek', text: 'Oddech ustami, chrapanie, zgrzytanie zębami, wybiórczość pokarmowa, problemy z gryzieniem, żuciem, ssanie kciuka.' },
         { icon: 'restaurant', age: 'każdy wiek', text: 'Wybiórczość pokarmowa, problemy z gryzieniem, połykaniem, krztuszenie.' },
     ];
 
@@ -67,7 +66,7 @@ export class OfertaComponent {
             id: 'logopedia',
             eyebrow: 'Etap pierwszy',
             title: 'Diagnoza i terapia logopedyczna',
-            description: 'Wszystko zaczyna się od dokładnej diagnozy. Na jej podstawie planujemy terapię dopasowaną do potrzeb i tempa rozwoju Twojego dziecka.',
+            description: 'Wszystko zaczyna się od dokładnej diagnozy. Na jej podstawie planujemy terapię dopasowaną do indywidualnych potrzeb i tempa rozwoju pacjenta.',
             background: 'white',
             services: [
                 {
@@ -168,42 +167,6 @@ export class OfertaComponent {
                     ],
                     helpsWhen: ['Dziecko nie reaguje na polecenia mimo dobrego słuchu', 'Trudności z rozumieniem złożonych wypowiedzi', 'Słaba koncentracja i pamięć słuchowa', 'Wsparcie nauki czytania i pisania'],
                     meta: { duration: '45 min', for: 'dzieci od 4 r.ż.' },
-                },
-            ],
-        },
-        {
-            id: 'grupowe',
-            eyebrow: 'Etap trzeci',
-            title: 'Zajęcia grupowe',
-            description: 'Razem raźniej! Rozwijamy komunikację, kreatywność i kompetencje społeczne w bezpiecznej grupie rówieśniczej.',
-            background: 'cream',
-            services: [
-                {
-                    icon: 'music_note', title: 'Logorytmika', short: 'Muzyka, ruch i mowa w jednej przygodzie.',
-                    paragraphs: [
-                        'Zajęcia łączące śpiewanie piosenek, pracę nad melodią, rytmem i grą na prostych instrumentach. To jedna z najprzyjemniejszych form stymulacji mowy.',
-                        'Niezwykle rozwijają pamięć, koncentrację, percepcję słuchową i koordynację ruchową – wszystko przy wybuchach śmiechu i radości.',
-                    ],
-                    includes: ['Piosenki i rytmiczanki', 'Gra na prostych instrumentach', 'Ćwiczenia oddechowe i głosowe', 'Zabawy ruchowe z elementem mowy'],
-                    meta: { duration: '45 min', for: 'maluchy i przedszkolaki' },
-                },
-                {
-                    icon: 'palette', title: 'Sensoplastyka®', short: 'Stymulacja zmysłów przez sztukę.',
-                    paragraphs: [
-                        'Twórcza zabawa z bezpiecznymi, jadalnymi materiałami. Dzieci tworzą, doświadczają, mieszają, wąchają – w pełni angażując zmysły.',
-                        'To nie tylko świetna zabawa – Sensoplastyka rozwija małą motorykę, kreatywność, uczy współpracy i odporności na bałagan (rodzica też 😉).',
-                    ],
-                    includes: ['Bezpieczne, jadalne barwniki i masy', 'Pełna swoboda twórcza dziecka', 'Praca w małej grupie', 'Dyplom uczestnika po cyklu'],
-                    meta: { duration: '60 min', for: 'dzieci od 6 m.ż.' },
-                },
-                {
-                    icon: 'groups', title: 'Trening Umiejętności Społecznych (TUS)', short: 'Komunikacja, emocje i relacje rówieśnicze.',
-                    paragraphs: [
-                        'Zajęcia w małej grupie, w której dzieci ćwiczą rozpoznawanie emocji, komunikację, radzenie sobie z trudnymi sytuacjami i nawiązywanie relacji.',
-                        'TUS jest szczególnie cenny dla dzieci nieśmiałych, w spektrum autyzmu, z trudnościami w nawiązywaniu kontaktów oraz z nadmierną reaktywnością.',
-                    ],
-                    helpsWhen: ['Dziecko ma trudności z nawiązywaniem kontaktów', 'Spektrum autyzmu / Asperger', 'Wybuchy emocji, trudność z ich rozpoznaniem', 'Nieśmiałość uniemożliwiająca funkcjonowanie w grupie'],
-                    meta: { duration: '60 min', for: 'dzieci 5–14 lat' },
                 },
             ],
         },

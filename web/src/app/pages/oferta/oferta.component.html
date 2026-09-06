@@ -3,17 +3,17 @@
     <section class="page-header">
         <div class="container">
             <span class="eyebrow">Oferta</span>
-            <h1 class="page-title">Pełen zakres terapii dla Twojego dziecka</h1>
+            <h1 class="page-title">Pełen zakres terapii</h1>
             <p class="page-subtitle">
-                Pomożemy rozwiać wątpliwości dotyczące rozwoju Twojego dziecka.
-                Pracujemy holistycznie – od mowy, przez oddech, jedzenie, po motorykę i rozwój społeczny.
+                Pomożemy rozwiać wszelkie wątpliwości. Pracujemy holistycznie od funkcji narządu żucia, przez oddech,
+                karmienie i jedzenie, mowę aż po rozwój społeczny.
             </p>
 
             <nav class="anchor-chips" aria-label="Sekcje oferty">
                 @for (a of anchors; track a.id) {
-                    <a [href]="'#' + a.id" class="chip" (click)="scrollTo(a.id, $event)">
-                        {{ a.label }}
-                    </a>
+                <a [href]="'#' + a.id" class="chip" (click)="scrollTo(a.id, $event)">
+                    {{ a.label }}
+                </a>
                 }
             </nav>
         </div>
@@ -33,11 +33,11 @@
 
             <div class="signals-grid">
                 @for (s of signals; track s.age + s.text) {
-                    <div class="signal-card hidden" appIntersectionObserver>
-                        <div class="signal-icon"><mat-icon>{{ s.icon }}</mat-icon></div>
-                        <span class="signal-age">{{ s.age }}</span>
-                        <p>{{ s.text }}</p>
-                    </div>
+                <div class="signal-card hidden" appIntersectionObserver>
+                    <div class="signal-icon"><mat-icon>{{ s.icon }}</mat-icon></div>
+                    <span class="signal-age">{{ s.age }}</span>
+                    <p>{{ s.text }}</p>
+                </div>
                 }
             </div>
 
@@ -52,23 +52,20 @@
 
     <!-- CATEGORIES -->
     @for (cat of categories; track cat.id) {
-        <section [id]="cat.id" class="section offer-section" [class]="bgClass(cat.background)">
-            <div class="container">
-                <header class="cat-intro hidden" appIntersectionObserver>
-                    <span class="eyebrow">{{ cat.eyebrow }}</span>
-                    <h2 class="section-title">{{ cat.title }}</h2>
-                    <p class="section-subtitle">{{ cat.description }}</p>
-                </header>
+    <section [id]="cat.id" class="section offer-section" [class]="bgClass(cat.background)">
+        <div class="container">
+            <header class="cat-intro hidden" appIntersectionObserver>
+                <span class="eyebrow">{{ cat.eyebrow }}</span>
+                <h2 class="section-title">{{ cat.title }}</h2>
+                <p class="section-subtitle">{{ cat.description }}</p>
+            </header>
 
-                <div class="services-list">
-                    @for (s of cat.services; track s.title; let idx = $index) {
-                        <article class="service-block hidden"
-                                 appIntersectionObserver
-                                 [class.service-highlight]="s.highlight">
-                            <div class="service-head">
-                                <div class="service-num">
-                                    {{ idx + 1 < 10 ? '0' + (idx + 1) : idx + 1 }}
-                                </div>
+            <div class="services-list">
+                @for (s of cat.services; track s.title; let idx = $index) {
+                <article class="service-block hidden" appIntersectionObserver [class.service-highlight]="s.highlight">
+                    <div class="service-head">
+                        <div class="service-num">
+                            {{ idx + 1 < 10 ? '0' + (idx + 1) : idx + 1 }} </div>
                                 <div class="service-icon-wrap">
                                     <mat-icon>{{ s.icon }}</mat-icon>
                                 </div>
@@ -76,81 +73,81 @@
                                     <h3 class="service-title">{{ s.title }}</h3>
                                     <p class="service-short">{{ s.short }}</p>
                                     @if (s.meta) {
-                                        <div class="service-meta">
-                                            @if (s.meta.duration) {
-                                                <span class="meta-pill">
-                                                    <mat-icon>schedule</mat-icon> {{ s.meta.duration }}
-                                                </span>
-                                            }
-                                            @if (s.meta.for) {
-                                                <span class="meta-pill">
-                                                    <mat-icon>group</mat-icon> {{ s.meta.for }}
-                                                </span>
-                                            }
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-
-                            <div class="service-body">
-                                <div class="service-text">
-                                    @for (p of s.paragraphs; track $index) {
-                                        <p>{{ p }}</p>
-                                    }
-                                </div>
-
-                                @if (s.helpsWhen?.length || s.includes?.length) {
-                                    <div class="service-side">
-                                        @if (s.helpsWhen?.length) {
-                                            <div class="side-box">
-                                                <h4>
-                                                    <mat-icon>flag</mat-icon>
-                                                    Pomożemy, gdy:
-                                                </h4>
-                                                <ul>
-                                                    @for (item of s.helpsWhen; track item) {
-                                                        <li>
-                                                            <mat-icon>check</mat-icon>
-                                                            <span>{{ item }}</span>
-                                                        </li>
-                                                    }
-                                                </ul>
-                                            </div>
+                                    <div class="service-meta">
+                                        @if (s.meta.duration) {
+                                        <span class="meta-pill">
+                                            <mat-icon>schedule</mat-icon> {{ s.meta.duration }}
+                                        </span>
                                         }
-
-                                        @if (s.includes?.length) {
-                                            <div class="side-box side-box-alt">
-                                                <h4>
-                                                    <mat-icon>checklist</mat-icon>
-                                                    Co obejmuje?
-                                                </h4>
-                                                <ul>
-                                                    @for (item of s.includes; track item) {
-                                                        <li>
-                                                            <mat-icon>fiber_manual_record</mat-icon>
-                                                            <span>{{ item }}</span>
-                                                        </li>
-                                                    }
-                                                </ul>
-                                            </div>
+                                        @if (s.meta.for) {
+                                        <span class="meta-pill">
+                                            <mat-icon>group</mat-icon> {{ s.meta.for }}
+                                        </span>
                                         }
                                     </div>
+                                    }
+                                </div>
+                        </div>
+
+                        <div class="service-body">
+                            <div class="service-text">
+                                @for (p of s.paragraphs; track $index) {
+                                <p>{{ p }}</p>
                                 }
                             </div>
 
-                            <div class="service-foot">
-                                <a class="btn-mw btn-outline-mw" routerLink="/kontakt">
-                                    Umów wizytę <mat-icon>arrow_forward</mat-icon>
-                                </a>
-                                <a class="service-link" routerLink="/cennik">
-                                    Zobacz cennik <mat-icon>open_in_new</mat-icon>
-                                </a>
+                            @if (s.helpsWhen?.length || s.includes?.length) {
+                            <div class="service-side">
+                                @if (s.helpsWhen?.length) {
+                                <div class="side-box">
+                                    <h4>
+                                        <mat-icon>flag</mat-icon>
+                                        Pomożemy, gdy:
+                                    </h4>
+                                    <ul>
+                                        @for (item of s.helpsWhen; track item) {
+                                        <li>
+                                            <mat-icon>check</mat-icon>
+                                            <span>{{ item }}</span>
+                                        </li>
+                                        }
+                                    </ul>
+                                </div>
+                                }
+
+                                @if (s.includes?.length) {
+                                <div class="side-box side-box-alt">
+                                    <h4>
+                                        <mat-icon>checklist</mat-icon>
+                                        Co obejmuje?
+                                    </h4>
+                                    <ul>
+                                        @for (item of s.includes; track item) {
+                                        <li>
+                                            <mat-icon>fiber_manual_record</mat-icon>
+                                            <span>{{ item }}</span>
+                                        </li>
+                                        }
+                                    </ul>
+                                </div>
+                                }
                             </div>
-                        </article>
-                    }
-                </div>
+                            }
+                        </div>
+
+                        <div class="service-foot">
+                            <a class="btn-mw btn-outline-mw" routerLink="/kontakt">
+                                Umów wizytę <mat-icon>arrow_forward</mat-icon>
+                            </a>
+                            <a class="service-link" routerLink="/cennik">
+                                Zobacz cennik <mat-icon>open_in_new</mat-icon>
+                            </a>
+                        </div>
+                </article>
+                }
             </div>
-        </section>
+        </div>
+    </section>
     }
 
     <!-- FAQ -->
@@ -167,13 +164,13 @@
 
             <div class="faq-list">
                 @for (f of faqs; track f.q) {
-                    <details class="faq-item hidden" appIntersectionObserver>
-                        <summary>
-                            <span>{{ f.q }}</span>
-                            <mat-icon class="chev">expand_more</mat-icon>
-                        </summary>
-                        <p>{{ f.a }}</p>
-                    </details>
+                <details class="faq-item hidden" appIntersectionObserver>
+                    <summary>
+                        <span>{{ f.q }}</span>
+                        <mat-icon class="chev">expand_more</mat-icon>
+                    </summary>
+                    <p>{{ f.a }}</p>
+                </details>
                 }
             </div>
         </div>

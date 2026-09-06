@@ -5,8 +5,9 @@
             <span class="eyebrow">O nas</span>
             <h1 class="page-title">Poznaj nasze Centrum</h1>
             <p class="page-subtitle">
-                Mówię Wam to miejsce, w którym za każdym uśmiechem dziecka stoi praca z pasją,
-                najlepszych specjalistek z Kielc.
+                Mówię Wam to miejsce, w którym znajdziesz pasjonatki swojej pracy. Wspólnie tworzymy miejsce, w którym
+                pracujemy z zaangażowaniem i sercem.
+
             </p>
         </div>
     </section>
@@ -19,10 +20,9 @@
                     <div class="founder-sticky">
                         <div class="founder-image hidden" appIntersectionObserver>
                             <div class="founder-frame">
-                                <img src="assets/me.jpg"
-                                     alt="mgr Dominika Gębska – założycielka Mówię Wam"
-                                     width="520" height="640"
-                                     loading="lazy" decoding="async"/>
+                                <img src="assets/dominika_profil.jpeg"
+                                    alt="mgr Dominika Gębska – założycielka Mówię Wam" width="520" height="640"
+                                    loading="lazy" decoding="async" />
                             </div>
                             <div class="founder-decor"></div>
                             <div class="founder-badge">
@@ -115,10 +115,14 @@
                             <div class="qual-item"><mat-icon>school</mat-icon><span>Neurologopeda</span></div>
                             <div class="qual-item"><mat-icon>record_voice_over</mat-icon><span>Logopeda</span></div>
                             <div class="qual-item"><mat-icon>spa</mat-icon><span>Terapeuta miofunkcjonalny</span></div>
-                            <div class="qual-item"><mat-icon>baby_changing_station</mat-icon><span>Konsultant karmienia piersią i butelką</span></div>
-                            <div class="qual-item"><mat-icon>mic</mat-icon><span>Trener emisji głosu i oddechu</span></div>
-                            <div class="qual-item"><mat-icon>speaker_notes</mat-icon><span>Terapeuta jąkania</span></div>
-                            <div class="qual-item"><mat-icon>verified</mat-icon><span>Członek Polskiego Towarzystwa Rehabilitacji Głosu</span></div>
+                            <div class="qual-item"><mat-icon>baby_changing_station</mat-icon><span>Konsultant karmienia
+                                    piersią i butelką</span></div>
+                            <div class="qual-item"><mat-icon>mic</mat-icon><span>Trener emisji głosu i oddechu</span>
+                            </div>
+                            <div class="qual-item"><mat-icon>speaker_notes</mat-icon><span>Terapeuta jąkania</span>
+                            </div>
+                            <div class="qual-item"><mat-icon>verified</mat-icon><span>Członek Polskiego Towarzystwa
+                                    Rehabilitacji Głosu</span></div>
                         </div>
 
                         <div class="founder-cta">
@@ -146,13 +150,13 @@
             </div>
             <div class="row g-4">
                 @for (v of values; track v.title) {
-                    <div class="col-md-6 col-lg-3">
-                        <div class="value-card hidden" appIntersectionObserver>
-                            <div class="value-icon"><mat-icon>{{ v.icon }}</mat-icon></div>
-                            <h3>{{ v.title }}</h3>
-                            <p>{{ v.desc }}</p>
-                        </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="value-card hidden" appIntersectionObserver>
+                        <div class="value-icon"><mat-icon>{{ v.icon }}</mat-icon></div>
+                        <h3>{{ v.title }}</h3>
+                        <p>{{ v.desc }}</p>
                     </div>
+                </div>
                 }
             </div>
         </div>
@@ -172,23 +176,26 @@
 
             <div class="row g-4 justify-content-center">
                 @for (m of team; track m.name) {
-                    <div class="col-md-6 col-lg-4">
-                        <article class="team-card hover-lift hidden" appIntersectionObserver>
-                            <div class="avatar">
-                                <span class="avatar-initials">{{ m.initials }}</span>
-                            </div>
+                <div class="col-md-6 col-lg-4">
+                    <article class="team-card hover-lift hidden" appIntersectionObserver>
+                        <div class="team-photo">
+                            <img [src]="m.photo" [alt]="m.name" width="400" height="500" loading="lazy"
+                                decoding="async" />
+                        </div>
+                        <div class="team-body">
                             <h3 class="team-name">{{ m.name }}</h3>
                             <p class="team-role">{{ m.role }}</p>
                             <ul class="team-quals">
                                 @for (q of m.qualifications; track q) {
-                                    <li>
-                                        <mat-icon>fiber_manual_record</mat-icon>
-                                        <span>{{ q }}</span>
-                                    </li>
+                                <li>
+                                    <mat-icon>fiber_manual_record</mat-icon>
+                                    <span>{{ q }}</span>
+                                </li>
                                 }
                             </ul>
-                        </article>
-                    </div>
+                        </div>
+                    </article>
+                </div>
                 }
             </div>
         </div>
@@ -201,16 +208,14 @@
                 <div class="col-lg-6">
                     <div class="hidden" appIntersectionObserver>
                         <span class="eyebrow">Nasza misja</span>
-                        <h2 class="section-title">Każde dziecko zasługuje na to, by zostać wysłuchane</h2>
+                        <h2 class="section-title">Każdy zasługuje na to, by zostać wysłuchany</h2>
                         <p style="font-size: 17px; line-height: 1.8; color: var(--text);">
                             Wierzymy, że terapia logopedyczna to nie tylko ćwiczenia.
-                            To <strong>relacja oparta na zaufaniu</strong>, ciepła rozmowa,
-                            pierwsze brawa po wymówieniu trudnej głoski, łzy radości rodzica.
+                            To <strong>proces i relacja oparta na zaufaniu</strong>, ciepłej rozmowie i wsparciu.
                         </p>
                         <p style="font-size: 17px; line-height: 1.8; color: var(--text);">
-                            Pracujemy holistycznie – od diagnozy, przez plan terapii,
-                            po wsparcie rodziny w codziennych wyzwaniach.
-                            Zapraszamy do naszego Centrum w Kielcach na os. Ślichowice.
+                            Pracujemy holistycznie – od diagnozy, przez plan terapii, po wsparcie rodziny w codziennych
+                            wyzwaniach. Zapraszamy do naszego Centrum w Kielcach na os. Ślichowice.
                         </p>
                         <a class="btn-mw btn-primary-mw" routerLink="/oferta">
                             Poznaj naszą ofertę
@@ -220,10 +225,14 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="mission-stats hidden" appIntersectionObserver>
-                        <div class="m-stat"><span class="m-num">500+</span><span class="m-label">Dzieci pod naszą opieką</span></div>
-                        <div class="m-stat"><span class="m-num">5+</span><span class="m-label">Lat doświadczenia</span></div>
-                        <div class="m-stat"><span class="m-num">4</span><span class="m-label">Specjalistki w zespole</span></div>
-                        <div class="m-stat"><span class="m-num">5.0★</span><span class="m-label">Średnia ocena Google</span></div>
+                        <div class="m-stat"><span class="m-num">500+</span><span class="m-label">pacjentów pod naszą
+                                opieką</span></div>
+                        <div class="m-stat"><span class="m-num">9+</span><span class="m-label">Lat doświadczenia</span>
+                        </div>
+                        <div class="m-stat"><span class="m-num">4</span><span class="m-label">Specjalistki w
+                                zespole</span></div>
+                        <div class="m-stat"><span class="m-num">5.0★</span><span class="m-label">Średnia ocena
+                                Google</span></div>
                     </div>
                 </div>
             </div>

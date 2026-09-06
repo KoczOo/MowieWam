@@ -51,21 +51,12 @@ export class CennikComponent {
                 { name: 'Terapia wybiórczości pokarmowej', duration: '45 min', price: '150 zł' },
             ],
         },
-        {
-            title: 'Zajęcia grupowe', icon: 'groups',
-            items: [
-                { name: 'Logorytmika', duration: '45 min', price: '60 zł', description: 'Cena za jedne zajęcia' },
-                { name: 'Sensoplastyka®', duration: '60 min', price: '70 zł', description: 'Cena za jedne zajęcia' },
-                { name: 'TUS – Trening Umiejętności Społecznych', duration: '60 min', price: '90 zł', description: 'Cena za jedne zajęcia' },
-            ],
-        },
     ];
 
     protected readonly notes: readonly Note[] = [
-        { icon: 'payments', title: 'Płatność', desc: 'Akceptujemy gotówkę oraz BLIK / przelew na miejscu.' },
+        { icon: 'payments', title: 'Płatność', desc: 'Akceptujemy gotówkę, kartę płatniczą oraz BLIK.' },
         { icon: 'event_busy', title: 'Odwoływanie wizyt', desc: 'Wizytę można bezpłatnie odwołać minimum 24h przed terminem.' },
         { icon: 'receipt_long', title: 'Faktury', desc: 'Na życzenie wystawiamy fakturę – również imienne dla rodzica.' },
-        { icon: 'local_offer', title: 'Karnety', desc: 'Stałym pacjentom proponujemy korzystne pakiety karnetowe.' },
     ];
 
     constructor() {

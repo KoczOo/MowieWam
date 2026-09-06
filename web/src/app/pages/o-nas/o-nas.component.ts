@@ -9,7 +9,7 @@ interface TeamMember {
     role: string;
     description?: string;
     qualifications: string[];
-    initials: string;
+    photo: string;
 }
 
 interface ValueItem { icon: string; title: string; desc: string; }
@@ -25,19 +25,19 @@ export class ONasComponent {
     private readonly seo = inject(SeoService);
 
     protected readonly team: readonly TeamMember[] = [
-        { name: 'Julia Jakaśtam', role: 'Logopeda', initials: 'KC',
-            qualifications: ['Logopeda ogólny', 'Terapeuta wczesnej interwencji', 'Instruktorka logorytmiki'] },
-        { name: 'Justyna Nowacka', role: 'Neurologopeda', initials: 'JN',
-            qualifications: ['Neurologopeda', 'Logopeda ogólny', 'Terapeuta ręki I i II stopnia'] },
-        { name: 'Weronika Prus', role: 'Logopeda', initials: 'WP',
-            qualifications: ['Logopeda ogólny', 'Terapeuta TUS', 'Terapeuta wybiórczości pokarmowej'] },
+        { name: 'Justyna Wojtyś', role: 'Neurologopeda', photo: 'assets/justyna_profil.jpeg',
+            qualifications: ['Terapeuta ręki I i II stopnia', 'Specjalista ds. AAC', 'Mioterapeuta'] },
+        { name: 'Julia Kowalska', role: 'Logopeda', photo: 'assets/julia_profil.jpeg',
+            qualifications: ['Mioterapeuta'] },
+        { name: 'Weronika Ogórek', role: 'Logopeda', photo: 'assets/weronika_profil.jpeg',
+            qualifications: ['Mioterapeuta'] },
     ];
 
     protected readonly values: readonly ValueItem[] = [
         { icon: 'favorite', title: 'Pasja', desc: 'Każdą terapię prowadzimy z ogromnym sercem i zaangażowaniem.' },
         { icon: 'verified', title: 'Doświadczenie', desc: 'Stale podnosimy swoje kwalifikacje – kursy i szkolenia to nasza codzienność.' },
-        { icon: 'auto_awesome', title: 'Indywidualne podejście', desc: 'Każde dziecko jest inne – plan terapii zawsze dopasowujemy do jego potrzeb.' },
-        { icon: 'spa', title: 'Komfort i bezpieczeństwo', desc: 'Dbamy o atmosferę, w której zarówno dziecko, jak i rodzic czują się dobrze.' },
+        { icon: 'auto_awesome', title: 'Indywidualne podejście', desc: 'Każdy pacjent jest wyjątkowy – plan terapii zawsze dopasowujemy do jego potrzeb.' },
+        { icon: 'spa', title: 'Komfort i bezpieczeństwo', desc: 'Dbamy o atmosferę, w której każdy poczuje się dobrze.' },
     ];
 
     constructor() {

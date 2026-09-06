@@ -43,8 +43,8 @@
             </div>
             <div class="hero-image hidden" appIntersectionObserver>
                 <div class="hero-image-frame">
-                    <img src="assets/me.jpg" alt="mgr Dominika Gębska – założycielka Mówię Wam" width="520" height="640"
-                        fetchpriority="high" decoding="async" />
+                    <img src="assets/dominika_profil.jpeg" alt="mgr Dominika Gębska – założycielka Mówię Wam"
+                        width="520" height="640" fetchpriority="high" decoding="async" />
                 </div>
                 <div class="hero-image-badge">
                     <mat-icon>favorite</mat-icon>
@@ -64,7 +64,7 @@
                 <div class="col-lg-6 d-none d-lg-block">
                     <div class="img-me-container hidden" appIntersectionObserver>
                         <div class="me-photo-wrapper">
-                            <img src="assets/me.jpg" class="me-photo"
+                            <img src="assets/dominika_profil2.jpeg" class="me-photo"
                                 alt="Dominika Gębska – założycielka centrum Mówię Wam" width="520" height="640"
                                 loading="lazy" decoding="async" />
                             <div class="me-photo-deco"></div>
@@ -202,27 +202,26 @@
                     <div class="step-content">
                         <h4>{{ step.title }}</h4>
                         @if (step.contactLinks; as c) {
-                            <p>
-                                <a class="step-link" [href]="'tel:' + c.phone" aria-label="Zadzwoń do nas">
-                                    <strong>Zadzwoń</strong>
-                                </a>
-                                napisz
-                                <a class="step-link" [href]="'sms:' + c.sms" aria-label="Napisz do nas SMS">
-                                    <strong>SMS</strong>
-                                </a>
-                                albo zarezerwuj wizytę online.
-                            </p>
+                        <p>
+                            <a class="step-link" [href]="'tel:' + c.phone" aria-label="Zadzwoń do nas">
+                                <strong>Zadzwoń</strong>
+                            </a>
+                            napisz
+                            <a class="step-link" [href]="'sms:' + c.sms" aria-label="Napisz do nas SMS">
+                                <strong>SMS</strong>
+                            </a>
+                            albo zarezerwuj wizytę online.
+                        </p>
                         } @else {
-                            <p>{{ step.desc }}</p>
+                        <p>{{ step.desc }}</p>
                         }
                         @if (step.cta; as cta) {
-                            <a class="btn-mw btn-outline-mw step-cta"
-                               [href]="cta.href"
-                               [attr.target]="cta.external ? '_blank' : null"
-                               [attr.rel]="cta.external ? 'noopener' : null">
-                                <mat-icon>event_available</mat-icon>
-                                {{ cta.label }}
-                            </a>
+                        <a class="btn-mw btn-outline-mw step-cta" [href]="cta.href"
+                            [attr.target]="cta.external ? '_blank' : null"
+                            [attr.rel]="cta.external ? 'noopener' : null">
+                            <mat-icon>event_available</mat-icon>
+                            {{ cta.label }}
+                        </a>
                         }
                     </div>
                 </div>
@@ -245,7 +244,8 @@
                 <span class="eyebrow">Opinie</span>
                 <h2 class="section-title">Słowami naszych pacjentów</h2>
                 <p class="section-subtitle">
-                    Najlepszą rekomendacją są dla nas uśmiechy dzieci i wdzięczność rodziców.
+                    Najlepszą rekomendacją są dla nas wszystkie szczere słowa napisane przez Państwa po zakończonych
+                    terapiach
                 </p>
             </div>
 
@@ -281,28 +281,25 @@
         <div class="container">
             <div class="text-center hidden" appIntersectionObserver>
                 <span class="eyebrow">Instagram</span>
-                <h2 class="section-title ig-section-title">Zajrzyj do naszego świata</h2>
+                <h2 class="section-title ig-section-title">Zajrzyj do świata Mówię Wam </h2>
                 <p class="section-subtitle ig-section-sub">
                     <span class="ig-sub-dash"></span>
-                    Kulisy terapii, ćwiczenia do domu i codzienne momenty z dzieciakami
+                    i zobacz kulisy terapii, efekty i inspiracje do pracy w domu!
                     <span class="ig-sub-dash"></span>
                 </p>
             </div>
 
             <div class="ig-profile hidden" appIntersectionObserver>
-                <a class="ig-profile-avatar"
-                   href="https://www.instagram.com/mowie.wam/"
-                   target="_blank" rel="noopener"
-                   aria-label="Profil Instagram Mówię Wam">
+                <a class="ig-profile-avatar" href="https://www.instagram.com/mowie.wam/" target="_blank" rel="noopener"
+                    aria-label="Profil Instagram Mówię Wam">
                     <i class="fab fa-instagram" aria-hidden="true"></i>
                 </a>
                 <div class="ig-profile-body">
                     <p class="ig-profile-bio">
                         Logopedia | Neurologopedia | Kielce | świętokrzyskie
                     </p>
-                    <a class="ig-profile-handle"
-                       href="https://www.instagram.com/mowie.wam/"
-                       target="_blank" rel="noopener">&#64;mowie.wam</a>
+                    <a class="ig-profile-handle" href="https://www.instagram.com/mowie.wam/" target="_blank"
+                        rel="noopener">&#64;mowie.wam</a>
                 </div>
                 <ul class="ig-profile-stats" aria-label="Statystyki profilu">
                     @for (s of igProfileStats; track s.label) {
@@ -312,9 +309,8 @@
                     </li>
                     }
                 </ul>
-                <a class="btn-mw btn-primary-mw ig-follow-btn"
-                   href="https://www.instagram.com/mowie.wam/"
-                   target="_blank" rel="noopener">
+                <a class="btn-mw btn-primary-mw ig-follow-btn" href="https://www.instagram.com/mowie.wam/"
+                    target="_blank" rel="noopener">
                     <i class="fab fa-instagram" aria-hidden="true"></i>
                     Obserwuj
                 </a>
@@ -322,32 +318,24 @@
 
             <div class="ig-grid hidden" appIntersectionObserver>
                 @for (post of igTiles(); track $index) {
-                <a class="ig-tile"
-                   [attr.data-variant]="post.variant"
-                   [href]="post.permalink ?? igProfileUrl"
-                   target="_blank" rel="noopener"
-                   [attr.aria-label]="post.heading + ' – ' + post.sub">
+                <a class="ig-tile" [attr.data-variant]="post.variant" [href]="post.permalink ?? igProfileUrl"
+                    target="_blank" rel="noopener" [attr.aria-label]="post.heading + ' – ' + post.sub">
                     @if (post.mediaUrl) {
-                    <img class="ig-tile-media"
-                         [src]="post.mediaUrl"
-                         [alt]="post.heading"
-                         loading="lazy" decoding="async" />
+                    <img class="ig-tile-media" [src]="post.mediaUrl" [alt]="post.heading" loading="lazy"
+                        decoding="async" />
                     } @else if (post.emoji) {
                     <span class="ig-tile-emoji" aria-hidden="true">{{ post.emoji }}</span>
                     }
                     <div class="ig-tile-overlay">
-                        <span class="ig-tile-heading"><span class="ig-tile-heading-text">{{ post.heading }}</span></span>
+                        <span class="ig-tile-heading"><span class="ig-tile-heading-text">{{ post.heading
+                                }}</span></span>
                         @if (post.sub) {
                         <span class="ig-tile-sub">{{ post.sub }}</span>
                         }
                     </div>
-                    <i class="ig-tile-type"
-                       [class.fas]="post.type === 'video'"
-                       [class.fa-play]="post.type === 'video'"
-                       [class.far]="post.type !== 'video'"
-                       [class.fa-clone]="post.type === 'carousel'"
-                       [class.fa-image]="post.type === 'photo'"
-                       aria-hidden="true"></i>
+                    <i class="ig-tile-type" [class.fas]="post.type === 'video'" [class.fa-play]="post.type === 'video'"
+                        [class.far]="post.type !== 'video'" [class.fa-clone]="post.type === 'carousel'"
+                        [class.fa-image]="post.type === 'photo'" aria-hidden="true"></i>
                 </a>
                 }
             </div>
@@ -357,7 +345,8 @@
     <!-- CTA BANNER -->
     <section class="cta-banner">
         <div class="container hidden" appIntersectionObserver>
-            <h2 class="cta-title">Umów konsultację już dziś i zadbaj o swoje zdrowie i komfort życia i Twojego dziecka!</h2>
+            <h2 class="cta-title">Umów konsultację już dziś i zadbaj o zdrowie oraz komfort życia — swój lub swojego dziecka!
+            </h2>
             <p class="cta-sub">Skontaktuj się z nami – odpowiemy najszybciej, jak to możliwe.</p>
             <div class="cta-actions">
                 <a class="btn-mw btn-light-mw" href="tel:+48509792650">
