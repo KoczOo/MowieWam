@@ -11,7 +11,6 @@ import {
 } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 import { finalize } from 'rxjs';
-import { IntersectionObserverDirective } from '../../directive/intersection-observer.directive';
 import { ContactService } from '../../services/contact.service';
 import { SeoService } from '../../services/seo.service';
 
@@ -19,7 +18,7 @@ const MIN_FILL_TIME_MS = 2500;
 
 @Component({
     selector: 'app-kontakt',
-    imports: [ReactiveFormsModule, MatIcon, IntersectionObserverDirective],
+    imports: [ReactiveFormsModule, MatIcon],
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './kontakt.component.html',
     styleUrl: './kontakt.component.scss',

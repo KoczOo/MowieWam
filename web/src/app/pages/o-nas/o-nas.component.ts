@@ -25,11 +25,11 @@ export class ONasComponent {
     private readonly seo = inject(SeoService);
 
     protected readonly team: readonly TeamMember[] = [
-        { name: 'Justyna Wojtyś', role: 'Neurologopeda', photo: 'assets/justyna_profil.jpeg',
+        { name: 'Justyna Wojtyś', role: 'Neurologopeda', photo: 'assets/justyna_profil.webp',
             qualifications: ['Terapeuta ręki I i II stopnia', 'Specjalista ds. AAC', 'Mioterapeuta'] },
-        { name: 'Julia Kowalska', role: 'Logopeda', photo: 'assets/julia_profil.jpeg',
+        { name: 'Julia Kowalska', role: 'Logopeda', photo: 'assets/julia_profil.webp',
             qualifications: ['Mioterapeuta'] },
-        { name: 'Weronika Ogórek', role: 'Logopeda', photo: 'assets/weronika_profil.jpeg',
+        { name: 'Weronika Ogórek', role: 'Logopeda', photo: 'assets/weronika_profil.webp',
             qualifications: ['Mioterapeuta'] },
     ];
 

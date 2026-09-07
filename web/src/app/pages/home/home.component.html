@@ -4,7 +4,7 @@
         <div class="hero-decor hero-decor-1"></div>
         <div class="hero-decor hero-decor-2"></div>
         <div class="container hero-inner">
-            <div class="hero-text hidden" appIntersectionObserver>
+            <div class="hero-text">
                 <h1 class="hero-title licorice">
                     <span class="hero-title-shine">Mówię Wam</span>
                 </h1>
@@ -41,9 +41,9 @@
                     </div>
                 </div>
             </div>
-            <div class="hero-image hidden" appIntersectionObserver>
+            <div class="hero-image">
                 <div class="hero-image-frame">
-                    <img src="assets/dominika_profil.jpeg" alt="mgr Dominika Gębska – założycielka Mówię Wam"
+                    <img src="assets/dominika_profil.webp" alt="mgr Dominika Gębska – założycielka Mówię Wam"
                         width="520" height="640" fetchpriority="high" decoding="async" />
                 </div>
                 <div class="hero-image-badge">
@@ -64,7 +64,7 @@
                 <div class="col-lg-6 d-none d-lg-block">
                     <div class="img-me-container hidden" appIntersectionObserver>
                         <div class="me-photo-wrapper">
-                            <img src="assets/dominika_profil2.jpeg" class="me-photo"
+                            <img src="assets/dominika_profil2.webp" class="me-photo"
                                 alt="Dominika Gębska – założycielka centrum Mówię Wam" width="520" height="640"
                                 loading="lazy" decoding="async" />
                             <div class="me-photo-deco"></div>
@@ -321,8 +321,8 @@
                 <a class="ig-tile" [attr.data-variant]="post.variant" [href]="post.permalink ?? igProfileUrl"
                     target="_blank" rel="noopener" [attr.aria-label]="post.heading + ' – ' + post.sub">
                     @if (post.mediaUrl) {
-                    <img class="ig-tile-media" [src]="post.mediaUrl" [alt]="post.heading" loading="lazy"
-                        decoding="async" />
+                    <img class="ig-tile-media" [src]="post.mediaUrl" [alt]="post.heading" width="400" height="400"
+                        loading="lazy" decoding="async" />
                     } @else if (post.emoji) {
                     <span class="ig-tile-emoji" aria-hidden="true">{{ post.emoji }}</span>
                     }
