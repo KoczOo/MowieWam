@@ -419,12 +419,14 @@
     &::-webkit-details-marker { display: none; }
     &::marker { content: ''; }
 
-    &:hover { background: rgba(255, 255, 255, 0.5); }
-
     .chev {
       transition: transform .25s ease;
       color: var(--secondary);
     }
+  }
+
+  &:not([open]) summary:hover {
+    background: rgba(255, 255, 255, 0.5);
   }
 
   &[open] summary .chev { transform: rotate(180deg); }
